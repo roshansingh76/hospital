@@ -1,2 +1,1 @@
 # hospital
-this hospital project
