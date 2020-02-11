@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter as Router, Route,Link} from 'react-router-dom';
 import Logox from '../../assets/img/logo.png';
 import Logosmall from '../../assets/img/logo-small.png';
 import avatar01 from '../../assets/img/profiles/avatar-01.jpg';
-
+import * as ROUTES from '../../config/routes';
 
 const Sidebar=()=>(
 		<div className="sidebar" id="sidebar">
@@ -14,15 +14,18 @@ const Sidebar=()=>(
 					   <span>Main</span>
 					</li>
 					<li className="active"> 
-					   <Link to="#"><i className="fe fe-home"></i> <span>Dashboard</span></Link>
+					   <Link to={ROUTES.AdminDashboard}><i className="fe fe-home"></i> <span>Dashboard</span></Link>
 					</li>
 					<li> 
-					   <Link to="#"><i className="fe fe-vector"></i> <span>Settings</span></Link>
+					
+					   <Link to={ROUTES.Astrologer}><i className="fe fe-user"></i> <span>Astrologer</span></Link>
 					</li>
 				  
 					<li> 
-					   <Link to="#"><i className="fe fe-file"></i> <span>Blank Page</span></Link>
+					   <Link to={ROUTES.Setting}><i className="fe fe-vector"></i> <span>Settings</span></Link>
 					</li>
+				  
+					
 				  
 				 </ul>
 			  </div>

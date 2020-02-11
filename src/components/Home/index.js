@@ -17,7 +17,7 @@ class HomePage extends Component{
 						<div className="page-header">
 							<div className="row">
 								<div className="col-sm-12">
-									<h3 className="page-title">Welcome Name</h3>
+									<h3 className="page-title">Welcome Name home</h3>
 									<ul className="breadcrumb">
 										<li className="breadcrumb-item active">Home</li>
 									</ul>

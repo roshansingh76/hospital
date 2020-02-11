@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logox from '../../assets/img/logo.png';
-import Logosmall from '../../assets/img/logo-small.png';
+import Logox from '../../assets/logo.png';
+import Logosmall from '../../assets/white.png';
 import avatar01 from '../../assets/img/profiles/avatar-01.jpg';
 import Sidebar from './Sidebar';
 const Navigation = () => (

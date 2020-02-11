@@ -1,10 +1,13 @@
-export const LOGIN = '/';
+export const Home = '/';
 export const DONATE = '/donate';
 export const SIGN_UP = '/signup';
 export const SIGN_IN = '/signin';
 export const MESSAGE = '/message';
 export const ACCOUNT = '/account';
 export const PASSWORD_FORGET = '/pw-forget';
-export const ADMIN = '/admin';
+export const AdminDashboard = '/dashboard';
+export const Astrologer = '/astrologer';
+export const addAstrologer = '/addAstrologer';
 export const FOODBANK = '/foodbank';
+export const Setting = '/Setting';
 export const ADMIN_DETAILS = '/admin/:id';
