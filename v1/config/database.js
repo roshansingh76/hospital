@@ -4,8 +4,8 @@ var pool=mysql.createPool({
     connectionLimit : 10,
     host:'localhost',
     user:'root',
-    password:'',
-    database:'nodedb'
+    password:'rgyan@2025',
+    database:'mydb'
 	
 });
 var DB = (function () {

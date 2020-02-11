@@ -11,7 +11,7 @@ exports.users_login = function(req, res) {
     var username = req.body.username;
     var password = req.body.password;
    if (username && password) {
-	   sql="SELECT * FROM users WHERE username='"+username+"' and password='"+password+"'";
+	   var sql="SELECT * FROM cms_users WHERE username='"+username+"' and password='"+password+"'";
 		db.query(sql,function(error, results, fields) {
 			 if(error){
 				res.status(500)
