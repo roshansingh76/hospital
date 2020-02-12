@@ -8,6 +8,7 @@ exports.users_index = function(req, res) {
 };
 
 exports.users_login = function(req, res) {
+	console.log(req.body);
     var username = req.body.username;
     var password = req.body.password;
    if (username && password) {
