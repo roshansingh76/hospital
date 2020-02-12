@@ -47,9 +47,14 @@ class CreateAstro extends Component{
 							<div className="col-md-12">
 							<div className="profile-header">
 								<div className="row align-items-center">
+								  <div className="col-md-3">
 									<div className="col-auto profile-image">
 										<img className="rounded-circle" alt="User Image" src={this.state.file}/>
-
+		
+									</div>
+									</div>
+									
+									<div className="col-md-3">
 										<div className="custom-file">
 											<input  onChange={this.handleChange} type="file" className="custom-file-input" id="validatedCustomFile" required=""/>
 											<label className="custom-file-label" for="validatedCustomFile">Choose </label>
@@ -77,30 +82,46 @@ class CreateAstro extends Component{
 									</li>
 								</ul>
 							</div>	
-							<div className="tab-content profile-tab-cont">
+							 <div className="tab-content profile-tab-cont">
+								
 								<div className="tab-pane fade show active" id="profile">
 									<div className="row">
-										<div className="col-lg-12">
-											<div className="card">
-												<div className="card-body">
-														<div className="form-group row">
-														<label className="col-lg-3 col-form-label">Name</label>
-															<div className="col-lg-9">
-															<input type="text" className="form-control" name="name"/>
+											<div className="col-lg-12">
+												<div className="card">
+													<div className="card-body">
+														<div className="row">
+															<div className="col-lg-6">
+																<div class="form-group">
+																	<div className="row">
+																		<label class="col-lg-3 col-form-label">Name</label>
+																		<div class="col-lg-9">
+																		<input type="text" class="form-control"/>
+																		</div>
+																	</div>
+																</div>
+																
 															</div>
+															<div className="col-lg-6">
+																<div class="form-group">
+																	<div className="row">
+																		<label class="col-lg-3 col-form-label">Name</label>
+																		<div class="col-lg-9">
+																		<input type="text" class="form-control"/>
+																		</div>
+																	</div>
+																</div>
+																
+															</div>
+															
 														</div>
-												
+													</div>
 												</div>
-											</div>
+											</div>	
 											
-										
-										</div>
-
-									
 									</div>
-									
-
 								</div>
+
+
 								<div className="tab-pane fade show" id="address-info">
 									<div className="row">
 										<div className="col-lg-12">
