@@ -1,43 +1,5 @@
 var express = require('express');
 var router = express.Router();
-let jwt = require('jsonwebtoken');
-let config = require('../config/config');
-let middleware = require('../middleware/authmiddleware');
-
-/* GET home page. */
-router.post('/', function(req, res, next) {
-	
-	var username = req.body.username;
-    var password = req.body.password; 
-	console.log(username+"==="+password);
-    let mockedUsername = 'admin';
-    let mockedPassword = '123456'; 
-	if (username && password) {
-      	if (username === mockedUsername && password === mockedPassword) {
-        	let token = jwt.sign({username: username},
-			          		config.secret,
-			          		{ expiresIn: '24h' // expires in 24 hours
-			          		}
-        				);        	
-    	// return the JWT token for the future API calls
-	         res.status(200).json({
-	          	success: true,
-	          	message: 'Authentication successful!',
-	          	token: token
-	        });
-      	} else {
-        	 res.status(400).json({
-          		success: false,
-          		message: 'Incorrect username or password'
-        	});
-      	}
-    } else {
-       res.status(400).json({
-        	success: false,
-        	message: 'Authentication failed! Please check the request'
-      	});
-    }
-  	
-});
-
+var Auth = require('../controllers/authController');
+router.post('/',Auth.auth_users_login);
 module.exports = router;

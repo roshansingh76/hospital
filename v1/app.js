@@ -5,7 +5,7 @@ var cors = require('cors')
 var bodyParser = require('body-parser');
 const db = require('./config/database');
 let middleware = require('./middleware/authmiddleware');
-const users = require('./routes/users');
+const astro = require('./routes/astro');
 const index = require('./routes/index');
 //Ankur code
 var app = express();
@@ -24,7 +24,7 @@ app.use(bodyParser.urlencoded({
 }));
 // Add API Routes 
 app.use('/api/login', index);
-app.use('/api/users', middleware.checkToken, users);
+app.use('/api/astro',astro);
 
 
 
