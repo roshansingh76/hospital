@@ -1,6 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
-
+import { BrowserRouter as Router, Route,Redirect  } from 'react-router-dom';
 import * as ROUTES from '../../config/routes';
 import Navigation from '../Navigation';
 import Sidebar from '../Navigation/Sidebar';
@@ -10,10 +9,12 @@ import AdminDashboard from '../AdminDashboard'
 import AstrologerPage from '../Astrologer'
 import CreateAstro from '../Astrologer/create'
 import SettingPage from '../Setting'
-function App() {
-  return (
-	 
-	 <div className="main-wrapper">
+import deviceStorage from '../../config/deviceStorage';
+function App(props) {	
+	const isAuthenticated = localStorage.getItem('token');
+	if(isAuthenticated){
+	return (
+		<div className="main-wrapper" >
 		 <Router>
 		   <Navigation />	
 		   <Sidebar />	
@@ -24,7 +25,17 @@ function App() {
 				<Route   path={ROUTES.Setting} component={SettingPage} />
 		 </Router>
 	 </div>
-  );
+	);
+  
+  }else{
+	  return (
+		<div className="main-wrapper" >
+		 <Router>
+			<Redirect to={ROUTES.ADMIN_LOGIN_IN}/>
+			<Route   path={ROUTES.ADMIN_LOGIN_IN} component={LoginPage} />	
+		 </Router>
+	  </div>)
+  }
 }
 
 export default App;

@@ -1,6 +1,7 @@
 // Install express server
 const express = require('express');
 const path = require('path');
+var cors = require('cors')
 var bodyParser = require('body-parser');
 const db = require('./config/database');
 let middleware = require('./middleware/authmiddleware');
@@ -8,6 +9,7 @@ const users = require('./routes/users');
 const index = require('./routes/index');
 //Ankur code
 var app = express();
+app.use(cors())
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

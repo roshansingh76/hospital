@@ -4,6 +4,7 @@ import Logox from '../../assets/logo.png';
 import Logosmall from '../../assets/white.png';
 import avatar01 from '../../assets/img/profiles/avatar-01.jpg';
 import Sidebar from './Sidebar';
+import deviceStorage from '../../config/deviceStorage';
 const Navigation = () => (
 		<Header/>		
 		
@@ -80,7 +81,7 @@ const Header=()=>(
 							</div>
 							<Link className="dropdown-item" to="#">My Profile</Link>
 							<Link className="dropdown-item" to="#">Settings</Link>
-							<Link className="dropdown-item" to="#">Logout</Link>
+							<Link className="dropdown-item" onClick={deviceStorage.deleteJWT} to="#">Logout</Link>
 						</div>
 					</li>
 					

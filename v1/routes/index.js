@@ -6,9 +6,10 @@ let middleware = require('../middleware/authmiddleware');
 
 /* GET home page. */
 router.post('/', function(req, res, next) {
-	console.log(req.body)
+	
 	var username = req.body.username;
     var password = req.body.password; 
+	console.log(username+"==="+password);
     let mockedUsername = 'admin';
     let mockedPassword = '123456'; 
 	if (username && password) {
@@ -19,27 +20,24 @@ router.post('/', function(req, res, next) {
 			          		}
         				);        	
     	// return the JWT token for the future API calls
-	        res.json({
+	         res.status(200).json({
 	          	success: true,
 	          	message: 'Authentication successful!',
 	          	token: token
 	        });
       	} else {
-        	res.send(403).json({
+        	 res.status(400).json({
           		success: false,
           		message: 'Incorrect username or password'
         	});
       	}
     } else {
-      	res.send(400).json({
+       res.status(400).json({
         	success: false,
         	message: 'Authentication failed! Please check the request'
       	});
     }
-  	res.send(200).json({
-          		success: true,
-          		message: 'successful'
-        	});
+  	
 });
 
 module.exports = router;

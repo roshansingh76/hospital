@@ -1,6 +1,7 @@
 import React,{Component}from 'react';
-import axios from 'axios';
-
+import config from '../../config/config';
+import deviceStorage from '../../config/deviceStorage';
+import loginImg from '../../assets/white.png';
 class LoginPage extends Component{
 	constructor(props) {
         super(props);
@@ -23,25 +24,46 @@ class LoginPage extends Component{
 
     handleSubmit(e) {
         e.preventDefault();
-
         this.setState({ submitted: true });
         const { username, password, returnUrl } = this.state;
-
         // stop here if form is invalid
         if (!(username && password)) {
             return;
         }
-
         this.setState({ loading: true });
-
-		axios.post('http://127.0.0.1:8080/users/login', {
+		config.post('/api/login', {
 			username: username,
 			password:password
 		})
 		.then((res) => {
-			console.log(res.data)
-		}).catch((error) => {
-			console.log(error)
+			this.setState({ loading: false });
+			 if(res.data.success){
+					this.setState({ 
+						loading: false,
+						error:''
+					});
+					deviceStorage.saveItem('token',res.data.token)
+					
+			 }else{
+				this.setState({ 
+						loading: false,
+						error:res.data.message
+				}); 
+			 }
+			}).catch((error) => {
+			  if (error.response) {
+						this.setState({ 
+							loading: false,
+							error:error.response.data.message
+						});
+			  } else if (error.request) {
+				  this.setState({ 
+							loading: false,
+							error:error.message
+					});
+			  }else{
+				  
+			  }
 		});
 
 
@@ -58,7 +80,7 @@ class LoginPage extends Component{
 					<div className="account-content">
 					   <div className="row align-items-center justify-content-center">
 						  <div className="col-md-7 col-lg-6 login-left">
-							 <img src="https://thefurnituregarage.com/public/frontend/img/login-banner.png" className="img-fluid" alt="Doccure Login"/>	
+							 <img src={loginImg} className="img-fluid" alt="Doccure Login"/>	
 						  </div>
 						  <div className="col-md-12 col-lg-6 login-right">
 							 <div className="login-header">

@@ -1,7 +1,7 @@
 export const Home = '/';
 export const DONATE = '/donate';
 export const SIGN_UP = '/signup';
-export const SIGN_IN = '/signin';
+export const ADMIN_LOGIN_IN = '/adminlogin';
 export const MESSAGE = '/message';
 export const ACCOUNT = '/account';
 export const PASSWORD_FORGET = '/pw-forget';

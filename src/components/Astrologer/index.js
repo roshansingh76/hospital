@@ -23,7 +23,7 @@ class Astrologer extends Component{
 									</ul>
 								</div>
 
-								<div class="col-sm-5 col">
+								<div className="col-sm-5 col">
 									<Link to={ROUTES.addAstrologer} className="btn btn-primary float-right mt-2">Add</Link>
 								</div>
 
