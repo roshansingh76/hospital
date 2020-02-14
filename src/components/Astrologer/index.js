@@ -39,27 +39,34 @@ class Astrologer extends Component{
 										<table className="datatable table table-hover table-center mb-0">	
 											<thead>
 												<tr>
-													<th>Astrologer Name</th>
-													<th>Speciality</th>
-													<th>Member Since</th>
-													<th>Earned</th>
-													<th>Account Status</th>
+													<th>S.no</th>
+													<th>User Type</th>
+													<th>Image</th>
+													<th>Name</th>
+													<th>Email</th>
+													<th>Status	</th>
+													<th>Action</th>
 													
 												</tr>
 											</thead>
 											 <tbody>
 												<tr>
+													<td>1</td>
+													<td>Astrologer</td>
 													<td>
-														<h2 class="table-avatar">
-															<a href="#" class="avatar avatar-sm mr-2">
-															<img class="avatar-img rounded-circle" src="#" alt="User Image"/></a>
-															<a href="">Dr. Ruby Perrin</a>
+														<h2 className="table-avatar">
+															<a href="#" className="avatar avatar-sm mr-2">
+															<img className="avatar-img rounded-circle" src="/static/media/avatar-01.b3a5c318.jpg" alt="User Image"/></a>
+															<a href=""></a>
 														</h2>
 													</td>
-													<td>Dental</td>
-													<td>14 Jan 2019 </td>
-													<td>$3100.00</td>
-													<td>$3100.00</td>
+													<td>DR. Anshumali</td>
+													<td>scientificastrologics@gmail.com</td>
+													<td>Active</td>
+													<td>
+														<button className="btn btn-xs btn-primary">Edit</button>
+														<button className="btn btn-xs btn-danger">Trash</button>
+													</td>
 												</tr>
 											 </tbody>	
 										</table>

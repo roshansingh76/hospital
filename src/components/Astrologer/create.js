@@ -38,12 +38,6 @@ class CreateAstro extends Component{
 										<Link to={ROUTES.Astrologer} className="btn btn-primary float-right mt-2">Back</Link>
 										<div className="btn btn-danger float-right mt-2">Delet</div>
 										<div className="btn btn-warning float-right mt-2">Edit</div>
-										<select name="gender" className="form-control float-right mt-2">
-											<option value="male">Status</option>
-											<option value="male">Active</option>
-											<option value="female">In Active</option>
-										</select>
-		
 									</div>
 
 
@@ -178,6 +172,23 @@ class CreateAstro extends Component{
 																</div>
 															</div>
 														</div>
+														
+														<div className="col-lg-6">
+															<div className="form-group">
+																<div className="row">
+																	<label className="col-lg-4 col-form-label">Status</label>
+																	<div className="col-lg-8">
+																		<select name="gender" className="form-control float-right mt-2">
+																		<option value="male">Active</option>
+																		<option value="female">In Active</option>
+																		</select>
+																	</div>
+																</div>
+															</div>
+														</div>
+														
+														
+														
 													</div>
 												</div>
 											</div>
