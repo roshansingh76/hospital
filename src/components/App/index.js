@@ -14,6 +14,7 @@ import AstrologerPage from '../Astrologer'
 import CreateAstro from '../Astrologer/create'
 import SettingPage from '../Setting'
 import deviceStorage from '../../config/deviceStorage';
+
 const App= (props) => {
 	const isAuthenticated = localStorage.getItem('token');
 	const location= window.location.pathname;

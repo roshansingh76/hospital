@@ -6,8 +6,7 @@ const FrontendHeader = () => (
 		
 );
 const Fheader=()=>(
-    <div classNameName="header educare-info-header clearfix">
-			<div className="container">
+   		<div className="container">
 				<div className="header-wrap clearfix">
 					<div className="row">
 						<div className="col-lg-3">
@@ -45,7 +44,7 @@ const Fheader=()=>(
 					</div>
 				</div>
 			</div>
-		</div>
+		
 )
 
 export default FrontendHeader;

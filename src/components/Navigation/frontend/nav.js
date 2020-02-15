@@ -6,7 +6,7 @@ const Topnavbar = () => (
 		
 );
 const Tobbar=()=>(
-	<div className="educare-header-section top-bar jy-header "> 
+	
 		<div className="top hidden-xs">
 			<div className="container">
 				<div className="row">
@@ -36,7 +36,7 @@ const Tobbar=()=>(
 				</div>
 			</div>
 		</div>
-	</div>	
+
 )
 
 export default Topnavbar;
