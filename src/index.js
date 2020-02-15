@@ -6,7 +6,7 @@ import './assets/css/font-awesome.min.css';
 import './assets/css/feathericon.min.css';
 import './assets/plugins/morris/morris.css';
 import './assets/css/style.css';
-
+import './assets/astro/css/style.css';
 import * as serviceWorker from './serviceWorker';
 
 ReactDOM.render(<App />, document.getElementById('root'));

@@ -47,7 +47,6 @@ var username = req.body.username;
 	//console.log(username+"==="+password);
     let mockedUsername = 'admin';
     let mockedPassword = '123456'; 
-	let result_from_qr = new array(); 
 	if (username && password) {
       	if (username === mockedUsername && password === mockedPassword) {
         	let token = jwt.sign({username: username},
