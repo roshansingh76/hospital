@@ -11,9 +11,9 @@ class HomePage extends Component{
  render(){
 
 		return(
-			<div>
+			<section className="slider_section header_height">
 				
-			</div>
+			</section>
 
 		);
 

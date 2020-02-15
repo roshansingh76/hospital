@@ -50,9 +50,10 @@ const App= (props) => {
 			<FrontendHeader/>
 			<FrontendNavigation/>
 		 </div>
-			<Footer/>
 			<Redirect to={ROUTES.Home}/>
 			<Route   path={ROUTES.Home} component={HomePage} />	
+			
+			<Footer/>
 		 </Router>
 	  </div>)
   }
