@@ -11,10 +11,7 @@ if(isPrivilage=='admin'){
     require('./assets/css/feathericon.min.css');
     require('./assets/plugins/morris/morris.css');
     require('./assets/css/style.css');
-    
-
-}else{
-
+  }else{
     require('./assets/css/bootstrap.min.css');
     require('./assets/astro/css/style.css');
 
