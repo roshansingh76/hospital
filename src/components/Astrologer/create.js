@@ -31,8 +31,8 @@ class CreateAstro extends Component{
 	}
 	componentDidMount() {
 		this.getAllInfo();
-		this.serviceInfo();
-		this.getCountry();
+		//this.serviceInfo();
+		//this.getCountry();
 	}
 	getCountry(e){
 		config.get('/api/astro/getCountry',{
@@ -116,8 +116,11 @@ class CreateAstro extends Component{
 					this.setState({ 
 						loading: false,
 						error:'',
-						gender:res.data.localdata.gender,
-						status:res.data.localdata.status
+						countries:res.data.countries,
+						gender:res.data.gender,
+						expertise:res.data.expertise,
+						status:res.data.status,
+						language:res.data.language
 					});
 				
 					
