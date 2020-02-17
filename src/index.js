@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 import * as serviceWorker from './serviceWorker';
 
-const isPrivilage='frontend';
+const isPrivilage=localStorage.getItem('isPrivilage');
 
-if(isPrivilage=='admin'){
+if(isPrivilage==='Admin'){
     require('./assets/css/bootstrap.min.css');
     require('./assets/css/font-awesome.min.css');
     require('./assets/css/feathericon.min.css');

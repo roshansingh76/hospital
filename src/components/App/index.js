@@ -17,16 +17,16 @@ import deviceStorage from '../../config/deviceStorage';
 
 const App= (props) => {
 	const isAuthenticated = localStorage.getItem('token');
+	const isPrivilage = localStorage.getItem('isPrivilage');
 	const location= window.location.pathname;
-	console.log(location);
-	if(isAuthenticated){
+	console.log();
+	if(isAuthenticated && isPrivilage==='Admin'){
 	return (
 		<div className="main-wrapper" >
 		 <Router>
 		   <Navigation />	
 		   <Sidebar />	
-				<Route exact  path={ROUTES.Home} component={HomePage} />
-				<Route   path={ROUTES.AdminDashboard} component={AdminDashboard} />
+		   		<Route   path={ROUTES.AdminDashboard} component={AdminDashboard} />
 				<Route   path={ROUTES.Astrologer} component={AstrologerPage} />
 				<Route   path={ROUTES.addAstrologer} component={CreateAstro} />
 				<Route   path={ROUTES.Setting} component={SettingPage} />
@@ -53,7 +53,6 @@ const App= (props) => {
 		 </div>
 			<Redirect to={ROUTES.Home}/>
 			<Route   path={ROUTES.Home} component={HomePage} />	
-			
 			<Footer/>
 		 </Router>
 	  </div>)

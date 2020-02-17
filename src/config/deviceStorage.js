@@ -5,7 +5,7 @@ const deviceStorage = {
   async saveItem(key, value) {
 	try{
 		localStorage.setItem(key,value);
-		window.location.href=window.location.href;
+	
     
     } catch (error) {
       console.log('AsyncStorage Error: ' + error.message);
@@ -26,7 +26,8 @@ const deviceStorage = {
   },
   async deleteJWT() {
 	try{
-		localStorage.setItem('token','');
+    localStorage.setItem('token','');
+    localStorage.setItem('isPrivilage','');
 		window.location.href=window.location.href;
     
     } catch (error) {

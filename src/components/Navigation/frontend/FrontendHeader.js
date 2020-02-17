@@ -6,7 +6,7 @@ const FrontendHeader = () => (
 		
 );
 const Fheader=()=>(
-	<div class="header educare-info-header clearfix">
+	<div className="header educare-info-header clearfix">
    		<div className="container">
 				<div className="header-wrap clearfix">
 					<div className="row">
@@ -33,7 +33,7 @@ const Fheader=()=>(
 								</aside>
 								<aside className="educare-info educare-info-section">
 									<div className="texteducare-info clearfix">
-										<div className="info-icon"> <i class="fa fa-comments"></i> </div>
+										<div className="info-icon"> <i className="fa fa-comments"></i> </div>
 										<div className="info-text">
 											<p><a href="#">Chat Astrologer</a></p>
 										</div>

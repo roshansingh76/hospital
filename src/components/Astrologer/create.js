@@ -11,10 +11,18 @@ class CreateAstro extends Component{
 			name:'',
 			submitted: false,
             loading: false,
-            error: ''
+			error: '',
+			gender:[],
+			language:[],
+			countries:[],
+			expertise:[],
+			status:[],
+
+			
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.getAllInfo = this.getAllInfo.bind(this);
+		this.serviceInfo = this.serviceInfo.bind(this);
 	}
 	 handleChange(event) {
 		this.setState({
@@ -23,17 +31,21 @@ class CreateAstro extends Component{
 	}
 	componentDidMount() {
 		this.getAllInfo();
+		this.serviceInfo();
+		this.getCountry();
 	}
-	getAllInfo(e){
-		config.get('/api/getAllinfo',{
-				withCredentials:true
+	getCountry(e){
+		config.get('/api/astro/getCountry',{
+				withCredentials:false
 		})
 		.then((res) => {
 			this.setState({ loading: false });
 			 if(res.data.success){
 					this.setState({ 
 						loading: false,
-						error:''
+						error:'',
+						countries:res.data.localdata.countries,
+					
 					});
 				
 					
@@ -54,8 +66,78 @@ class CreateAstro extends Component{
 							loading: false,
 							error:error.message
 					});
-			  }else{
-				  
+			  }
+		});
+		
+	}
+	serviceInfo(e){
+		config.get('/api/astro/serviceInfo',{
+				withCredentials:false
+		})
+		.then((res) => {
+			this.setState({ loading: false });
+			 if(res.data.success){
+					this.setState({ 
+						loading: false,
+						error:'',
+						expertise:res.data.localdata.expertise,
+						language:res.data.localdata.language
+					});
+				
+					
+			 }else{
+				this.setState({ 
+						loading: false,
+						error:res.data.message
+				}); 
+			 }
+			}).catch((error) => {
+			  if (error.response) {
+						this.setState({ 
+							loading: false,
+							error:error.response.data.message
+						});
+			  } else if (error.request) {
+				  this.setState({ 
+							loading: false,
+							error:error.message
+					});
+			  }
+		});
+		
+	}
+	getAllInfo(e){
+		config.get('/api/astro/getAllinfo',{
+				withCredentials:false
+		})
+		.then((res) => {
+			this.setState({ loading: false });
+			 if(res.data.success){
+					this.setState({ 
+						loading: false,
+						error:'',
+						gender:res.data.localdata.gender,
+						status:res.data.localdata.status
+					});
+				
+					
+			 }else{
+				this.setState({ 
+						loading: false,
+						error:res.data.message
+				}); 
+			 }
+			}).catch((error) => {
+			  if (error.response) {
+						this.setState({ 
+							loading: false,
+							error:error.response.data.message
+						});
+			  } else if (error.request) {
+				  this.setState({ 
+							loading: false,
+							error:error.message
+					});
 			  }
 		});
 		
@@ -64,9 +146,9 @@ class CreateAstro extends Component{
         e.preventDefault();
 		this.setState({ submitted: false });
 		const data = new FormData(e.target);
-		config.post('/api/createAstro',{
+		config.post('/api/astro/createAstro',{
 			data:data,
-			withCredentials:true
+			withCredentials:false
 			
 		})
 		.then((res) => {
@@ -102,7 +184,39 @@ class CreateAstro extends Component{
 
 	}
 	render(){
-			 const {submitted, loading, error } = this.state;
+			const {submitted,gender,language,countries,expertise,status, loading, error } = this.state;
+			 let countriesList = countries.length > 0
+				&& countries.map((item, i) => {
+				return (
+					<option key={i} value={item.id}>{item.name}</option>
+				)
+			});
+
+			let genderlist =gender.length>0
+			&& gender.map((item,i)=>{
+				return <option key={i} value={item.id}>{item.gender_name}</option>
+			})
+			let statuslist=status.length>0
+			&& status.map((item,i)=>{
+			return <option key={i} value={item.id}>{item.status_name}</option>					
+
+			})
+
+			let expertiselist=expertise.length>0
+			&& expertise.map((item,i)=>{
+						
+			return <label className="col-lg-2" key={i} >
+				<input type="checkbox" name="expertise[]" key={i} value={item.id}/> 
+				{item.expertise_name} </label>
+														
+			})
+			let languagelist=language.length>0
+			&& language.map((item,i)=>{
+						
+				return <label className="col-lg-2" key={i} ><input type="checkbox" name="language[]" key={i} value={item.id}/> {item.language_name} </label>
+														
+												
+			})
 			return(
 				<form action="#" onSubmit={this.handleSubmit} name="frmcreateAstro">
 				<div className="page-wrapper">
@@ -236,9 +350,7 @@ class CreateAstro extends Component{
 																	<label className="col-lg-4 col-form-label">Gender</label>
 																	<div className="col-lg-8">
 																		<select name="gender" className="form-control">
-																			<option value="male">Gender</option>
-																			<option value="male">Male</option>
-																			<option value="female">Female</option>
+																			{genderlist}
 																		</select>
 																	</div>
 																</div>
@@ -261,8 +373,7 @@ class CreateAstro extends Component{
 																	<label className="col-lg-4 col-form-label">Status</label>
 																	<div className="col-lg-8">
 																		<select name="status" className="form-control float-right mt-2">
-																		<option value="male">Active</option>
-																		<option value="female">In Active</option>
+																		{statuslist}
 																		</select>
 																	</div>
 																</div>
@@ -301,7 +412,7 @@ class CreateAstro extends Component{
 																	<label className="col-lg-4 col-form-label">Country</label>
 																	<div className="col-lg-8">
 																		<select name="country" className="form-control float-right mt-2">
-																
+																		{countriesList}
 																		</select>
 																	</div>
 																</div>
@@ -354,44 +465,19 @@ class CreateAstro extends Component{
 											<div className="card">
 												<div className="card-body">
 													<div className="row">
-													<div className="col-lg-12">
-														<h6>Select Services with Expertise</h6>
-														<div className="checkbox">
-															<label className="col-lg-2"><input type="checkbox" name="expertise[]" value=""/> Astrologer </label>
-															<label className="col-lg-2"><input type="checkbox" name="expertise[]" value=""/> Numerologer</label>
-															<label className="col-lg-2"><input type="checkbox" name="expertise[]" value=""/> Vastu Consultant</label>
-															<label className="col-lg-2"><input type="checkbox" name="expertise[]" value=""/> Tarot card reader</label>
-															<label className="col-lg-2"><input type="checkbox" name="expertise[]" value=""/> Gems Stone</label>
-															<label className="col-lg-2"><input type="checkbox" name="expertise[]" value=""/> Feng Shui</label>
-															<label className="col-lg-2"><input type="checkbox" name="expertise[]" value=""/> Palmistry</label>
-															<label className="col-lg-2"><input type="checkbox" name="expertise[]" value=""/> Pandit</label>
-															<label className="col-lg-2"><input type="checkbox" name="expertise[]" value=""/> Blogger</label>
-														</div>
-													</div>
-														<div className="col-lg-6">
-															<div className="form-group">
-																<div className="row">
-																	<label className="col-lg-4 col-form-label">Education</label>
-																	<div className="col-lg-8">
-																		<select name="education" className="form-control float-right mt-2">
-																
-																		</select>
-																	</div>
-																</div>
+														<div className="col-lg-12">
+															<h6>Select Services with Expertise</h6>
+															<div className="checkbox">
+																	{expertiselist}
 															</div>
 														</div>
-														<div className="col-lg-6">
-															<div className="form-group">
-																<div className="row">
-																	<label className="col-lg-4 col-form-label">Languages</label>
-																	<div className="col-lg-8">
-																		<select name="language" className="form-control float-right mt-2">
-																
-																		</select>
-																	</div>
-																</div>
+														<div className="col-lg-12">
+															<h6>Language</h6>
+															<div className="checkbox">
+																	{languagelist}
 															</div>
 														</div>
+														
 													</div>
 												</div>
 											</div>

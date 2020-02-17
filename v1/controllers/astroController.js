@@ -1,30 +1,92 @@
 var db = require('../config/database');
+var async = require("async");
 
 exports.getAllinfo = function(req, res) {
-	
-	var data=[];
-	  var sql="select * from users";
-		db.query(sql,function(error, results, fields) {
-			 if(error){
-				res.status(500)
-				.json({
-					error: 'Internal error please try again'
-				});
-			 }else if (results.length > 0) {
-					data.push(results);
-					db.query(sql,function(error, results, fields) {
-						if (results.length > 0) {
-							data.push(results);
-						}
-					});
-			} else {
-				 return res.status(404).json({error: "Invalid username and password" });
-			}
-				 res.status(200).json({
-					success: true,
-					data:data
-				});
-			
-		});
+	var localdata={};
+	var tasks=[
+		function(callback) {
+			db.query('select * from gender',function(err,doc) {
+				localdata.gender=doc;
+				callback();
+			});
+		},
 		
+		function(callback) {
+			db.query('select * from status',function(err,doc) {
+				localdata.status=doc;
+				callback();
+			});
+		}						
+	];
+	async.parallel(tasks, function(err) {
+		if (err) throw err;
+			res.status(200).json({
+			success: true,
+			localdata:localdata
+		});
+	});
+	
+	
+
+}
+
+exports.serviceInfo = function(req, res) {
+	var localdata={};
+	var tasks=[
+		function(callback) {
+			db.query('select * from language',function(err,doc) {
+				localdata.language=doc;
+				callback();
+			});
+		},
+		
+		function(callback) {
+			db.query('select * from expertise',function(err,doc) {
+				localdata.expertise=doc;
+				callback();
+			});
+		}						
+	];
+	async.parallel(tasks, function(err) {
+		if (err) throw err;
+			res.status(200).json({
+			success: true,
+			localdata:localdata
+		});
+	});
+	
+	
+
+}
+
+exports.getCountry = function(req, res) {
+	var localdata={};
+	var tasks=[
+		function(callback) {
+			db.query('select * from countries',function(err,doc) {
+				localdata.countries=doc;
+				callback();
+			});
+		},
+		
+						
+	];
+	async.parallel(tasks, function(err) {
+		if (err) throw err;
+			res.status(200).json({
+			success: true,
+			localdata:localdata
+		});
+	});
+	
+	
+
+}
+
+exports.createAstro= function(req, res) {
+	res.status(200).json({
+		success: true,
+		message:'Astrologer createrd successfully!'
+	});
+
 }

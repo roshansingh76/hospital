@@ -1,11 +1,13 @@
 var mysql=require('mysql');
 
 var pool=mysql.createPool({
-    connectionLimit : 10,
+    connectionLimit : 100,
     host:'localhost',
     user:'root',
     password:'',
-    database:'dbastro'
+    database:'dbastro',
+    waitForConnections: true,
+    queueLimit: 0
 	
 });
 var DB = (function () {

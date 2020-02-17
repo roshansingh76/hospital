@@ -19,23 +19,23 @@ const HomeFree_horoscope = () => (
 
 
 const Hfree_horoscope=()=>(
-    <section class="padding">
-		<div class="container">
-			<div class="row mb-20">
-			  <div class="col-sm-1 col-md-2"></div>
-			  <div class="col-xs-12 col-sm-10 col-lg-8 text-center">
-				<h2 class="text-uppercase">Sun <span class="color_red">Signs</span></h2>
-				<div class="line_1-1"></div>
-				<div class="line_2-2"></div>
-				<div class="line_3-3"></div>
+    <section className="padding">
+		<div className="container">
+			<div className="row mb-20">
+			  <div className="col-sm-1 col-md-2"></div>
+			  <div className="col-xs-12 col-sm-10 col-lg-8 text-center">
+				<h2 className="text-uppercase">Sun <span className="color_red">Signs</span></h2>
+				<div className="line_1-1"></div>
+				<div className="line_2-2"></div>
+				<div className="line_3-3"></div>
 			  </div>
-			  <div class="col-sm-1 col-lg-2"></div>
+			  <div className="col-sm-1 col-lg-2"></div>
 			</div>
-			<div class="row horoscope-main-inn">
-				<div class="col-md-12">
+			<div className="row horoscope-main-inn">
+				<div className="col-md-12">
 				<ul>
 					<li>
-						<div class="horoscope-inner no">
+						<div className="horoscope-inner no">
 							<a href="horoscope-single.html">
 								<img src={img1} alt="aries" />
 								<p>Aries</p>
@@ -45,7 +45,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img2} alt="images" />
 								<p>Taurus</p>
@@ -55,7 +55,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img3} alt="images" />
 								<p>Gemini</p>
@@ -65,7 +65,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img4} alt="images" />
 								<p>Cancer</p>
@@ -75,7 +75,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img5} alt="images" />
 								<p>Leo</p>
@@ -85,7 +85,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img6} alt="images" />
 								<p>Virgo </p>
@@ -95,7 +95,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img7} alt="images" />
 								<p>Libra </p>
@@ -105,7 +105,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img8} alt="images" />
 								<p>Scorpio </p>
@@ -115,7 +115,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="#">
 								<img src={img9} alt="images" />
 								<p>Sagittarius </p>
@@ -125,7 +125,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img10} alt="images" />
 								<p>Capricorn </p>
@@ -135,7 +135,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img11} alt="images" />
 								<p>Aquarius  </p>
@@ -145,7 +145,7 @@ const Hfree_horoscope=()=>(
 					</li>
 					
 					<li>
-						<div class="horoscope-inner">
+						<div className="horoscope-inner">
 							<a href="horoscope-single.html">
 								<img src={img12} alt="images" />
 								<p>Pisces</p>

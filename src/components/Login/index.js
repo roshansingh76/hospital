@@ -42,8 +42,9 @@ class LoginPage extends Component{
 						loading: false,
 						error:''
 					});
-					deviceStorage.saveItem('token',res.data.token)
-					
+					deviceStorage.saveItem('token',res.data.token);
+					deviceStorage.saveItem('isPrivilage','Admin');
+					window.location.href=window.location.href;
 			 }else{
 				this.setState({ 
 						loading: false,
