@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import slider1 from './../../assets/astro/images/banner/3.jpg';
+import slider1 from './../../assets/astro/images/banner/demoslider.jpg';
 
 const HomeSlider = () => (
 		<Hslider/>		
@@ -9,12 +9,8 @@ const HomeSlider = () => (
 
 
 const Hslider=()=>(
-    <section class="slider_section header_height">
-    <ul id="main-slider" class="owl-carousel main_slider">
-        <li class="main_slide">
+    <section className="home-banner">
             <a href=""><img src={slider1} alt="Los Angeles"/></a>
-        </li>
-    </ul>
 </section>
 		
 );

@@ -59,19 +59,20 @@ Header Section
  color: #56081a;
 }
 #mainnav > ul > li.active > a, #mainnav > ul > li > a:hover, .social-links.style2 li a:hover, .social-links.style3 a:hover, .educare-info-shopby .ui-slider .ui-slider-handle span.shadow.dow, .educare-info-shopby .ui-slider .ui-slider-range, #mainnav ul.submenu > li > a:hover {
-	background-color: rgb(146, 40, 40);
+	background-color: rgb(255, 253, 253);
+    border-top: 2px solid;
 }
 #mainnav > ul > li.active > a, #mainnav > ul > li > a:hover, .educare-info-product ul li ins, .product-single ul.product-style li .detail, .testimonials .avatar span.name, .product .content-product .mount, .breadcrumbs.color-661 ul li a, .breadcrumbs.color-661 ul li, .breadcrumbs.color-661 ul li:before, .item .readmore, .item .content-item .title-item, .educare-info.educare-info-phone span, .page-title.style2 .page-title-heading h1, .page-title.style2 .breadcrumbs ul li, .page-title.style2 .breadcrumbs ul li a, .page-title.style2 .breadcrumbs ul li i, .page-title.style2 .breadcrumbs ul li:before, .educare-ex-nav.color-661 li a, .entry .content-post .title-post a, .entry .readmore, .item .content-item .title-item a, .single-post p, #mainnav.color-661 > ul > li > a {
-	color: #fff;
+	color: #f38b2b;
 }
 .top.background-661, .nav-absolute .nav-wrap, .header.educare-header {
-	background-color: #56081a;
+	    background-color: rgba(0, 0, 0, 0.04);
 }
 .project-info ul li, .educare-info-section.color35d .info-text p, .product-single .product_meta li a:hover, .product-single .product-style li, .product-single p, .product-single ins, .educare-info-product ul li .product-name a, .testimonials blockquote.whisper, .careers-info .careers-text p, .page-commingsoon .title-section.sub .title, .product .content-product .name, #mainnav ul.submenu > li > a, .item .content-item p, .wrap-formcontact.style2 p, .list-author .info-author .contact-author h3 {
 	color: #42435d;
 }
 .project-dynamic .entry .content-post, .project-dynamic .entry .category, #mainnav.color-white > ul > li.active > a, #mainnav.color-white > ul > li > a:hover, #mainnav.color-white ul.submenu > li > a:hover, .project-dynamic .entry .content-post .title-post a, .social-links.color-white li a, .project-dynamic .entry .readmore, .infomation-text, .educare-info.educare-info-nav-menu ul li a:hover, .educare-info.educare-info-nav-menu ul li.active a, .breadcrumbs ul li:before, .breadcrumbs ul li a, .breadcrumbs ul li, .page-title-heading h1, #educare-mobile-nav ul.sub-menu > li > a:hover, #educare-mobile-nav > ul > li > ul > li.active > a, #educare-mobile-nav ul > li > a, #mainnav > ul > li > a, .educare-ex-nav li a, .social-links.style3 a:hover, .educare-search #searchform-all #searchsubmit, .flat-language > ul > li > ul li a, .flat-information.before-white li i, .btn-click.color-white .flat-button, .project-dynamic .entry .readmore:after, .flat-language.color-white .current a, .flat-information.style2 li a {
-	color: #ffffff;
+	color: #000;
 }
 .header .background-white, #mainnav ul.submenu, .shopping-cart .educare-shoping-box, .header.bg-white, .header-style3.downscrolled {
 	background-color: #ffffff;
@@ -201,22 +202,22 @@ Header Section
 /* educare-info Header
 -------------------------------------------------------------- */
 .wrap-educare-info-header {
-	    padding: 15px 0px 15px;
+	    padding: 15px 0px 0px;
 }
 .wrap-educare-info-header .educare-info-section {
 	float: right;
-	margin: 0 0 0 48px;
+	margin: 0 0 0 30px;
 }
 .educare-info-section .info-icon {
 	float: left;
-	width: 40px;
-	height: 40px;
-	line-height: 40px;
-	text-align: center;
-	margin: 3px 20px 0px 0px;
-	box-shadow: 0 0 0px 2px #56081a;
-	color: #ff9900;
-	border: 1px solid #ebebeb;
+    width: 25px;
+    height: 25px;
+    line-height: 20px;
+    text-align: center;
+    margin: 3px 20px 0px 0px;
+    box-shadow: 0 0 0px 1px #56081a;
+    color: #f38b2b;
+    border: 1px solid #ebebeb;
 	-webkit-transform: rotate(45deg);
 	-moz-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
@@ -239,7 +240,13 @@ Header Section
 .educare-info-section .info-text p {
 	font-size: 14px;
     font-weight: 600;
-    color: #505050;
+    color: #56081a;
+}
+.educare-info-section .info-text p span{
+	display: block;
+    margin-top: -16px;
+    font-size: 12px;
+    color: #323233;
 }
 /* educare-info phone */
 .educare-info.educare-info-phone span {
@@ -369,6 +376,7 @@ Header Section
 }
 .header .logo {
 	margin: 10px 0 0 0;
+	width: 180px;
 }
 .header.header-backgroundf61 {
 	background-color: #1c0f61;
@@ -1067,7 +1075,12 @@ Banner Section
  * ---------------------------------------------------------
  */
 
-
+.home-banner{
+	width: 100%;
+    height: 300px;
+    display: block;
+    overflow: hidden;
+}
 .banner-style6 .staff-member {
 	position: relative;
 }

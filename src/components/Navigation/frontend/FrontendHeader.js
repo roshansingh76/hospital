@@ -26,17 +26,24 @@ const Fheader=()=>(
 									<div className="texteducare-info clearfix">
 									<div className="info-icon"> <i className="fa fa-map-marker"></i> </div>
 									<div className="info-text">
-									<h6>925-P , Sector 51 </h6>
-									<p>Gurugram, Haryana - 122001</p>
+									<p>+91 7703881443 </p>
+									<p><span>Helpline No</span></p>
 									</div>
+									</div>
+								</aside>
+								<aside className="educare-info educare-info-section">
+									<div className="texteducare-info clearfix">
+										<div className="info-icon"> <i class="fa fa-comments"></i> </div>
+										<div className="info-text">
+											<p><a href="#">Chat Astrologer</a></p>
+										</div>
 									</div>
 								</aside>
 								<aside className="educare-info educare-info-section">
 									<div className="texteducare-info clearfix">
 										<div className="info-icon"> <i className="fa fa-phone"></i> </div>
 										<div className="info-text">
-											<h6>+91 7703 881 443</h6>
-											<p>info@Jyotirvid.in</p>
+											<p><a href="#">Talk Astrologer</a></p>
 										</div>
 									</div>
 								</aside>
