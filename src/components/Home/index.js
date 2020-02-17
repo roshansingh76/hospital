@@ -1,5 +1,6 @@
 import React,{Component}from 'react';
 import { Link } from 'react-router-dom';
+import Slider from './slider';
 
 class HomePage extends Component{
 	constructor(props) {
@@ -11,9 +12,7 @@ class HomePage extends Component{
  render(){
 
 		return(
-			<section className="slider_section header_height">
-				
-			</section>
+			<Slider/>
 
 		);
 
