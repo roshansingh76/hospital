@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import * as ROUTES from '../../../config/routes';
 
 const Fnavigation = () => (
 		<Mainnav/>		
@@ -15,8 +16,8 @@ const Mainnav=()=>(
                     <div className="nav-wrap clearfix">
                         <nav id="mainnav" className="mainnav">
                             <ul className="menu">
-                                <li className="active"><a href="index.html">Home</a></li>
-                                <li><a href="astrloger.html">Prediction</a></li>
+                                <li className="active"><Link to={ROUTES.Home}>Home</Link></li>
+                                <li><Link to={ROUTES.Talkastrologer}>Prediction</Link></li>
                                 <li><a href="muhurat-list.html">Services</a>
                                     <ul className="submenu">
                                         <li><a href="muhurat-list.html">Career</a></li>

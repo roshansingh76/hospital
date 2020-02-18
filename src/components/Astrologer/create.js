@@ -149,11 +149,7 @@ class CreateAstro extends Component{
         e.preventDefault();
 		this.setState({ submitted: false });
 		const data = new FormData(e.target);
-		config.post('/api/astro/createAstro',{
-			data:data,
-			withCredentials:false
-			
-		})
+		config.post('/api/astro/createAstro',data)
 		.then((res) => {
 			this.setState({ loading: false });
 			 if(res.data.success){

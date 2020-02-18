@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route,Redirect,withRouter,useHistory } from 'react-router-dom';
+import deviceStorage from '../../config/deviceStorage';
 import * as ROUTES from '../../config/routes';
 import Navigation from '../Navigation';
 import Sidebar from '../Navigation/Sidebar';
@@ -13,7 +14,8 @@ import AdminDashboard from '../AdminDashboard'
 import AstrologerPage from '../Astrologer'
 import CreateAstro from '../Astrologer/create'
 import SettingPage from '../Setting'
-import deviceStorage from '../../config/deviceStorage';
+import Talkastrologer from '../Talkastrologer'
+
 
 const App= (props) => {
 	const isAuthenticated = localStorage.getItem('token');
@@ -52,7 +54,8 @@ const App= (props) => {
 			<FrontendNavigation/>
 		 </div>
 			<Redirect to={ROUTES.Home}/>
-			<Route   path={ROUTES.Home} component={HomePage} />	
+			<Route   exact path={ROUTES.Home} component={HomePage} />	
+			<Route   path={ROUTES.Talkastrologer} component={Talkastrologer} />	
 			<Footer/>
 		 </Router>
 	  </div>)
