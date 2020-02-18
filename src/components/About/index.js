@@ -1,9 +1,8 @@
 import React,{Component}from 'react';
 import { Link } from 'react-router-dom';
-import Leftnav from './leftnav';
-import Astologerlist from './astologerlist';
 
-class Talkastrologer extends Component{
+
+class About extends Component{
 	constructor(props) {
 		super(props);
 	}
@@ -17,8 +16,7 @@ class Talkastrologer extends Component{
 				<section className="padding">
 					<div className="container">
 						<div className="row">
-							<Leftnav/>
-							<Astologerlist/>
+						<h1>About</h1>
 						</div>
 					</div>
 				</section>
@@ -27,4 +25,4 @@ class Talkastrologer extends Component{
  }
 
 }
-export default Talkastrologer;
+export default About;

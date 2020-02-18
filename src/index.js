@@ -20,7 +20,8 @@ if(isPrivilage==='Admin'){
 	require('./assets/astro/css/responsive.css');
 	require('./assets/astro/css/hover.css');
 	require('./assets/astro/css/m-nav.css');
-	require('./assets/astro/css/magnific-popup.css');	
+	require('./assets/astro/css/magnific-popup.css');
+	
 }
 ReactDOM.render(<App />, document.getElementById('root'));
 

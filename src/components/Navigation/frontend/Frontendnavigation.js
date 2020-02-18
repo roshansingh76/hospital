@@ -25,8 +25,9 @@ const Mainnav=()=>(
                                         <li><a href="muhurat-list.html">Health</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="blog.html">Blog</a></li>
+                                <li><Link to={ROUTES.About}>About</Link></li>
+								 <li><Link to={ROUTES.Horoscope}>Horoscopes</Link></li>
+								 <li><Link to={ROUTES.Blogs}>Blog</Link></li>
                                 <li><a href="online-puja.html">Online Puja</a></li>
                             </ul>
                         </nav>

@@ -32,6 +32,11 @@ Header Section
 
 ---------------------------------------------------------------
 ---------------------------------------------------------------*/
+@media (min-width: 1200px){
+.container {
+    width: 1170px;
+}
+}
 
 .flat-language > ul > li > ul, #educare-mobile-nav ul.sub-menu > li > a, .product .content-product .btn-card, .product .content-product .name, .product .content-product .mount, .product .featured-product img {
 	-webkit-transition: all 0.2s ease-in-out;
@@ -4784,17 +4789,25 @@ input.demo_vertical {
 .astro-left-filt .ser-filter ul li a{}
 .astro-left-filt .ser-filter ul{}
 .ap-pad{
-	padding:0
+	padding: 5px 5px 10px 5px;
 }
 .astro-profile-box{
-	position:relative;
-	padding: 15px;
-    border: 1px solid #ddd;
+	    position: relative;
+    width: 100%;
+    height: 185px;
     display: block;
-	 -webkit-transition: all 0.3s ease-out;
-	-moz-transition: all 0.3s ease-out;
-	-o-transition: all 0.3s ease-out;
-	transition: all 0.3s ease-out;
+    overflow: hidden;
+    padding: 5px 10px 0px 10px;
+    /* border: 1px solid #ddd; */
+    display: block;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    -webkit-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.36);
+    -moz-box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.36);
+    box-shadow: 0px 0px 3px 0px rgba(0,0,0,0.36);
+	border-radius:15px
 }
 /*.astro-profile-box:hover{
 	-ms-transform: scale(1.1); 
@@ -4808,86 +4821,99 @@ input.demo_vertical {
 
 }*/
 .astro-pic{
-	padding-bottom: 10px;
-	position:relative
+	float: left;
+    width: 35%;
 }
 .astro-pic .astro-star {
-	position: absolute;
-    top: 0;
-    right: 0;
+margin-bottom: 5px;
 }
 .astro-pic .astro-call{
-	position: absolute;
-    top: 20px;
-    right: 0;
+
 }
 .astro-pic .astro-call .chec-col{
-	font-size: 12px;
+	font-size: 14px;
     font-weight: bold;
-	color: #28a745
+    color: #56081a;
 }
 .astro-pic .astro-star .checked{
 	color: orange;
-    font-size: 14px;
+    font-size: 12px;
 }
 .astro-pic img{
-	width: 120px;
-    height: 120px;
+	width: 80px;
+    height: 80px;
 	border-radius: 50%;	
+	margin-bottom:10px
+}
+.astro-r-n{
+	float: left;
+    width: 65%;
 }
 .astro-name{
 	
 }
-.astro-name h4{
-	font-size: 18px;
+.astro-name p{
+	font-size: 16px;
     margin-bottom: 5px;
+	font-weight:600
 	
 }
 .astro-p-deatil{
 	margin-bottom: 10px;
 }
 .astro-p-deatil p{
-	font-size: 14px;
+	font-size: 12px;
     line-height: normal;
+    margin-bottom: 3px;
 }
 .astro-map-te{
 	display: block;
     padding-bottom: 25px;
+}
+.astro-map-te p{
+	font-size:13px
 }
 .astro--actin-btn{
 	position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    border-top: 1px solid #ddd;
+	padding: 5px;
 }
 .astro--actin-btn span{
-    /* display: block; */
-    float: left;
+	position:relative;
+	width: 32.5%;
     display: inline-block;
-    font-size: 14px;
-    background: #56081a;
-	color:#fff;
+    border-radius: 15px;
 	text-align: center;
-	font-weight: 600;
+	font-weight: 500;
 }
-.astro--actin-btn span a{
-	color: #fff;
-    padding: 10px;
+.astro-price-r{
+	background: #0a6f0a;
+}
+.astro-price-b{
+	background: #1555ca;
+}
+.astro-price-g{
+	background: #56081a;
+}
+.astro-price{
+	position: absolute;
+    top: -14px;
+    left: 0;
+    font-size: 12px;
+    color: #56081a;
+    width: 100%;
+}
+.astro--actin-btn span a {
+    color: #fff;
+    padding: 5px;
     display: block;
+    font-size: 13px;
+    text-transform: capitalize;
 }
-.astro--actin-btn span:nth-child(1){
-	width:25%;
-	padding: 10px;
-}
-.astro--actin-btn span:nth-child(2){
-	width:25%;
-	background:#ff9900;
-
-}
-.astro--actin-btn span:nth-child(3){
-	width:50%;
-	background: #28a745;
+.astro--actin-btn span a:hover{
+	
 }
 
 .astro--actin-btn .btn{
@@ -4990,6 +5016,12 @@ input.demo_vertical {
 .bs-filter .panel-group .panel .panel-heading{
 	padding: 5px 0px;
     background-color: transparent;
+}
+.bs-filter .panel-group .panel .panel-heading .panel-title{
+	margin-top: 0;
+    margin-bottom: 0;
+    font-size: 16px;
+    color: inherit;
 }
 .bs-filter .panel-group .panel-default>.panel-heading+.panel-collapse>.panel-body {
     padding: 5px 0px;
