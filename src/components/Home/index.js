@@ -18,9 +18,9 @@ class HomePage extends Component{
 		return(
 			<React.Fragment>
 				<Slider/>
+				<Free_horoscope/>
 				<Service_top/>
 				<Top_astrologer from/>
-				<Free_horoscope/>
 				<Astro_mini_service/>
 			</React.Fragment>
 		);

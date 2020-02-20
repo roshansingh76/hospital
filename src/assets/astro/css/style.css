@@ -37,7 +37,9 @@ Header Section
     width: 1170px;
 }
 }
-
+.flat-language > ul {
+	margin-left: 28px
+}
 .flat-language > ul > li > ul, #educare-mobile-nav ul.sub-menu > li > a, .product .content-product .btn-card, .product .content-product .name, .product .content-product .mount, .product .featured-product img {
 	-webkit-transition: all 0.2s ease-in-out;
 	-moz-transition: all 0.2s ease-in-out;
@@ -71,13 +73,16 @@ Header Section
 	color: #f38b2b;
 }
 .top.background-661, .nav-absolute .nav-wrap, .header.educare-header {
-	    background-color: rgba(0, 0, 0, 0.04);
+	    background-color: #ffffff;
+		-webkit-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.45);
+    -moz-box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.45);
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.45);
 }
 .project-info ul li, .educare-info-section.color35d .info-text p, .product-single .product_meta li a:hover, .product-single .product-style li, .product-single p, .product-single ins, .educare-info-product ul li .product-name a, .testimonials blockquote.whisper, .careers-info .careers-text p, .page-commingsoon .title-section.sub .title, .product .content-product .name, #mainnav ul.submenu > li > a, .item .content-item p, .wrap-formcontact.style2 p, .list-author .info-author .contact-author h3 {
 	color: #42435d;
 }
 .project-dynamic .entry .content-post, .project-dynamic .entry .category, #mainnav.color-white > ul > li.active > a, #mainnav.color-white > ul > li > a:hover, #mainnav.color-white ul.submenu > li > a:hover, .project-dynamic .entry .content-post .title-post a, .social-links.color-white li a, .project-dynamic .entry .readmore, .infomation-text, .educare-info.educare-info-nav-menu ul li a:hover, .educare-info.educare-info-nav-menu ul li.active a, .breadcrumbs ul li:before, .breadcrumbs ul li a, .breadcrumbs ul li, .page-title-heading h1, #educare-mobile-nav ul.sub-menu > li > a:hover, #educare-mobile-nav > ul > li > ul > li.active > a, #educare-mobile-nav ul > li > a, #mainnav > ul > li > a, .educare-ex-nav li a, .social-links.style3 a:hover, .educare-search #searchform-all #searchsubmit, .flat-language > ul > li > ul li a, .flat-information.before-white li i, .btn-click.color-white .flat-button, .project-dynamic .entry .readmore:after, .flat-language.color-white .current a, .flat-information.style2 li a {
-	color: #000;
+	color: rgb(66, 10, 10);
 }
 .header .background-white, #mainnav ul.submenu, .shopping-cart .educare-shoping-box, .header.bg-white, .header-style3.downscrolled {
 	background-color: #ffffff;
@@ -211,18 +216,18 @@ Header Section
 }
 .wrap-educare-info-header .educare-info-section {
 	float: right;
-	margin: 0 0 0 30px;
+	margin: 0 0 0 10px;
 }
 .educare-info-section .info-icon {
 	float: left;
-    width: 25px;
-    height: 25px;
-    line-height: 20px;
+    /* width: 25px; */
+    /* height: 25px; */
+    line-height: normal;
     text-align: center;
-    margin: 3px 20px 0px 0px;
-    box-shadow: 0 0 0px 1px #56081a;
+    margin: 2px 10px 0px 0px;
+    /* box-shadow: 0 0 0px 1px #56081a; */
     color: #f38b2b;
-    border: 1px solid #ebebeb;
+    /* border: 1px solid #ebebeb;*/
 	-webkit-transform: rotate(45deg);
 	-moz-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
@@ -381,7 +386,7 @@ Header Section
 }
 .header .logo {
 	margin: 10px 0 0 0;
-	width: 180px;
+	width: 160px;
 }
 .header.header-backgroundf61 {
 	background-color: #1c0f61;
@@ -662,6 +667,7 @@ Header Section
 	display: inline-block;
 	font-weight: 600;
 }
+.top .email a span{}
 .top .hotline {
 	display: inline-block;
 	font-weight: 600;
@@ -4794,10 +4800,10 @@ input.demo_vertical {
 .astro-profile-box{
 	    position: relative;
     width: 100%;
-    height: 185px;
+    height: 170px;
     display: block;
     overflow: hidden;
-    padding: 5px 10px 0px 10px;
+    padding: 5px;
     /* border: 1px solid #ddd; */
     display: block;
     -webkit-transition: all 0.3s ease-out;
@@ -4823,9 +4829,11 @@ input.demo_vertical {
 .astro-pic{
 	float: left;
     width: 35%;
+	text-align:center
 }
 .astro-pic .astro-star {
 margin-bottom: 5px;
+text-align:center
 }
 .astro-pic .astro-call{
 
@@ -4840,8 +4848,8 @@ margin-bottom: 5px;
     font-size: 12px;
 }
 .astro-pic img{
-	width: 80px;
-    height: 80px;
+	width: 60px;
+    height: 60px;
 	border-radius: 50%;	
 	margin-bottom:10px
 }
@@ -4881,36 +4889,40 @@ margin-bottom: 5px;
 	padding: 5px;
 }
 .astro--actin-btn span{
-	position:relative;
-	width: 32.5%;
+	position: relative;
+    width: 29.51%;
     display: inline-block;
     border-radius: 15px;
-	text-align: center;
-	font-weight: 500;
+    text-align: center;
+    font-weight: 500;
+    border: 2px solid #f38e30;
+    margin: 0px 5px;
 }
 .astro-price-r{
-	background: #0a6f0a;
+	border-color: #ff9900;
 }
 .astro-price-b{
-	background: #1555ca;
+	border-color: #ff9900;
 }
 .astro-price-g{
-	background: #56081a;
+	border-color: #ff9900;
 }
 .astro-price{
 	position: absolute;
-    top: -14px;
+    top: -18px;
     left: 0;
     font-size: 12px;
     color: #56081a;
     width: 100%;
+    font-weight: 600;
 }
 .astro--actin-btn span a {
-    color: #fff;
-    padding: 5px;
+    color: #000;
+    padding: 3px 0px;
     display: block;
     font-size: 13px;
     text-transform: capitalize;
+    font-weight: 500;
 }
 .astro--actin-btn span a:hover{
 	
@@ -6623,7 +6635,94 @@ figure.snip1281.hover:after {
     font-weight: 600;
     padding-bottom: 10px;
 }
-..onli-puja-list .book-prt a{}
+.onli-puja-list .book-prt a{}
 .clearfix{
 	clear:both
+}
+
+/*astologer filter new*/
+.golabal-filter{
+	background: #fbfafa;
+    display: block;
+    overflow: hidden;
+    padding: 0px 0px;
+    margin-bottom: 20px;
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.12);
+}
+.golabal-filter p{
+	float: left;
+    margin: 0;
+    line-height: normal;
+}
+.golabal-filter ul{
+	float: right;
+}
+.golabal-filter ul li{
+	display: inline-block;
+    margin: 5px 10px;
+}
+
+
+
+
+
+
+
+.golabal-filter-drop-list a {
+	float: left;
+	font-size: 14px;
+	color: #000;
+	text-align: center;
+	padding: 5px 10px;
+	text-decoration: none;
+	font-weight: 600;
+}
+
+.dropdown-new {
+	float: right;
+	overflow: hidden;
+}
+
+.dropdown-new .dropbtn-new {
+font-size: 12px;
+border: none;
+outline: none;
+color: #020202;
+padding: 8px 15px;
+background-color: inherit;
+font-family: inherit;
+margin: 0;
+letter-spacing: 1px;
+font-weight: 600;
+}
+
+.golabal-filter a:hover, .dropdown-new:hover .dropbtn-new {
+
+}
+
+.dropdown-content-new {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  width: 160px;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content-new a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown-content-new a:hover {
+  background-color: #ddd;
+}
+
+.dropdown-new:hover .dropdown-content-new {
+  display: block;
 }

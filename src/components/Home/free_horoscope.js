@@ -24,7 +24,7 @@ const Hfree_horoscope=()=>(
 			<div className="row mb-20">
 			  <div className="col-sm-1 col-md-2"></div>
 			  <div className="col-xs-12 col-sm-10 col-lg-8 text-center">
-				<h2 className="text-uppercase">Sun <span className="color_red">Signs</span></h2>
+				<h2 className="text-uppercase">Free <span className="color_red">Horoscope</span></h2>
 				<div className="line_1-1"></div>
 				<div className="line_2-2"></div>
 				<div className="line_3-3"></div>

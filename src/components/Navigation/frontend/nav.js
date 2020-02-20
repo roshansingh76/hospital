@@ -11,9 +11,7 @@ const Tobbar=()=>(
 			<div className="container">
 				<div className="row">
 					<div className="col-lg-6 col-sm-12 mobile-center">
-						<div className="email"><a href="astrloger.html"><span>Ask Astrologer</span></a></div>
-						<div className="email"><a href="astrloger.html"><span>Talk Astrologer</span></a></div>
-						<div className="email"><a href="astrloger.html"><span>Chat Astrologer</span></a></div>
+						<div className="email"><a href="astrloger.html"><span><i class="fa fa-envelope-o"></i> info@Jyotirvid.in</span></a></div>
 						<div className="email"><a href="astrloger.html"><span>Prediction Report</span></a></div>
 					</div>
 					<div className="col-lg-6 col-sm-12 mobile-center">

@@ -2,6 +2,7 @@ import React,{Component}from 'react';
 import { Link } from 'react-router-dom';
 import Leftnav from './leftnav';
 import Astologerlist from './astologerlist';
+import Astologerdetails from './astologerdetails';
 
 class Talkastrologer extends Component{
 	constructor(props) {
@@ -19,6 +20,7 @@ class Talkastrologer extends Component{
 						<div className="row">
 							<Leftnav/>
 							<Astologerlist/>
+							<Astologerdetails/>
 						</div>
 					</div>
 				</section>
