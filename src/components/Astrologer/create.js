@@ -1,13 +1,17 @@
 import React,{Component}from 'react';
 import { Link } from 'react-router-dom';
+import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import Button from '@material-ui/core/Button';
+
 import * as ROUTES from '../../config/routes';
 import avatar01 from '../../assets/img/profiles/avatar-01.jpg';
 import config from '../../config/config';
+
 class CreateAstro extends Component{
 	constructor(props) {
 		super(props);
 		 this.state = {
-			file: avatar01,
+			file:avatar01,
 			name:'',
 			submitted: false,
             loading: false,
@@ -16,96 +20,63 @@ class CreateAstro extends Component{
 			language:[],
 			countries:[],
 			expertise:[],
+			state:[],
+			city:[],
 			status:[],
-
+			success:'',
+			fname:'',
+			lname:'',
+			email:'',
+			phone:'',
+			mobile:'',
+			website:'',
+			statusx:'',
+			chatprice:'',
+			callprice:'',
+			reportprice:'',
+			address:'',
+			exp:'',
+			countryx:'',
+			statex:'',
+			cityx:'',
+			pincode:'',
+			expertisex:[],
+			languagex:[],
+			about:'',
+			password:'',
+			bankname:'',
+			anumber:'',
+			ifsc:'',
+			image:'',
+			statusx:'',
+			genderx:''
 			
 		};
 		this.handleSubmit = this.handleSubmit.bind(this);
 		this.getAllInfo = this.getAllInfo.bind(this);
-		this.serviceInfo = this.serviceInfo.bind(this);
+		this.selectCountry  = this.selectCountry .bind(this);
+		this.selectRegion  = this.selectRegion .bind(this);
+		this.selectCity  = this.selectCity .bind(this);
+		this.handleChangestatus  = this.handleChangestatus .bind(this);
+		this.handleChangeGender  = this.handleChangeGender .bind(this);
+		this.handleChange  = this.handleChange .bind(this);
+		this.onChangeexperties  = this.onChangeexperties .bind(this);
+		this.onChangeelanguage  = this.onChangeelanguage .bind(this);
+	
 	}
 	 handleChange(event) {
+		const target = event.target;
+		const value = target.value;
+		const name = target.name;
+
 		this.setState({
-		  file: URL.createObjectURL(event.target.files[0])
-		})
+			[name]: value
+		});
 	}
 	componentDidMount() {
 		this.getAllInfo();
-		//this.serviceInfo();
-		//this.getCountry();
 	}
-	getCountry(e){
-		config.get('/api/astro/getCountry',{
-				withCredentials:false
-		})
-		.then((res) => {
-			this.setState({ loading: false });
-			 if(res.data.success){
-					this.setState({ 
-						loading: false,
-						error:'',
-						countries:res.data.localdata.countries,
-					
-					});
-				
-					
-			 }else{
-				this.setState({ 
-						loading: false,
-						error:res.data.message
-				}); 
-			 }
-			}).catch((error) => {
-			  if (error.response) {
-						this.setState({ 
-							loading: false,
-							error:error.response.data.message
-						});
-			  } else if (error.request) {
-				  this.setState({ 
-							loading: false,
-							error:error.message
-					});
-			  }
-		});
-		
-	}
-	serviceInfo(e){
-		config.get('/api/astro/serviceInfo',{
-				withCredentials:false
-		})
-		.then((res) => {
-			this.setState({ loading: false });
-			 if(res.data.success){
-					this.setState({ 
-						loading: false,
-						error:'',
-						expertise:res.data.localdata.expertise,
-						language:res.data.localdata.language
-					});
-				
-					
-			 }else{
-				this.setState({ 
-						loading: false,
-						error:res.data.message
-				}); 
-			 }
-			}).catch((error) => {
-			  if (error.response) {
-						this.setState({ 
-							loading: false,
-							error:error.response.data.message
-						});
-			  } else if (error.request) {
-				  this.setState({ 
-							loading: false,
-							error:error.message
-					});
-			  }
-		});
-		
-	}
+
 	getAllInfo(e){
 		config.get('/api/astro/getAllinfo',{
 				withCredentials:false
@@ -147,17 +118,132 @@ class CreateAstro extends Component{
 	}
 	handleSubmit(e) {
         e.preventDefault();
-		this.setState({ submitted: false });
-		const data = new FormData(e.target);
-		config.post('/api/astro/createAstro',data)
+		this.setState({
+			submitted: false,
+			loading: true,
+			success:'',
+			error:'',
+			
+		});
+
+		config.post('/api/astro/createAstro',{
+			fname:this.state.fname,
+			lname:this.state.lname,
+			email:this.state.email,
+			phone:this.state.phone,
+			mobile:this.state.mobile,
+			website:this.state.website,
+			chatprice:this.state.chatprice,
+			callprice:this.state.callprice,
+			reportprice:this.state.reportprice,
+			address:this.state.address,
+			exp:this.state.exp,
+			countryx:this.state.countryx,
+			statex:this.state.statex,
+			cityx:this.state.cityx,
+			pincode:this.state.pincode,
+			expertisex:this.state.expertisex,
+			languagex:this.state.languagex,
+			about:this.state.about,
+			password:this.state.password,
+			bankname:this.state.bankname,
+			anumber:this.state.anumber,
+			ifsc:this.state.ifsc,
+			image:this.state.file,
+			statusx:this.state.statusx,
+			genderx:this.state.genderx,
+		})
+		.then((res) => {
+			this.setState({ loading: true });
+			 if(res.data.success){
+					this.setState({ 
+						loading: false,
+						success:res.data.message
+					});
+					
+					
+			 }else{
+				this.setState({ 
+						loading: false,
+						error:res.data.message
+				}); 
+			 }
+			}).catch((error) => {
+			  if (error.response) {
+						this.setState({ 
+							loading: false,
+							error:error.response.data.message
+						});
+			  } else if (error.request) {
+				  this.setState({ 
+							loading: false,
+							error:error.response.data.message
+					});
+			  }else{
+				  
+			  }
+		});
+
+	}
+	onChangeexperties(e) {
+    // current array of options
+    const options = this.state.expertisex
+    let index
+
+    // check if the check box is checked or unchecked
+    if (e.target.checked) {
+      // add the numerical value of the checkbox to options array
+      options.push(+e.target.value)
+    } else {
+      // or remove the value from the unchecked checkbox from the array
+      index = options.indexOf(+e.target.value)
+      options.splice(index, 1)
+    }
+
+    // sort the array
+    options.sort()    
+
+    // update the state with the new array of options
+    this.setState({ expertisex: options })
+  }
+	onChangeelanguage(e) {
+    // current array of options
+    const options = this.state.languagex
+    let index
+
+    // check if the check box is checked or unchecked
+    if (e.target.checked) {
+      // add the numerical value of the checkbox to options array
+      options.push(+e.target.value)
+    } else {
+      // or remove the value from the unchecked checkbox from the array
+      index = options.indexOf(+e.target.value)
+      options.splice(index, 1)
+    }
+
+    // sort the array
+    options.sort()    
+
+    // update the state with the new array of options
+    this.setState({ languagex: options })
+  }
+
+	selectCountry (val) {
+		 var data ={
+			 countery_id:val
+		 }
+		 this.setState({
+				countryx:val
+		 });
+		config.get('/api/astro/getState?id='+val)
 		.then((res) => {
 			this.setState({ loading: false });
 			 if(res.data.success){
 					this.setState({ 
 						loading: false,
-						error:''
+						state:res.data.state
 					});
-				
+					
 					
 			 }else{
 				this.setState({ 
@@ -180,16 +266,112 @@ class CreateAstro extends Component{
 				  
 			  }
 		});
-
 	}
+	handleChangestatus(val){
+			
+		 this.setState({
+			statusx:val
+		 });
+	}
+	handleChangeGender(val){
+		 this.setState({
+			genderx:val
+		 });
+	}
+	selectCity(val){
+		 this.setState({
+				cityx:val
+		 });
+	}
+	selectRegion (val) {
+		var data ={
+			state_id:val
+		}
+		 this.setState({
+				statex:val
+		 });
+	   config.get('/api/astro/getCity?id='+val)
+	   .then((res) => {
+		   this.setState({ loading: false });
+			if(res.data.success){
+				   this.setState({ 
+					   loading: false,
+					   city:res.data.city
+				   });
+			}else{
+			   this.setState({ 
+					   loading: false,
+					   error:res.data.message
+			   }); 
+			}
+		   }).catch((error) => {
+			 if (error.response) {
+					   this.setState({ 
+						   loading: false,
+						   error:error.response.data.message
+					   });
+			 } else if (error.request) {
+				 this.setState({ 
+						   loading: false,
+						   error:error.message
+				   });
+			 }else{
+				 
+			 }
+	   });
+	}
+
 	render(){
-			const {submitted,gender,language,countries,expertise,status, loading, error } = this.state;
-			 let countriesList = countries.length > 0
-				&& countries.map((item, i) => {
+			const {submitted,gender,language,countries,expertise,
+			 loading, error,success,
+				state,city,fname,
+				lname,
+				email,
+				phone,
+				mobile,
+				website,
+				status,
+				chatprice,
+				callprice,
+				reportprice,
+				address,
+				exp,
+				countryx,
+				statex,
+				cityx,
+				pincode,
+				expertisex,
+				languagex,
+				about,
+				password,
+				bankname,
+				anumber,
+				ifsc,
+				image,
+				statusx,
+				genderx
+	
+			} = this.state;	
+			 let stateList = state.length > 0
+				&& state.map((item, i) => {
 				return (
-					<option key={i} value={item.id}>{item.name}</option>
+					<option key={i} value={item.id} >{item.name}</option>
 				)
 			});
+			let cityList = city.length > 0
+			&& city.map((item, i) => {
+				return (
+					<option key={i} value={item.id} >{item.city}</option>
+				)
+			});
+
+			let countriesList = countries.length > 0
+			&& countries.map((item, i) => {
+			return (
+				<option key={i} value={item.id} >{item.name}</option>
+			)
+			});
+
 
 			let genderlist =gender.length>0
 			&& gender.map((item,i)=>{
@@ -205,19 +387,21 @@ class CreateAstro extends Component{
 			&& expertise.map((item,i)=>{
 						
 			return <label className="col-lg-2" key={i} >
-				<input type="checkbox" name="expertise[]" key={i} value={item.id}/> 
+				<input type="checkbox" name="expertisex[]"    onChange={this.onChangeexperties} key={i} value={item.id}/> 
 				{item.expertise_name} </label>
 														
 			})
 			let languagelist=language.length>0
 			&& language.map((item,i)=>{
 						
-				return <label className="col-lg-2" key={i} ><input type="checkbox" name="language[]" key={i} value={item.id}/> {item.language_name} </label>
+				return <label className="col-lg-2" key={i} ><input type="checkbox" onChange={this.onChangeelanguage} name="languagex[]" key={i} value={item.id}/> {item.language_name} </label>
 														
 												
 			})
 			return(
-				<form action="#" onSubmit={this.handleSubmit} name="frmcreateAstro">
+			<ValidatorForm   ref="form"
+			onSubmit={this.handleSubmit}
+			onError={errors => console.log(errors)} name="frmcreateAstro">
 				<div className="page-wrapper">
 					<div className="content container-fluid">
 							<div className="page-header">
@@ -228,14 +412,10 @@ class CreateAstro extends Component{
 											<li className="breadcrumb-item active">Home</li>
 										</ul>
 									</div>
-
 									<div className="col-sm-8 col">
 										<Link to={ROUTES.Astrologer} className="btn btn-primary float-right mt-2">Back</Link>
-										<div className="btn btn-danger float-right mt-2">Delet</div>
-										<div className="btn btn-warning float-right mt-2">Edit</div>
+										
 									</div>
-
-
 								</div>
 							</div>
 						
@@ -253,7 +433,7 @@ class CreateAstro extends Component{
 									
 									<div className="col-md-3">
 										<div className="custom-file">
-											<input  onChange={this.handleChange} type="file" className="custom-file-input" id="validatedCustomFile" required=""/>
+											<input  onChange={this.handleChange} type="file" name="image" className="custom-file-input" id="validatedCustomFile" required=""/>
 											<label className="custom-file-label">Choose </label>
 										</div>
 									</div>
@@ -264,6 +444,9 @@ class CreateAstro extends Component{
 								<ul className="nav nav-tabs nav-tabs-solid">
 									<li className="nav-item">
 										<a className="nav-link active" data-toggle="tab" href="#profile">Profile</a>
+									</li>
+									<li className="nav-item">
+										<a className="nav-link" data-toggle="tab" href="#rate">Rate Or Price</a>
 									</li>
 									<li className="nav-item">
 										<a className="nav-link" data-toggle="tab" href="#address-info">Address Information</a>
@@ -295,7 +478,13 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">First Name</label>
 																	<div className="col-lg-8">
-																		<input type="text" name="fname" className="form-control" placeholder="First Name"/>
+																		<input type="text" name="fname"
+																			 placeholder="Enter First Name"
+																			 className="form-control" 
+																			 onChange={this.handleChange}
+																			 value={this.state.fname}
+																				
+																			/>
 																	</div>
 																</div>
 															</div>
@@ -305,7 +494,10 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Last Name</label>
 																	<div className="col-lg-8">
-																		<input type="text" name="lname" className="form-control" placeholder="Last Name"/>
+																		<input type="text" onChange={this.handleChange}
+																		name="lname" 
+																		value={this.state.lname}
+																		placeholder="Enter Last Name" className="form-control" />
 																	</div>
 																</div>
 															</div>
@@ -318,7 +510,10 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Phone Number</label>
 																	<div className="col-lg-8">
-																		<input type="text" name="phone" className="form-control" placeholder="Phone Number"/>
+																		<input type="text" name="phone" 
+																			 className="form-control" 
+																				onChange={this.handleChange}
+																			  placeholder="Phone Number"/>
 																	</div>
 																</div>
 															</div>
@@ -328,7 +523,8 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Mobile Number</label>
 																	<div className="col-lg-8">
-																		<input type="text" name="mobile" className="form-control" placeholder="Mobile Number"/>
+																		<input type="text" name="mobile" 
+																		className="form-control" onChange={this.handleChange}  placeholder="Mobile Number"/>
 																	</div>
 																</div>
 															</div>
@@ -338,8 +534,10 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Email ID</label>
 																	<div className="col-lg-8">
-																		<input type="text" name="email"className="form-control" placeholder="Email ID"/>
-																	</div>
+																	<input  type="text" name="email" placeholder="Enter Email"	
+																	onChange={this.handleChange}  className="form-control"/>
+                    
+                   												</div>
 																</div>
 															</div>
 														</div>
@@ -348,7 +546,7 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Gender</label>
 																	<div className="col-lg-8">
-																		<select name="gender" className="form-control">
+																		<select name="gender"  onChange={e=>this.handleChangeGender(e.target.value)} className="form-control" >
 																			{genderlist}
 																		</select>
 																	</div>
@@ -360,7 +558,7 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Website</label>
 																	<div className="col-lg-8">
-																		<input type="text" name="website" className="form-control" placeholder="Website"/>
+																		<input type="text" name="website" onChange={this.handleChange} className="form-control" placeholder="Website"/>
 																	</div>
 																</div>
 															</div>
@@ -371,7 +569,7 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Status</label>
 																	<div className="col-lg-8">
-																		<select name="status" className="form-control float-right mt-2">
+																		<select name="status" onChange={e=>this.handleChangestatus(e.target.value)}  className="form-control float-right mt-2">
 																		{statuslist}
 																		</select>
 																	</div>
@@ -387,7 +585,52 @@ class CreateAstro extends Component{
 										</div>		
 									</div>
 								</div>
-
+								<div className="tab-pane fade show" id="rate">
+								<div className="card">
+										<div className="card-body">
+											<div className="row">
+												<div className="col-lg-6">
+													<div className="form-group">
+														<div className="row">
+															<label className="col-lg-4 col-form-label">Chat Price</label>
+															<div className="col-lg-8">
+																<input type="number" onChange={this.handleChange} className="form-control" placeholder="Chat Price" name="chatprice"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div className="col-lg-6">
+													<div className="form-group">
+														<div className="row">
+															<label className="col-lg-4 col-form-label">Call Price</label>
+															<div className="col-lg-8">
+																<input type="number" onChange={this.handleChange} className="form-control" placeholder="Call Price" name="callprice"/>
+															</div>
+														</div>
+													</div>
+												</div>
+												<div className="col-lg-6">
+													<div className="form-group">
+														<div className="row">
+															<label className="col-lg-4 col-form-label">Report Price</label>
+															<div className="col-lg-8">
+																<input type="number" onChange={this.handleChange} className="form-control" placeholder="Report Price" name="reportprice"/>
+															</div>
+														</div>
+													</div>
+													<div className="form-group">
+														<div className="row">
+															<label className="col-lg-4 col-form-label">Experience</label>
+															<div className="col-lg-8">
+																<input type="number" onChange={this.handleChange} className="form-control" placeholder="Enter experince" name="exp"/>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>	
+										</div>
+									</div>
+								</div>
 
 								<div className="tab-pane fade show" id="address-info">
 									<div className="row">
@@ -400,7 +643,7 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Address/Locality</label>
 																	<div className="col-lg-8">
-																		<input type="text" className="form-control" placeholder="Address/Locality"/>
+																		<input type="text" name="address" onChange={this.handleChange} className="form-control" placeholder="Address/Locality"/>
 																	</div>
 																</div>
 															</div>
@@ -410,8 +653,8 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Country</label>
 																	<div className="col-lg-8">
-																		<select name="country" className="form-control float-right mt-2">
-																		{countriesList}
+																		<select name="countryx"  onChange={e => this.selectCountry(e.target.value)} className="form-control float-right mt-2">
+																			{countriesList}
 																		</select>
 																	</div>
 																</div>
@@ -422,8 +665,8 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">State</label>
 																	<div className="col-lg-8">
-																		<select name="state" className="form-control float-right mt-2">
-																
+																		<select name="statex"  className="form-control float-right mt-2" onChange={e => this.selectRegion(e.target.value)}>
+																			{stateList}
 																		</select>
 																	</div>
 																</div>
@@ -434,8 +677,8 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">City</label>
 																	<div className="col-lg-8">
-																		<select name="city" className="form-control float-right mt-2">
-																
+																		<select name="cityx"  onChange={e => this.selectCity(e.target.value)} className="form-control float-right mt-2">
+																				{cityList}
 																		</select>
 																	</div>
 																</div>
@@ -446,7 +689,7 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-4 col-form-label">Pin code</label>
 																	<div className="col-lg-8">
-																		<input type="text" className="form-control" name="pincode" placeholder="Pin code"/>
+																		<input type="text" onChange={this.handleChange} className="form-control" name="pincode" placeholder="Pin code"/>
 																	</div>
 																</div>
 															</div>
@@ -495,7 +738,7 @@ class CreateAstro extends Component{
 																<div className="row">
 																	<label className="col-lg-3 col-form-label">Personal Statement</label>
 																	<div className="col-lg-9">
-																	<textarea className="form-control" name="about" rows="3"></textarea>
+																	<textarea className="form-control" onChange={this.handleChange} name="about" rows="3"></textarea>
 																	</div>
 																</div>
 															</div>
@@ -508,7 +751,7 @@ class CreateAstro extends Component{
 								</div>
 								
 								
-								<div id="password_tab" className="tab-pane fade">
+								<div id="password_tab" className="tab-pane  fade show">
 									<div className="card">
 										<div className="card-body">
 											<h5 className="card-title">Change Password</h5>
@@ -518,7 +761,7 @@ class CreateAstro extends Component{
 															<div className="row">
 																<label className="col-lg-2 col-form-label">Password</label>
 																<div className="col-lg-4">
-																	<input type="text" className="form-control" name ="password" placeholder="Password"/>
+																	<input type="text" className="form-control" onChange={this.handleChange}  name ="password" placeholder="Password"/>
 																</div>
 															</div>
 														</div>
@@ -529,7 +772,7 @@ class CreateAstro extends Component{
 								</div>
 								
 								
-								<div id="Banking_Information" className="tab-pane fade">
+								<div id="Banking_Information" className="tab-pane  fade show">
 									<div className="card">
 										<div className="card-body">
 											<div className="row">
@@ -538,7 +781,7 @@ class CreateAstro extends Component{
 														<div className="row">
 															<label className="col-lg-4 col-form-label">Bank Name</label>
 															<div className="col-lg-8">
-																<input type="text" className="form-control" placeholder="Bank Name" name="bankname"/>
+																<input type="text" onChange={this.handleChange} className="form-control" placeholder="Bank Name" name="bankname"/>
 															</div>
 														</div>
 													</div>
@@ -548,7 +791,7 @@ class CreateAstro extends Component{
 														<div className="row">
 															<label className="col-lg-4 col-form-label">Account Number</label>
 															<div className="col-lg-8">
-																<input type="text" className="form-control" placeholder="Account Number" name="anumber"/>
+																<input type="text" onChange={this.handleChange} className="form-control" placeholder="Account Number" name="anumber"/>
 															</div>
 														</div>
 													</div>
@@ -558,7 +801,7 @@ class CreateAstro extends Component{
 														<div className="row">
 															<label className="col-lg-4 col-form-label">Bank IFSC</label>
 															<div className="col-lg-8">
-																<input type="text" className="form-control" placeholder="IFSC code" name="ifsc"/>
+																<input type="text" onChange={this.handleChange} className="form-control" placeholder="IFSC code" name="ifsc"/>
 															</div>
 														</div>
 													</div>
@@ -571,17 +814,20 @@ class CreateAstro extends Component{
 							</div>
 						</div>
 					</div>
+					{error &&
+							<div className={'alert alert-danger'}>{error}</div>
+						}
 					<button className="btn btn-primary" disabled={loading}>Add Astrologer</button>
                         {loading &&
                             <img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
                         }
-						{error &&
-							<div className={'alert alert-danger'}>{error}</div>
-						}
-								
+						
+						{success &&
+							<div className={'alert alert-success'}>{success}</div>
+						}		
 					</div>
 			   </div>
-			</form>
+			</ValidatorForm>
 	);
 
  }
