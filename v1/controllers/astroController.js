@@ -18,7 +18,7 @@ exports.deleteAstro = function(req, res) {
 	}
 }
 exports.getAstrologerlist = function(req, res) {
-	let sql="select * from users where cb_roles_id=2 order by id DESC";
+	let sql="SELECT *,(SELECT GROUP_CONCAT(l.language_name) FROM `language` l WHERE l.id IN (SELECT ln.language_id FROM `user_languages` ln WHERE  ln.user_id = u.id)) as language_name,(SELECT GROUP_CONCAT(e.expertise_name) FROM `expertise` e WHERE e.id IN (SELECT ue.expertise_id FROM `user_expertise` ue WHERE  ue.user_id = u.id)) as expertise_name from users u where u.cb_roles_id=2 order by u.id DESC";
 		db.query(sql,function(err,result){
 			if(err) throw err;
 			res.status(200).json({
@@ -147,9 +147,6 @@ exports.serviceInfo = function(req, res) {
 			localdata:localdata
 		});
 	});
-	
-	
-
 }
 
 exports.getCountry = function(req, res) {
@@ -190,6 +187,38 @@ var storage = multer.diskStorage({
 
  }
 exports.createAstro= function(req, res) {
+	/*
+	var data = {
+				"fname":"jghjb",
+				"lname":"gjhg",
+				"email":"ghfhgfhg@hgfh.com",
+				"phone":"686868686",
+				"mobile":"757775766",
+				"website":"ddd.com",
+				"chatprice":"12",
+				"callprice":"4",
+				"reportprice":"2",
+				"address":"jvjj",
+				"exp":"3",
+				"countryx":"",
+				"statex":"",
+				"cityx":"",
+				"pincode":"112222",
+				"expertisex":[1,2,7],
+				"languagex":[2,3],
+				"about":"jhfghj",
+				"password":"123456",
+				"bankname":"nghj",
+				"anumber":"558555655656",
+				"ifsc":"jf75755757",
+				"image":"/static/media/avatar-01.b3a5c318.jpg",
+				"statusx":"",
+				"genderx":""
+			}
+	req.body = data;		
+	console.log(req.body);
+	*/
+	
 	const errors = validationResult(req)
 	if (!req.body.fname) {
 		
@@ -217,8 +246,9 @@ exports.createAstro= function(req, res) {
 	
 	}
 	
-	console.log(flag);
-	return false;
+	//console.log(flag);
+	//return false;
+
 	var fname=req.body.fname;
 	var lname=req.body.lname;
 	var name=fname+" "+lname;
@@ -236,15 +266,71 @@ exports.createAstro= function(req, res) {
 	var cityx=req.body.cityx;
 	var pincode=req.body.pincode;
 	var about=req.body.about;
+	var expertisex=req.body.expertisex;	
+	var languagex=req.body.languagex;	
+	var bankname=req.body.bankname;
+	var ifsc=req.body.ifsc;
+	var anumber=req.body.anumber;
 	var slug=name.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
 	var sql = "INSERT into users(name, email,phone,mobile,chatprice,callprice,reportprice,exp,countryx,statex,cityx,slug,cb_roles_id) VALUES ('"+name+"', '"+email+"','"+mobile+"','"+phone+"','"+chatprice+"','"+callprice+"','"+reportprice+"','"+exp+"','"+countryx+"','"+statex+"','"+cityx+"','"+slug+"',2)";
-	db.query(sql, function (err, result) {
-	if (err) throw err;
-		res.status(200).json({
-			success: true,
-			message:'Astrologer createrd successfully!'
+	
+	var localdata={};
+	var tasks=[
+		function(callback) {
+			db.query(sql, function (err, result) {				
+				callback(null, result.insertId);
+			});
+		},
+		function(user_id,callback) {
+			let acc_sql = "INSERT into user_account_info(user_id,bank_name,ifsc,account_number) VALUES ('"+user_id+"', '"+bankname+"', '"+ifsc+"', '"+anumber+"')";
+			db.query(acc_sql, function (err, result) {				
+				callback(null, user_id);
+			});
+		},		 
+		function(user_id, callback) {
+			for(let i =0;i<expertisex.length;i++){
+				let expsql  = "INSERT into user_expertise(user_id,expertise_id) VALUES ('"+user_id+"','"+expertisex[i]+"')";
+				db.query(expsql, function (err, result) {								
+				})
+			}
+		    callback(null, user_id);
+		},
+		function(user_id, callback) {
+			for(let i =0;i<languagex.length;i++){
+				let expsql  = "INSERT into user_languages(user_id,language_id) VALUES ('"+user_id+"','"+expertisex[i]+"')";
+				db.query(expsql, function (err, result) {								
+				})
+			}
+		    callback(null, user_id);
+		}								
+	];
+	async.waterfall(tasks, function(err) {
+		if (err) throw err;
+			res.status(200).json({
+			success: true,			
 		});
 	});
 	
+
+	/*
+	db.query(sql, function (err, result) {
+	if (err) throw err;
+		if(result){
+			for(let i =0;i<expertisex.length;i++){
+				let expsql  = "INSERT into user_expertise(user_id,expertise_id) VALUES ('"+result.insertId+"','"+expertisex[i]+"')";
+				db.query(expsql, function (err, result) {
+					console.log(result.insertId);
+					res.status(200).json({
+						success: true,
+						data:req.body,
+						message:'Astrologer createrd successfully!'
+					});
+				})
+			}
+			
+		}
+		
+	});
+	*/
 
 }
