@@ -96,9 +96,9 @@ const TalkastrologerAstologerlist=(props)=>{
 							</div>
 					</div>
 					<div className="astro--actin-btn">
-						<span className="astro-price-r"><div className="astro-price">₹{rowData.chatprice}/Min</div><Link onClick={e =>props.checkAstro(rowData.id,'chat')}>chat</Link></span>
-						<span className="astro-price-b"><div className="astro-price">₹{rowData.callprice}/Min</div><Link onClick={e =>props.checkAstro(rowData.id,'call')}> Call </Link></span>
-						<span className="astro-price-g"><div className="astro-price">₹{rowData.reportprice}</div><Link   onClick={e =>props.checkAstro(rowData.id,'report')}> Get Report</Link></span>
+						<span className="astro-price-r"><div className="astro-price">₹{rowData.chatprice}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'chat')}>chat</a></span>
+						<span className="astro-price-b"><div className="astro-price">₹{rowData.callprice}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'call')}> Call </a></span>
+						<span className="astro-price-g"><div className="astro-price">₹{rowData.reportprice}</div><a   onClick={e =>props.checkAstro(rowData.id,'report')}> Get Report</a></span>
 					</div>
 				</div>
 			</div>
