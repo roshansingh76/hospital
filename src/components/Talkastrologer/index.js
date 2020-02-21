@@ -1,10 +1,16 @@
 import React,{Component,Fragment}from 'react';
 import { Link } from 'react-router-dom';
-import ReactModalLogin from "react-modal-login";
+import Modal from 'react-modal';
 import Leftnav from './leftnav';
 import Astologerlist from './astologerlist';
 import Astologerdetails from './astologerdetails';
 import config from '../../config/config';
+import { facebookConfig, googleConfig } from '../../config/social-config';
+const customStyles = {
+  content : {
+   
+  }
+};
 
 class Talkastrologer extends Component{
 	constructor(props) {
@@ -14,68 +20,42 @@ class Talkastrologer extends Component{
 				token:'',
 				userId:'',
 				authFlag:false,
-				showModal: false,
+				modalIsOpen: false,
 				loading: false,
-				error: null
+				error: ''
 		};
 	   this.getAllAstrologer = this.getAllAstrologer.bind(this);
 	   this.checkUser = this.checkUser.bind(this);
+	   this.openModal = this.openModal.bind(this);
+	   this.afterOpenModal = this.afterOpenModal.bind(this);
+	   this.closeModal = this.closeModal.bind(this);
+	 
 	}
-  openModal() {
-    this.setState({
-      showModal: true
-    });
-  }
- 
-  closeModal() {
-    this.setState({
-      showModal: false,
-      error: null
-    });
-  }
- 
-  onLoginSuccess(method, response) {
-    console.log("logged successfully with " + method);
-  }
- 
-  onLoginFail(method, response) {
-    console.log("logging failed with " + method);
-    this.setState({
-      error: response
-    });
-  }
- 
-  startLoading() {
-    this.setState({
-      loading: true
-    });
-  }
- 
-  finishLoading() {
-    this.setState({
-      loading: false
-    });
-  }
- 
-  afterTabsChange() {
-    this.setState({
-      error: null
-    });
-  }
+	  openModal() {
+		this.setState({modalIsOpen: true});
+	  }
+	 
+	  afterOpenModal() {
+		// references are now sync'd and can be accessed.
+		this.subtitle.style.color = '#f00';
+	  }
+	 
+	  closeModal() {
+		this.setState({modalIsOpen: false});
+	  }
 	componentDidMount() {
+	
 		this.getAllAstrologer();
 	}
 	checkUser(astroId,type){
 			if(!this.state.token && !this.state.userId){
-				this.setState({
-     					 authFlag: true
-				});
-				this.openModal();
-			}else{
+				this.setState({modalIsOpen: true,authFlag:true});
 				this.openModal();
 			}
 			
 	}
+	
+
 	getAllAstrologer(){
 		this.setState({
 			loading:false
@@ -116,8 +96,9 @@ class Talkastrologer extends Component{
 	});
 		
 	}
- render(){
-			let {astrolist,authFlag}=this.state; 
+
+	render(){
+		let {astrolist,authFlag,props}=this.state; 
 		return(
 			<Fragment>
 				<section className="padding">
@@ -129,51 +110,19 @@ class Talkastrologer extends Component{
 							
 							{
 							authFlag &&
-								
-						        <ReactModalLogin
-						          visible={this.state.showModal}
-						          onCloseModal={this.closeModal.bind(this)}
-						          loading={this.state.loading}
-						          error={this.state.error}
-						          tabs={{
-						            afterChange: this.afterTabsChange.bind(this)
-						          }}
-						          loginError={{
-						            label: "Couldn't sign in, please try again."
-						          }}
-						          registerError={{
-						            label: "Couldn't sign up, please try again."
-						          }}
-						          startLoading={this.startLoading.bind(this)}
-						          finishLoading={this.finishLoading.bind(this)}
-						        providers={{
-						            facebook: {
-						              config:'',
-						              onLoginSuccess: this.onLoginSuccess.bind(this),
-						              onLoginFail: this.onLoginFail.bind(this),
-						              label: "Continue with Facebook"
-						            },
-					              google: {
-						              config:'',
-						              onLoginSuccess: this.onLoginSuccess.bind(this),
-						              onLoginFail: this.onLoginFail.bind(this),
-						              label: "Continue with Google"
-						            }
+									<Modal
+										isOpen={this.state.modalIsOpen}
+										onAfterOpen={this.afterOpenModal}
+										onRequestClose={this.closeModal}
+										
+										>
 
-						          }}
-						          form={{
-						          		loginInputs:{
-						          			type :'text',
-						          			name:'mobile',
-
-						          		},
-						          		loginBtn:{
-						          			label:'Send OTP'
-						          		},
-						          		
-						      	    }}
-
-						        />
+										<h2 ref={subtitle => this.subtitle = subtitle}>Hello</h2>
+										<button onClick={this.closeModal}>close</button>
+										<form>
+									
+										</form>
+									</Modal>
 							}
 						</div>
 					</div>
