@@ -56,7 +56,7 @@ const App= (props) => {
 			<FrontendHeader/>
 			<FrontendNavigation/>
 		 </div>
-			<Redirect to={ROUTES.Home}/>
+			<Redirect to={ROUTES.Talkastrologer}/>
 			<Route   exact path={ROUTES.Home} component={HomePage} />	
 			<Route   path={ROUTES.Talkastrologer} component={Talkastrologer} />
 			<Route   path={ROUTES.About} component={About} />
