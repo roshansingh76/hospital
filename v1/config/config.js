@@ -1,3 +1,4 @@
 module.exports = {
-  secret: 'worldisfullofdevelopers'
+  secret: 'worldisfullofdevelopers',
+  salt:'astro@#1234567890'
 };
