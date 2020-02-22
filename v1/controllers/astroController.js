@@ -20,7 +20,7 @@ exports.deleteAstro = function(req, res) {
 	}
 }
 exports.getAstrologerlist = function(req, res) {
-	let sql="SELECT *,(SELECT GROUP_CONCAT(l.language_name) FROM `language` l WHERE l.id IN (SELECT ln.language_id FROM `user_languages` ln WHERE  ln.user_id = u.id)) as language_name,(SELECT GROUP_CONCAT(e.expertise_name) FROM `expertise` e WHERE e.id IN (SELECT ue.expertise_id FROM `user_expertise` ue WHERE  ue.user_id = u.id)) as expertise_name from users u where u.cb_roles_id=2 order by u.id DESC";
+	let sql="SELECT *,(SELECT GROUP_CONCAT(l.language_name) FROM `language` l WHERE l.id IN (SELECT ln.language_id FROM `astro_languages` ln WHERE  ln.user_id = u.id)) as language_name,(SELECT GROUP_CONCAT(e.expertise_name) FROM `expertise` e WHERE e.id IN (SELECT ue.expertise_id FROM `astro_expertise` ue WHERE  ue.user_id = u.id)) as expertise_name from users u where u.cb_roles_id=2 order by u.id DESC";
 		db.query(sql,function(err,result){
 			if(err) throw err;
 			res.status(200).json({
@@ -183,13 +183,11 @@ var storage = multer.diskStorage({
 	}
   });
   var upload = multer({ storage: storage });
- setValue= function(value){
-	
+ setValue= function(value){	
 	flag=value;
-
  }
 exports.createAstro= function(req, res) {
-	
+	/*
 	var data = {
 				"fname":"jghjb",
 				"lname":"gjhg",
@@ -219,8 +217,8 @@ exports.createAstro= function(req, res) {
 			}
 	req.body = data;		
 	console.log(req.body);
-	
-	 /*
+	*/
+	// /*
 	const errors = validationResult(req)
 	if (!req.body.fname) {
 		
@@ -285,8 +283,17 @@ exports.createAstro= function(req, res) {
 	
 	var tasks=[
 		function(callback) {
-			db.query(sql, function (err, result) {				
-				callback(null, result.insertId);
+			db.query(sql, function (err, result) {
+				if(result.insertId){
+					callback(null, result.insertId);
+				}else{
+					res.status(200).json({
+						success: false,
+						message:'Error in Add Astrologer',
+						error:err
+
+					});		
+				}
 			});
 		},
 		function(user_id,callback) {
@@ -333,7 +340,7 @@ exports.createAstro= function(req, res) {
 	});
 	
 
-	/*
+	
 	db.query(sql, function (err, result) {
 	if (err) throw err;
 		if(result){
@@ -352,7 +359,7 @@ exports.createAstro= function(req, res) {
 		}
 		
 	});
-	*/
+	
 
 }
 

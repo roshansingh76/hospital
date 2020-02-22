@@ -4,6 +4,8 @@ var router = express.Router();
 let jwt = require('jsonwebtoken');
 let config = require('../config/config');
 let middleware = require('../middleware/authmiddleware');
+const SendOtp = require('sendotp');
+
 exports.users_index = function(req, res) {
     res.send('NOT IMPLEMENTED: Site Home Page');
 };
@@ -72,4 +74,32 @@ var username = req.body.username;
         	message: 'Authentication failed! Please check the request'
       	});
     }
-	};
+};
+
+exports.auth_end_users_login = function(req, res) {
+	var phone 	= 	req.query.phone;
+    var otp 	= 	req.body.otp; 
+	//console.log(username+"==="+password);
+	sendOtp.verify("91"+req.query.phone, otp, function (error, data) {
+  		console.log(data); // data object with keys 'message' and 'type'
+  		if(data.type == 'success'){
+  			let token = jwt.sign({username: phone},
+			          		config.secret,
+			          		{ expiresIn: '24h' // expires in 24 hours
+			          		}
+        				);        	
+    		// return the JWT token for the future API calls
+	         res.status(200).json({
+	          	success: true,
+	          	message: 'Authentication successful!',
+	          	token: token
+	        });
+	        console.log('OTP verified successfully')
+  		} 
+  		if(data.type == 'error'){
+  			console.log('OTP verification failed')	
+  		} 
+	});
+};
+
+const sendOtp = new SendOtp('199297Ae7Di3Vd7KMY5c668a7a');
