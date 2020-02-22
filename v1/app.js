@@ -7,6 +7,7 @@ const db = require('./config/database');
 let middleware = require('./middleware/authmiddleware');
 const astro = require('./routes/astro');
 const index = require('./routes/index');
+const user = require('./routes/user');
 //Ankur code
 var app = express();
 app.use(cors())
@@ -22,6 +23,7 @@ app.use(bodyParser.json());
 // Add API Routes 
 app.use('/api/login', index);
 app.use('/api/astro',astro);
+app.use('/api/user',user);
 
 
 
