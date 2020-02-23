@@ -56,3 +56,40 @@ exports.getHoroscopes = function(req, res) {
 		}
 	})
 }
+exports.getHandKundalis = function(req, res) {	
+	let sql="SELECT * FROM `hand_kundli`";
+	db.query(sql,function(err,result){
+		if(err){
+			res.status(401).json({
+				success: false,
+				data:err,
+				message:'Error in getting Hand Kundli!'
+			});
+		}else{
+			res.status(200).json({
+				success: true,
+				data:result,
+				message:'Successfully Get Hand Kundlis!'
+			});		
+		}
+	})
+}
+exports.getPackages = function(req, res) {	
+	let sql="SELECT * FROM `packages`";
+	db.query(sql,function(err,result){
+		if(err){
+			res.status(401).json({
+				success: false,
+				data:err,
+				message:'Error in getting packages!'
+			});
+		}else{
+			res.status(200).json({
+				success: true,
+				data:result,
+				message:'Successfully Get packages!'
+			});		
+		}
+	})
+}
+

@@ -7,4 +7,6 @@ var Service = require('../controllers/serviceController');
 router.get('/geVastu',Service.geVastu);
 router.get('/getMuhuruat',Service.getMuhuruat);
 router.get('/getHoroscopes',Service.getHoroscopes);
+router.get('/getHandKundalis',Service.getHandKundalis);
+router.get('/getPackages',Service.getPackages);
 module.exports = router;
