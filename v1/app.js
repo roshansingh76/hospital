@@ -8,6 +8,8 @@ let middleware = require('./middleware/authmiddleware');
 const astro = require('./routes/astro');
 const index = require('./routes/index');
 const user = require('./routes/user');
+const service = require('./routes/service');
+
 //Ankur code
 var app = express();
 app.use(cors())
@@ -24,6 +26,7 @@ app.use(bodyParser.json());
 app.use('/api/login', index);
 app.use('/api/astro',astro);
 app.use('/api/user',user);
+app.use('/api/service',service);
 
 
 
