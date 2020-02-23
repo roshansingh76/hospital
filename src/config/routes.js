@@ -11,6 +11,7 @@ export const addAstrologer = '/addAstrologer';
 export const Talkastrologer = '/talk-astrologer';
 export const Horoscope = '/horoscope';
 export const Blogs = '/blogs';
+export const Chat = '/chat';
 export const About = '/about';
 export const FOODBANK = '/foodbank';
 export const Setting = '/Setting';

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
+import ContentLoader, { Facebook,List  } from 'react-content-loader'
 const TalkastrologerAstologerlist=(props)=>{
 	let data=props.data;
+	console.log(data.length);
 	return (<div className="col-md-9">
 		<div className="row">
 			<div className="col-md-12">
@@ -70,7 +71,11 @@ const TalkastrologerAstologerlist=(props)=>{
 			</div>
 		</div>
 		<div className="row">
-		{ data.length>0  &&
+		{ data.length===0 &&
+					<center><ContentLoader></ContentLoader></center>
+		}
+				
+		{ data.length>1  &&
 			data.map((rowData, index) => (
 			<div key={index+1} className="col-md-4 ap-pad">
 				<div className="astro-profile-box">

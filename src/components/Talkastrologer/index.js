@@ -20,7 +20,8 @@ class Talkastrologer extends Component{
 				loading: false,
 				error: '',
 				mobile:'',
-				mobile:''
+				flagMobilecontainer:true,
+				flagOtpcontainer:false
 		};
 	    this.getAllAstrologer = this.getAllAstrologer.bind(this);
 		this.checkUser = this.checkUser.bind(this);
@@ -60,7 +61,7 @@ class Talkastrologer extends Component{
 	}
 	getAllAstrologer(){
 		this.setState({
-			loading:true
+			loading:false
 		});
 		config.get('/api/astro/getAstrologerlist',{
 			withCredentials:false
@@ -106,13 +107,14 @@ class Talkastrologer extends Component{
 		}
 	
 	 this.setState({ loading: true });
-	 config.get('/api/astro/getOtp?mobile='+this.state.mobile)
+	 config.get('/api/user/getOtp?mobile='+this.state.mobile)
 	   .then((res) => {
 		   this.setState({ loading: false });
 			if(res.data.success){
 				   this.setState({ 
 					   loading: false,
-					  
+					   flagMobilecontainer:false,
+					   flagOtpcontainer:true,
 				   });
 			}else{
 			   this.setState({ 
