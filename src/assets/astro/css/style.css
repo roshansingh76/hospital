@@ -4769,8 +4769,32 @@ input.demo_vertical {
 }
 .astro-left-filt{
 	background: #fbfafa;
-    padding: 10px 15px;
 }
+.astro-left-filt p{
+    padding: 10px 20px;
+    color:#dfdfdf;
+}
+
+.astro-left-filt ul{}
+.astro-left-filt ul li {
+    border-bottom: 1px solid #f1f1f1;
+}
+.astro-left-filt ul li:last-child{
+	border:none;
+}
+.astro-left-filt ul li a{
+	display: block;
+    padding: 10px 20px;
+}
+.astro-left-filt ul li a.active{
+	background: #b3b3b3;
+	color:#fff;
+}
+.astro-left-filt ul li a:hover{
+	background: #585858;
+	color:#fff;
+}
+
 .astro-left-filt .ser-title-top{}
 .astro-left-filt .ser-title-top h3{
 	    margin-bottom: 10px;
@@ -4916,6 +4940,7 @@ text-align:center
     width: 100%;
     font-weight: 600;
 }
+
 .astro--actin-btn span a {
     color: #000;
     padding: 3px 0px;
@@ -4923,6 +4948,7 @@ text-align:center
     font-size: 13px;
     text-transform: capitalize;
     font-weight: 500;
+        cursor: pointer;
 }
 .astro--actin-btn span a:hover{
 	
