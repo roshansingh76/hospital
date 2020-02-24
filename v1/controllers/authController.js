@@ -82,7 +82,7 @@ exports.getOtp = function(req, res) {
 	console.log(req.query.phone);
 	var phone = req.query.phone;
 	try{
-		if(phone.length==10 && (/^\d+$/.test(phone))){
+		if(phone.length==10){
 			sendOtp.send(phone, "RGYANO", function (error, data) {
   				console.log(data);
 	  			if(error){
