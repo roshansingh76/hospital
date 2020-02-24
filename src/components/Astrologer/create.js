@@ -172,12 +172,12 @@ class CreateAstro extends Component{
 			  if (error.response) {
 						this.setState({ 
 							loading: false,
-							error:error.response.data.message
+							error:error.response
 						});
 			  } else if (error.request) {
 				  this.setState({ 
 							loading: false,
-							error:error.response.data.message
+							error:error.response
 					});
 			  }else{
 				  

@@ -6752,3 +6752,6 @@ font-weight: 600;
 .dropdown-new:hover .dropdown-content-new {
   display: block;
 }
+.otp-input{
+	display:none !important;
+}

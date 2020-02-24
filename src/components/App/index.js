@@ -16,6 +16,7 @@ import CreateAstro from '../Astrologer/create'
 import SettingPage from '../Setting'
 import Talkastrologer from '../Talkastrologer'
 import Horoscope from '../Horoscope'
+import Chat from '../communication/chat'
 import About from '../About'
 import Blogs from '../Blogs'
 
@@ -56,9 +57,10 @@ const App= (props) => {
 			<FrontendHeader/>
 			<FrontendNavigation/>
 		 </div>
-			<Redirect to={ROUTES.Talkastrologer}/>
+			<Redirect to={ROUTES.Home}/>
 			<Route   exact path={ROUTES.Home} component={HomePage} />	
 			<Route   path={ROUTES.Talkastrologer} component={Talkastrologer} />
+			<Route   path={ROUTES.Chat} component={Chat} />
 			<Route   path={ROUTES.About} component={About} />
 			<Route   path={ROUTES.Blogs} component={Blogs} />
 			<Route   path={ROUTES.Horoscope} component={Horoscope} />	

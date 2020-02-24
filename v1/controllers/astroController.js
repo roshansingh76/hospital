@@ -1,8 +1,10 @@
+var config = require('../config/config');
 var db = require('../config/database');
 var async = require("async");
 const { check, validationResult } = require('express-validator');
 var moment = require("moment");
 const multer = require("multer");
+var crypto = require('crypto');
 let flag=false;
 exports.deleteAstro = function(req, res) {
 	let id=req.query.id;
@@ -18,7 +20,7 @@ exports.deleteAstro = function(req, res) {
 	}
 }
 exports.getAstrologerlist = function(req, res) {
-	let sql="SELECT *,(SELECT GROUP_CONCAT(l.language_name) FROM `language` l WHERE l.id IN (SELECT ln.language_id FROM `user_languages` ln WHERE  ln.user_id = u.id)) as language_name,(SELECT GROUP_CONCAT(e.expertise_name) FROM `expertise` e WHERE e.id IN (SELECT ue.expertise_id FROM `user_expertise` ue WHERE  ue.user_id = u.id)) as expertise_name from users u where u.cb_roles_id=2 order by u.id DESC";
+	let sql="SELECT *,(SELECT GROUP_CONCAT(l.language_name) FROM `language` l WHERE l.id IN (SELECT ln.language_id FROM `astro_languages` ln WHERE  ln.user_id = u.id)) as language_name,(SELECT GROUP_CONCAT(e.expertise_name) FROM `expertise` e WHERE e.id IN (SELECT ue.expertise_id FROM `astro_expertise` ue WHERE  ue.user_id = u.id)) as expertise_name from users u where u.cb_roles_id=2 order by u.id DESC";
 		db.query(sql,function(err,result){
 			if(err) throw err;
 			res.status(200).json({
@@ -181,10 +183,8 @@ var storage = multer.diskStorage({
 	}
   });
   var upload = multer({ storage: storage });
- setValue= function(value){
-	
+ setValue= function(value){	
 	flag=value;
-
  }
 exports.createAstro= function(req, res) {
 	/*
@@ -218,7 +218,7 @@ exports.createAstro= function(req, res) {
 	req.body = data;		
 	console.log(req.body);
 	*/
-	
+	// /*
 	const errors = validationResult(req)
 	if (!req.body.fname) {
 		
@@ -245,51 +245,67 @@ exports.createAstro= function(req, res) {
 		});
 	
 	}
-	
+	//*/
 	//console.log(flag);
 	//return false;
 
-	var fname=req.body.fname;
-	var lname=req.body.lname;
-	var name=fname+" "+lname;
-    var email=req.body.email;
-    var mobile=req.body.mobile;
-    var phone=req.body.phone;
-    var website=req.body.website;
-	var chatprice=req.body.chatprice;
-	var callprice=req.body.callprice;
-	var reportprice=req.body.reportprice;
-	var address=req.body.address;
-	var exp=req.body.exp;
-	var countryx=req.body.countryx;
-	var statex=req.body.statex;
-	var cityx=req.body.cityx;
-	var pincode=req.body.pincode;
-	var about=req.body.about;
-	var expertisex=req.body.expertisex;	
-	var languagex=req.body.languagex;	
-	var bankname=req.body.bankname;
-	var ifsc=req.body.ifsc;
-	var anumber=req.body.anumber;
-	var slug=name.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
-	var sql = "INSERT into users(name, email,phone,mobile,chatprice,callprice,reportprice,exp,countryx,statex,cityx,slug,cb_roles_id) VALUES ('"+name+"', '"+email+"','"+mobile+"','"+phone+"','"+chatprice+"','"+callprice+"','"+reportprice+"','"+exp+"','"+countryx+"','"+statex+"','"+cityx+"','"+slug+"',2)";
+	var fname 		=	req.body.fname;
+	var lname 		=	req.body.lname;
+	var name 		=	fname+" "+lname;
+    var email		=	req.body.email;
+    var mobile		=	req.body.mobile;
+    var phone		=	req.body.phone;
+    var website		=	req.body.website;
+	var chatprice	=	req.body.chatprice;
+	var callprice	=	req.body.callprice;
+	var reportprice =	req.body.reportprice;
+	var address		=	req.body.address;
+	var exp			=	req.body.exp;
+	var countryx	=	req.body.countryx;
+	var statex		=	req.body.statex;
+	var cityx		=	req.body.cityx;
+	var pincode		=	req.body.pincode;
+	var about		=	req.body.about;
+	var expertisex	=	req.body.expertisex;	
+	var languagex	=	req.body.languagex;	
+	var bankname 	=	req.body.bankname;
+	var ifsc 		=	req.body.ifsc;
+	var anumber 	=	req.body.anumber;
 	
-	var localdata={};
+	var algorithm 	= 	'aes256'; // algorithm supported by OpenSSL
+	var key 		= 	config.salt;
+	var password	= 	req.body.password;
+	var cipher 		= 	crypto.createCipher(algorithm, key);  
+	var encrypted 	= 	cipher.update(req.body.password, 'utf8', 'hex') + cipher.final('hex');
+
+	var slug=name.replace(/[^a-z0-9 -]/g, '').replace(/\s+/g, '-').replace(/-+/g, '-');
+	var sql = "INSERT into users(name, email,phone,mobile,countryx,statex,cityx,password,slug,cb_roles_id) VALUES ('"+name+"', '"+email+"','"+phone+"','"+mobile+"','"+countryx+"','"+statex+"','"+cityx+"','"+encrypted+"','"+slug+"',2)";		
+	
 	var tasks=[
 		function(callback) {
-			db.query(sql, function (err, result) {				
-				callback(null, result.insertId);
+			db.query(sql, function (err, result) {
+				if(result.insertId){
+					callback(null, result.insertId);
+				}else{
+					res.status(200).json({
+						success: false,
+						message:'Error in Add Astrologer',
+						error:err
+
+					});		
+				}
 			});
 		},
 		function(user_id,callback) {
-			let acc_sql = "INSERT into user_account_info(user_id,bank_name,ifsc,account_number) VALUES ('"+user_id+"', '"+bankname+"', '"+ifsc+"', '"+anumber+"')";
+			let acc_sql = "INSERT into astro_account_info(user_id,bank_name,ifsc,account_number,created_at) VALUES ('"+user_id+"', '"+bankname+"', '"+ifsc+"', '"+anumber+"',NOW())";
+
 			db.query(acc_sql, function (err, result) {				
 				callback(null, user_id);
 			});
 		},		 
 		function(user_id, callback) {
 			for(let i =0;i<expertisex.length;i++){
-				let expsql  = "INSERT into user_expertise(user_id,expertise_id) VALUES ('"+user_id+"','"+expertisex[i]+"')";
+				let expsql  = "INSERT into astro_expertise(user_id,expertise_id,created_at) VALUES ('"+user_id+"','"+expertisex[i]+"',NOW())";
 				db.query(expsql, function (err, result) {								
 				})
 			}
@@ -297,12 +313,24 @@ exports.createAstro= function(req, res) {
 		},
 		function(user_id, callback) {
 			for(let i =0;i<languagex.length;i++){
-				let expsql  = "INSERT into user_languages(user_id,language_id) VALUES ('"+user_id+"','"+expertisex[i]+"')";
+				let expsql  = "INSERT into astro_languages(user_id,language_id,created_at) VALUES ('"+user_id+"','"+expertisex[i]+"',NOW())";
 				db.query(expsql, function (err, result) {								
 				})
 			}
 		    callback(null, user_id);
-		}								
+		},
+		function(user_id,callback) {
+			let price_sql = "INSERT into astro_price_info(user_id,chat_price,call_price,report_price,created_at) VALUES ('"+user_id+"', '"+chatprice+"', '"+callprice+"', '"+reportprice+"',NOW())";
+			db.query(price_sql, function (err, result) {				
+				callback(null, user_id);
+			});
+		},
+		function(user_id,callback) {
+			let price_sql = "INSERT into astro_profile_info(user_id,experience,about,created_at) VALUES ('"+user_id+"', '"+exp+"', '"+about+"',NOW())";
+			db.query(price_sql, function (err, result) {				
+				callback(null, user_id);
+			});
+		},								
 	];
 	async.waterfall(tasks, function(err) {
 		if (err) throw err;
@@ -312,7 +340,7 @@ exports.createAstro= function(req, res) {
 	});
 	
 
-	/*
+	
 	db.query(sql, function (err, result) {
 	if (err) throw err;
 		if(result){
@@ -331,6 +359,22 @@ exports.createAstro= function(req, res) {
 		}
 		
 	});
-	*/
+	
 
 }
+
+/*
+var crypto = require('crypto');
+var assert = require('assert');
+
+var algorithm = 'aes256'; // or any other algorithm supported by OpenSSL
+var key = 'password';
+var text = 'I love kittens';
+
+var cipher = crypto.createCipher(algorithm, key);  
+var encrypted = cipher.update(text, 'utf8', 'hex') + cipher.final('hex');
+var decipher = crypto.createDecipher(algorithm, key);
+var decrypted = decipher.update(encrypted, 'hex', 'utf8') + decipher.final('utf8');
+
+assert.equal(decrypted, text);
+*/
