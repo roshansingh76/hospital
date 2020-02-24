@@ -1,6 +1,7 @@
 
 import React from 'react';
 import { Link } from 'react-router-dom';
+import * as ROUTES from '../../../config/routes';
 
 const Footer = () => (
 		<Mainfooter/>		
@@ -28,7 +29,7 @@ const Mainfooter=()=>(
 					  <div className="row">
 						<div className="col-lg-6 col-sm-6 col-xs-6">
 						  <ul className="list-unstyled">
-							<li><i className="fa fa-angle-right"></i><a href="#">About</a></li>
+							<li><i className="fa fa-angle-right"></i><Link to={ROUTES.About}>About</Link></li>
 							<li><i className="fa fa-angle-right"></i><a href="#">Careers</a></li>
 							<li><i className="fa fa-angle-right"></i><a href="#">Book astrologer</a></li>
 							<li><i className="fa fa-angle-right"></i><a href="#">Muhurat</a></li>

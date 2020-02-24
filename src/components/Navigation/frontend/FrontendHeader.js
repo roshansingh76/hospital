@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../../assets/astro/images/logo.png';
+import * as ROUTES from '../../../config/routes';
 const FrontendHeader = () => (
 		<Fheader/>		
 		
@@ -12,9 +13,9 @@ const Fheader=()=>(
 					<div className="row">
 						<div className="col-lg-3">
 							<div id="logo" className="logo"> 
-                            <a href="index.html" rel="home">
+                            <Link to={ROUTES.Home} rel="home">
                                  <img src={logo} alt="image"/>
-                            </a> 
+                            </Link>
                             </div>
 						</div>
 						<div className="col-lg-9 hidden-xs">
@@ -35,7 +36,7 @@ const Fheader=()=>(
 									<div className="texteducare-info clearfix">
 										<div className="info-icon"> <i className="fa fa-comments"></i> </div>
 										<div className="info-text">
-											<p><a href="#">Chat Astrologer</a></p>
+											<p><Link to={ROUTES.Talkastrologer}>Chat Astrologer</Link></p>
 										</div>
 									</div>
 								</aside>
@@ -43,7 +44,7 @@ const Fheader=()=>(
 									<div className="texteducare-info clearfix">
 										<div className="info-icon"> <i className="fa fa-phone"></i> </div>
 										<div className="info-text">
-											<p><a href="#">Talk Astrologer</a></p>
+											<p><Link to={ROUTES.Talkastrologer}>Talk Astrologer</Link></p>
 										</div>
 									</div>
 								</aside>
