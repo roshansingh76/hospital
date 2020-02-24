@@ -4769,8 +4769,32 @@ input.demo_vertical {
 }
 .astro-left-filt{
 	background: #fbfafa;
-    padding: 10px 15px;
 }
+.astro-left-filt p{
+    padding: 10px 20px;
+    color:#dfdfdf;
+}
+
+.astro-left-filt ul{}
+.astro-left-filt ul li {
+    border-bottom: 1px solid #f1f1f1;
+}
+.astro-left-filt ul li:last-child{
+	border:none;
+}
+.astro-left-filt ul li a{
+	display: block;
+    padding: 10px 20px;
+}
+.astro-left-filt ul li a.active{
+	background: #b3b3b3;
+	color:#fff;
+}
+.astro-left-filt ul li a:hover{
+	background: #585858;
+	color:#fff;
+}
+
 .astro-left-filt .ser-title-top{}
 .astro-left-filt .ser-title-top h3{
 	    margin-bottom: 10px;
@@ -4916,6 +4940,7 @@ text-align:center
     width: 100%;
     font-weight: 600;
 }
+
 .astro--actin-btn span a {
     color: #000;
     padding: 3px 0px;
@@ -4923,6 +4948,7 @@ text-align:center
     font-size: 13px;
     text-transform: capitalize;
     font-weight: 500;
+        cursor: pointer;
 }
 .astro--actin-btn span a:hover{
 	
@@ -6728,4 +6754,141 @@ font-weight: 600;
 }
 .otp-input{
 	display:none !important;
+}
+
+/*model box*/
+.ReactModal__Overlay{
+        background-color: rgba(175, 175, 175, 0.75) !important;
+        top:none;
+}
+.ReactModal__Overlay .ReactModal__Content{
+	position: relative !important;
+	left: 0px !important;
+	max-width: 750px;
+	height: auto !important;
+	margin: 30px auto;
+	overflow-x: hidden !important;
+    overflow-y: auto !important;
+    padding: 0px !important;
+}
+.ReactModal__Overlay .model-close-cust{
+	position: absolute;
+    right: 10px;
+    top: 4px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #ccc !important;
+}
+.ReactModal__Overlay .model-close-cust:hover{
+	color: #6f6f6f  !important
+}
+.form-new-pop{
+	width: 100%;
+    display: block;
+    overflow: hidden;
+}
+.form-new-pop .from-left{
+	width: 40%;
+	float: left;
+}
+.form-new-pop .from-left img{
+	width:100%;
+	height:400px;
+}
+.form-new-pop .from-right{
+	width: 60%;
+    float: left;
+   padding: 15px 30px;
+   margin-top: 90px;
+}
+.form-new-pop .from-right-margin{
+	margin-top: 75px;
+}
+.form-new-pop .from-right .text-b{
+	font-size: 18px;
+    margin-top: -20px;
+    margin-bottom: 20px;
+}
+.form-new-pop .from-right .text-b a{
+	background: #ff0f03;
+    font-size: 14px;
+    padding: 2px 10px;
+    color: #fff;
+    box-shadow: 2px 2px 3px 0px #00000070;
+    line-height: normal;
+}
+.form-new-pop .from-right .form-control-l-o{
+	width: 12%;
+    float: right;
+    font-size: 16px;
+    border: 1px solid #989898 !important;
+    height: 40px !important;
+    text-align: center;
+    margin-left: 23px;
+    color: #696969;
+    font-weight: 600;
+    box-shadow: 0px 0px 4px 0px #00000047;
+    border-radius: 5px !important;
+}
+.form-new-pop .from-right p{
+	font-size: 30px;
+    margin-bottom: 30px;
+    text-align: right;
+}
+.resrn-o-t span{
+	text-align: right;
+    display: block;
+    margin-bottom: 15px;
+}
+.resrn-o-t span a{
+	color: #000000;
+    text-decoration: underline;
+}
+.form-new-pop .from-right .custom-in-cls{
+	width: 100%;
+    display: block;
+    overflow: hidden;
+    padding-bottom: 15px;
+}
+.form-new-pop .from-right .custom-in-cls .form-control-l-t,.form-new-pop .from-right .custom-in-cls .form-control-r-t{
+	 font-size: 16px;
+	 border: 1px solid #b7b7b7 !important;
+    height: 45px !important;
+}
+.form-new-pop .from-right .custom-in-cls .form-control-l-t{
+	width: 20%;
+    float: left;
+    margin-right: 15px;
+}
+.form-new-pop .from-right .custom-in-cls .form-control-r-t{
+	width: 76.111111%;
+    float: left;
+}
+.form-new-pop .from-right .login-new-win{}
+.form-new-pop .from-right .login-new-win p{
+	line-height: normal;
+    font-size: 15px;
+    margin-top: 50px;
+    text-align: right;
+    clear: both;
+}
+.form-new-pop .from-right .login-new-win p a{
+	font-weight:600;
+}
+.form-new-pop .from-right .mob-btn{
+	float: right;
+    margin-bottom: 15px;
+    padding: 10px 30px;
+    background: #4597de;
+    box-shadow: 1px 3px 5px 0px #0000005c;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    -ms-transition: all .5s;
+    -moz-transition: all .5s;
+    transition: all .5s;
+}
+.form-new-pop .from-right .mob-btn:hover{
+	background: #05597f;
+	box-shadow: 1px 3px 5px 0px #0000005c;
+	border-radius: 10px
 }

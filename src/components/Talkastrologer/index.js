@@ -107,7 +107,7 @@ class Talkastrologer extends Component{
 		}
 	
 	 this.setState({ loading: true });
-	 config.get('/api/user/getOtp?mobile='+this.state.mobile)
+	 config.get('/api/user/getOtp?phone='+this.state.mobile)
 	   .then((res) => {
 		   this.setState({ loading: false });
 			if(res.data.success){
