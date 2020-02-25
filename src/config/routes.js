@@ -10,6 +10,7 @@ export const Astrologer = '/astrologer';
 export const addAstrologer = '/addAstrologer';
 export const Talkastrologer = '/talk-astrologer';
 export const Horoscope = '/horoscope';
+export const Callingpack = '/callingpack';
 export const Blogs = '/blogs';
 export const Chat = '/chat';
 export const About = '/about';

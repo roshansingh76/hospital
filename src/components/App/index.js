@@ -19,7 +19,7 @@ import Horoscope from '../Horoscope'
 import Chat from '../communication/chat'
 import About from '../About'
 import Blogs from '../Blogs'
-
+import Callingpack from '../Pack/callpacking'
 
 const App= (props) => {
 	const isAuthenticated = localStorage.getItem('token');
@@ -57,9 +57,10 @@ const App= (props) => {
 			<FrontendHeader/>
 			<FrontendNavigation/>
 		 </div>
-			<Redirect to={ROUTES.Home}/>
+			<Redirect to={ROUTES.Callingpack}/>
 			<Route   exact path={ROUTES.Home} component={HomePage} />	
 			<Route   path={ROUTES.Talkastrologer} component={Talkastrologer} />
+			<Route   path={ROUTES.Callingpack} component={Callingpack} />
 			<Route   path={ROUTES.Chat} component={Chat} />
 			<Route   path={ROUTES.About} component={About} />
 			<Route   path={ROUTES.Blogs} component={Blogs} />

@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import ContentLoader, { Facebook,List  } from 'react-content-loader'
 const TalkastrologerAstologerlist=(props)=>{
 	let data=props.data;
-	console.log(data.length);
 	return (<div className="col-md-9">
 		<div className="row">
 			<div className="col-md-12">

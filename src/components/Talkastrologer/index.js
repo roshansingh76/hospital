@@ -6,8 +6,7 @@ import Astologerdetails from './astologerdetails';
 import LoginPage from './../Login/FrontendLogin';
 import config from '../../config/config';
 import { facebookConfig, googleConfig } from '../../config/social-config';
-
-
+import deviceStorage from '../../config/deviceStorage';
 class Talkastrologer extends Component{
 	constructor(props) {
 		super(props);
@@ -18,23 +17,36 @@ class Talkastrologer extends Component{
 				authFlag:false,
 				modalIsOpen: true,
 				loading: false,
+				loader: false,
 				error: '',
 				mobile:'',
 				flagMobilecontainer:true,
-				flagOtpcontainer:false
+				flagOtpcontainer:false,
+				flagSignin:false,
+				otp:[],
+				success:''
 		};
 	    this.getAllAstrologer = this.getAllAstrologer.bind(this);
 		this.checkUser = this.checkUser.bind(this);
 		this.openModal = this.openModal.bind(this);
 		this.afterOpenModal = this.afterOpenModal.bind(this);
 		this.closeModal = this.closeModal.bind(this);
-		this.updateMobile = this.updateMobile.bind(this);
+		this.formdata = this.formdata.bind(this);
 		this.sendotpMobile = this.sendotpMobile.bind(this);
+		this.changeContact = this.changeContact.bind(this);
+		this.userSignin = this.userSignin.bind(this);
+		this.vfyOtp = this.vfyOtp.bind(this);
+		this.changeOtp = this.changeOtp.bind(this)
+		this.changeOtp = this.changeOtp.bind(this)
+		this.sendOtpagain = this.sendOtpagain.bind(this)
+		
+		
 	
 	}
 	
 	  openModal() {
 		 this.setState({modalIsOpen: true});
+		 
 	  }
 	 
 	  afterOpenModal() {
@@ -43,8 +55,16 @@ class Talkastrologer extends Component{
 	  }
 	 
 	  closeModal() {
-	
-		this.setState({modalIsOpen: false,error:''});
+		this.setState({ 
+			loader: false,
+			flagMobilecontainer:true,
+			flagOtpcontainer:false,
+			flagSignin:false,
+			modalIsOpen:'',
+			mobile:'',
+			otp:[],
+			error:''
+		});
 	  }
 	componentDidMount() {
 	
@@ -98,39 +118,157 @@ class Talkastrologer extends Component{
 	});
 		
 	}
-	sendotpMobile(){
-		if(!this.state.mobile){
-			this.setState({
-				error: 'Enter Mobile Number'
-			});
-			return false;
-		}
-	
-	 this.setState({ loading: true });
-	 config.get('/api/user/getOtp?phone='+this.state.mobile)
+	sendOtpagain(){
+		 this.setState({ loader: true,success:'' });
+		 config.get('/api/user/getOtp?phone='+this.state.mobile)
 	   .then((res) => {
-		   this.setState({ loading: false });
+		   this.setState({ loader: false });
 			if(res.data.success){
 				   this.setState({ 
-					   loading: false,
+					   loader: false,
 					   flagMobilecontainer:false,
 					   flagOtpcontainer:true,
+					   success:'Check Mobile  Otp send successfully!'
 				   });
 			}else{
 			   this.setState({ 
-					   loading: false,
+					   loader: false,
 					   error:res.data.message
 			   }); 
 			}
 		   }).catch((error) => {
 			 if (error.response) {
 					   this.setState({ 
-						   loading: false,
+						   loader: false,
 						   error:error.response.data.message
 					   });
 			 } else if (error.request) {
 				 this.setState({ 
-						   loading: false,
+						   loader: false,
+						   error:error.message
+				   });
+			 }else{
+				 
+			 }
+	   });
+	
+		
+	}
+	sendotpMobile(){
+		if(!this.state.mobile){
+			this.setState({
+				error: 'Enter Mobile Number'
+			});
+			return false;
+			
+		}
+     var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+	if(this.state.mobile.match(phoneno)) {
+	  
+	 this.setState({ loader: true,error:'',success:'' });
+	 config.get('/api/user/getOtp?phone='+this.state.mobile)
+	   .then((res) => {
+		   this.setState({ loader: false });
+			if(res.data.success){
+				   this.setState({ 
+					   loader: false,
+					   flagMobilecontainer:false,
+					   flagOtpcontainer:true,
+				   });
+			}else{
+			   this.setState({ 
+					   loader: false,
+					   error:res.data.message
+			   }); 
+			}
+		   }).catch((error) => {
+			 if (error.response) {
+					   this.setState({ 
+						   loader: false,
+						   error:error.response.data.message
+					   });
+			 } else if (error.request) {
+				 this.setState({ 
+						   loader: false,
+						   error:error.message
+				   });
+			 }else{
+				 
+			 }
+	   });
+	}else{
+		this.setState({
+				error: 'Enter Valid Mobile Number'
+			});	
+		
+	}
+	}
+	formdata(e){
+		let change = {}
+		change[e.target.name] = e.target.value
+		this.setState(change)
+		
+		
+	}
+	
+	changeContact(){
+		this.setState({ 
+			loader: false,
+			flagMobilecontainer:true,
+			flagOtpcontainer:false,
+			mobile:'',
+			otp:''
+		});
+	}
+	vfyOtp(){
+		if(!this.state.otp){
+			this.setState({
+				error: 'Enter Valid OTP'
+			});
+			return false;
+			
+		}
+	 let length=this.state.otp.length;
+	 if(length<4){
+			this.setState({
+				error: 'Enter Valid OTP'
+			});
+			return false;
+			
+		}
+		let otp=this.state.otp.toString();
+		otp=otp.replace(/,/g, "");
+		this.setState({ 
+			loader: true,
+			success:''
+		});
+		config.get('/api/user/verifyOtp?phone='+this.state.mobile+'&otp='+otp)
+	   .then((res) => {
+		   this.setState({ loader: false });
+			if(res.data.success){
+				   this.setState({ 
+					   loader: false,
+					});
+					
+					deviceStorage.saveItem('token',res.data.token);
+					window.location.href=window.location.href;
+			}else{
+			   this.setState({ 
+					   loader: false,
+					   error:res.data.message
+			   }); 
+			}
+		   }).catch((error) => {
+			 if (error.response) {
+				 this.state.otp=[];
+					   this.setState({ 
+						   loader: false,
+						   error:error.response.data.message
+					   });
+			 } else if (error.request) {
+				  this.state.otp=[];
+				 this.setState({ 
+						   loader: false,
 						   error:error.message
 				   });
 			 }else{
@@ -138,15 +276,25 @@ class Talkastrologer extends Component{
 			 }
 	   });
 	}
-	updateMobile(event){
-		this.setState({
-			mobile: event.target.value
+	userSignin(){
+		this.setState({ 
+			loader: false,
+			flagMobilecontainer:false,
+			flagOtpcontainer:false,
+			flagSignin:true,
+			mobile:'',
+		    otp:''
 		});
-		
-		
+	}
+	changeOtp(e){
+	  this.state.otp.push(e);
+	  this.setState({
+			otp:this.state.otp
+	  })
 	}
 	render(){
-		let {astrolist,authFlag,loading,modalIsOpen}=this.state; 
+		let {astrolist,authFlag,loading,loader,modalIsOpen}=this.state; 
+	
 		return(
 			<Fragment>
 				<section className="padding">
@@ -166,7 +314,13 @@ class Talkastrologer extends Component{
 							}
 							{
 						 	authFlag &&
-								<LoginPage data={this.state} closeModal={this.closeModal}  sendOtp={this.sendotpMobile} handleChange={this.updateMobile}/>		
+							<LoginPage data={this.state} closeModal={this.closeModal} 
+							sendOtp={this.sendotpMobile} handleChange={this.formdata}
+							changeMobile={this.changeContact} verifyOtp={this.vfyOtp}
+							signin={this.userSignin}
+							handleChangeOtp={this.changeOtp}
+							resendOtp={this.sendOtpagain}
+							/>		
 							}
 						</div>
 					</div>
