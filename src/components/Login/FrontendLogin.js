@@ -11,6 +11,11 @@ const customStyles = {
 	
   }
 };
+const containerStyle={
+	float:'right'
+}
+const disabledStyle='none';
+
 const FrontendLogin=(props)=>{
 	let model=props.data.modalIsOpen;
 	let loader=props.data.loader;
@@ -71,12 +76,15 @@ const FrontendLogin=(props)=>{
 					<div className="from-right from-right-margin">
 						<p  className="text-a">Enter OTP</p>
 						<p className="text-b"> OTP has been sent to you on your mobile number <span>{mobile}</span> <a onClick={props.changeMobile}>Edit</a></p>
-						<div className="custom-in-cls">
+						<div className="custom-in-cls custom-in-cls-in">
 							<OtpInput
 						    onChange={props.handleChangeOtp}
 							numInputs={4}
 							separator={<span>-</span>}
 							name='otp'
+							value={otp}
+							disabledStyle={disabledStyle}
+							containerStyle={containerStyle}
 							/>
 						
 						</div>

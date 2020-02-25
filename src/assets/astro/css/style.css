@@ -6850,6 +6850,14 @@ font-weight: 600;
     overflow: hidden;
     padding-bottom: 15px;
 }
+.form-new-pop .custom-in-cls-in input{
+	width: 45px !important;
+    height: 45px !important;
+    margin: 0px 10px;
+    font-size: 1.3rem;
+    border-radius: 5px !important;
+    border: 1px solid #646a7c !important;
+}
 .form-new-pop .from-right .custom-in-cls .form-control-l-t,.form-new-pop .from-right .custom-in-cls .form-control-r-t{
 	 font-size: 16px;
 	 border: 1px solid #b7b7b7 !important;
