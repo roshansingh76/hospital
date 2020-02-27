@@ -1,9 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import ContentLoader, { Facebook,Lis,BulletList   } from 'react-content-loader'
-
-
+import basic  from '../../assets/basic.png';
+import advence  from '../../assets/advence.png';
 const HomeAstro_mini_service=(props)=>{
     let muhurat=props.data.muhurat;
 	let vastu=props.data.vastu;
@@ -101,7 +100,12 @@ const HomeAstro_mini_service=(props)=>{
 							<h4>{rowData.title}</h4>
 						</div>
 						<div className="">
-							<img src={ require(`../../assets/${rowData.kundli_image}`) } alt={rowData.title} />
+						{ index==0 &&
+							<img src={ basic } alt={rowData.title} />
+						}
+						{ index==1 &&
+							<img src={ advence } alt={rowData.title} />
+						}
 							<div className="">
 								<div className="">
 									<p>{(rowData.description.substring(0,100).replace(regex,''))}</p>

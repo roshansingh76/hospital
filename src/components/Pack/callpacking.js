@@ -1,12 +1,89 @@
 import React,{Component,Fragment}from 'react';
-import { BrowserRouter as Router, Route,Redirect,withRouter,useHistory } from 'react-router-dom';
-
+import { BrowserRouter as Router,Link, Route,Redirect,withRouter,useHistory } from 'react-router-dom';
+import config from '../../config/config';
 class Callingpack extends Component {
 		constructor(props) {
 		super(props);
+		  this.state = {
+            packList: [],
+            loading: false,
+			discount:0,
+			gst:0,
+			currentPrice:0,
+			totalPrice:'',
+            error: ''
+        };
 	
+	   this.checkPrice = this.checkPrice.bind(this);
    }
+  componentDidMount() {
+	const script = document.createElement("script");
+	script.src = "https://js.instamojo.com/v1/checkout.js";
+	script.async = true;
+	script.onload = () => this.onOpen();
+    document.body.appendChild(script);
+	this.getPackList();  
+   }
+   
+   getPackList(){
+	  config.get('/api/service/getPackages',{
+			withCredentials:false
+		})
+		.then((res) => {
+		this.setState({ loading: false });
+		 if(res.data.success){
+				this.setState({ 
+					packList:res.data.data,
+					
+				});
+				
+   		 }else{
+			this.setState({ 
+				error:res.data.message
+			}); 
+		 }
+		}).catch((error) => {
+		  if (error.response) {
+				this.setState({ 
+					error:error.response.data.message
+				});
+		  } else if (error.request) {
+			  this.setState({ 
+						error:error.message
+				});
+		  }
+	});
+		 
+   }
+  checkPrice(id,price){
+		let gst=(price*18)/100;
+		let totalPrice=price+gst;
+		this.setState({
+			 currentPrice:price	,	
+			 gst:gst,	
+			 totalPrice:totalPrice	
+		});
+  }
+  onOpen() {
+	  
+		
+  }
+  onClose(){
+	  
+  }
+  onSuccess(response) {
+	  
+	  
+  }
+ onFailure(response) {
+	 
+ }
+
+
+
+
   render() {
+	    let {packList,discount,currentPrice,gst,totalPrice}=this.state; 
 		return (
 		  		<section className="padding">
 		  			<div className="container">
@@ -14,15 +91,27 @@ class Callingpack extends Component {
 		  				<div className="row">
 		  					<div className="col-md-8">
 		  						<div className="row">
-
-		  							<div className="col-md-6">
-		  								<a href="#">
+									{ packList.length===0 &&
+									<ul>
+									<center><img src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" /></center>
+									</ul>
+									}
+									
+									{
+									packList.length > 1 &&
+									packList.map((rowData, index) => (
+									
+									
+		  							<div  key={index+1} className="col-md-6">
+		  								<a onClick={e =>this.checkPrice(rowData.id,rowData.price)}>
 					  						<div className="asto-package-price">
-					  							<p>50 <i className="fa fa-inr"></i></p>
+					  							<p>{rowData.price} <i className="fa fa-inr"></i></p>
 					  							<span>Add money</span>
 					  						</div>
 				  						</a>
 				  					</div>
+									))}
+									
 				  					
 				  				</div>
 		  					</div>
@@ -33,38 +122,38 @@ class Callingpack extends Component {
 		  							<p>Total Money Add</p>
 
 		  							<div className="mony-info">
-										<table class="table cart mt-10">
+										<table className="table cart mt-10">
 											<tbody>
-											    <tr class="cart_item cart_totle">
-											        <td class="cart-product-name">
+											    <tr className="cart_item cart_totle">
+											        <td className="cart-product-name">
 											            <strong>Price Add</strong>
 											        </td>
-											        <td class="cart-product-name">
-											            <span class="amount">1000 <i className="fa fa-inr"></i></span>
+											        <td className="cart-product-name">
+											            <span className="amount">{currentPrice} <i className="fa fa-inr"></i></span>
 											        </td>
 											    </tr>
-											    <tr class="cart_item cart_totle">
-											        <td class="cart-product-name">
+											    <tr className="cart_item cart_totle">
+											        <td className="cart-product-name">
 											            <strong>GST@18%</strong>
 											        </td>
-											        <td class="cart-product-name">
-											            <span class="amount">20 <i className="fa fa-inr"></i></span>
+											        <td className="cart-product-name">
+											            <span className="amount">{gst} <i className="fa fa-inr"></i></span>
 											        </td>
 											    </tr>
-											    <tr class="cart_item cart_totle">
-											        <td class="cart-product-name">
+											    <tr className="cart_item cart_totle">
+											        <td className="cart-product-name">
 											            <strong>Discount</strong>
 											        </td>
-											        <td class="cart-product-name">
-											            <span class="theme"><strong>- 50</strong> <i className="fa fa-inr"></i></span>
+											        <td className="cart-product-name">
+											            <span className="theme"><strong>- {discount}</strong> <i className="fa fa-inr"></i></span>
 											        </td>
 											    </tr>
-											    <tr class="cart_item cart_totle">
-											        <td class="cart-product-name">
+											    <tr className="cart_item cart_totle">
+											        <td className="cart-product-name">
 											            <strong>Total Payable Amount</strong>
 											        </td>
-											        <td class="cart-product-name">
-											            <span class="theme"><strong><i className="fa fa-inr"></i>1020</strong></span>
+											        <td className="cart-product-name">
+											            <span className="theme"><strong><i className="fa fa-inr"></i>{totalPrice}</strong></span>
 											        </td>
 											    </tr>
 											</tbody>
@@ -73,16 +162,16 @@ class Callingpack extends Component {
 
 		  							<div className="referl-info">
 		  								<p>Do you have referral code?</p>
-		  								<form class="form-inline">
-		  									<div class="form-group">
-										      <input type="email" class="form-control" placeholder="Enter Referal Code" name="email" />
-										      <button type="submit" class="btn btn-default">Apply</button>
+		  								<form className="form-inline">
+		  									<div className="form-group">
+										      <input type="email" className="form-control" placeholder="Enter Referal Code" name="email" />
+										      <button type="submit" className="btn btn-default">Apply</button>
 										    </div>
 		  								</form>
 		  							</div>
 
 		  							<div className="addmoney-btn">
-										<button type="submit" class="btn btn-default">Proceed to Recharge</button>
+										<button type="submit" className="btn btn-default" onClick={e =>this.onOpen()}>Proceed to Recharge</button>
 		  							</div>
 
 		  						</div>
