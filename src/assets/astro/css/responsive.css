@@ -354,3 +354,21 @@ padding: 15px;
 @media only screen and (min-width: 900px) and (max-width: 1200px) {
  
 }
+@media only screen and (max-width: 768px) and (min-width: 300px){
+.astro-left-filt {
+    background: #fbfafa;
+    margin-bottom: 15px
+}
+.horo-d-list ul {
+    margin-top: 0;
+    list-style-type: none;
+    white-space: nowrap;
+    overflow-x: auto;
+}
+.horo-d-list ul li {
+    display: inline-block;
+    margin: 5px;
+    width: 20% !important;
+    float: none !important;
+}
+}

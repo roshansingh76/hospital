@@ -13,11 +13,12 @@ const TLeftnav=()=>(
 				<p>Our Services</p>
 				<ul>
 					<li><a href="#" className="active">Astrologer  <i className="fa fa-bell-o" aria-hidden="true"></i></a></li>
-					<li><a href="#" >Get Reports</a></li>
-					<li><a href="#" >Shubh Muhurat</a></li>
-					<li><a href="#" >Micro Vastu</a></li>
-					<li><a href="#" >Handmade Kundli</a></li>
-					<li><a href="#" >Free Kundli</a></li>
+					<li><a href="#">Free Horoscope</a></li>
+					<li><a href="#">Get Reports</a></li>
+					<li><a href="#">Shubh Muhurat</a></li>
+					<li><a href="#">Micro Vastu</a></li>
+					<li><a href="#">Handmade Kundli</a></li>
+					<li><a href="#">Free Kundli</a></li>
 
 				</ul>
 			</div>	

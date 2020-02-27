@@ -9,7 +9,7 @@ const Fnavigation = () => (
 );
 const Mainnav=()=>(
     <header id="header" className="header header-main educare-header navbar-main">
-    <div className="container">
+    {/*<div className="container">
         <div className="row">
             <div className="col-lg-12">
                 <div className="educare-header-wrapper">
@@ -45,8 +45,36 @@ const Mainnav=()=>(
                  </div>
             </div>
         </div>
-    </div>
+    </div>*/}
+<nav className="navbar navbar-expand-lg bg-dark navbar-dark sticky-top">
+    <div className="container">
+      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+        <span className="navbar-toggler-icon"></span>
+      </button>
+      <div className="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul className="navbar-nav">
+            <li className="nav-item active"><Link to={ROUTES.Home} className="nav-link">Home</Link></li>
+            <li className="nav-item "><Link to={ROUTES.Talkastrologer} className="nav-link">Prediction</Link></li>
+            <li className="nav-item dropdown">
+                <a className="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                Services
+                </a>
+                <div className="dropdown-menu">
+                    <a className="dropdown-item" href="#">Career</a>
+                    <a className="dropdown-item" href="#">Love & Relationship</a>
+                    <a className="dropdown-item" href="#">Health</a>
+                </div>
+            </li>
+            <li className="nav-item"><Link to={ROUTES.About} className="nav-link">About</Link></li>
+            <li className="nav-item"><Link to={ROUTES.Horoscope} className="nav-link">Horoscopes</Link></li>
+            <li className="nav-item"><Link to={ROUTES.Blogs} className="nav-link">Blog</Link></li>
+            <li className="nav-item"><a href="online-puja.html" className="nav-link">Online Puja</a></li>  
+        </ul>
+      </div>  
+      </div>
+</nav>
 </header>
+
 )
 
 export default Fnavigation;

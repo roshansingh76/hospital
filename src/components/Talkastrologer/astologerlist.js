@@ -109,7 +109,7 @@ const TalkastrologerAstologerlist=(props)=>{
 				</div>
 			</div>
 	
-		))};
+		))}
 		</div>
 	</div>)
 };

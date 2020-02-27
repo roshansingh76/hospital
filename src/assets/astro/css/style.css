@@ -3844,9 +3844,9 @@ transition: .3s all ease-in-out;
 	border-color: #dee2e6 #dee2e6 #fff;
 	text-transform:uppercase;
 }
-.nav-link {
+/*.nav-link {
 	padding: 15px 15px;
-}
+}*/
 .nav-tabs .nav-link {
 	text-transform:uppercase;
 }
@@ -6364,12 +6364,16 @@ figure.snip1281.hover:after {
 	background:rgba(86, 8, 26, 0.058823529411764705);
 }
 .horo-d-list{
-	margin-top: -30px;
+	/*margin-top: -30px;*/
 }
 .horo-d-list ul{
 	display: block;
     overflow: hidden;
+    margin-top: 50px;
+    background: #fbfafa;
+    padding: 5px;
 }
+
 .horo-d-list ul li{
 	float: left;
     width: 8.333333333333%;
@@ -6379,8 +6383,8 @@ figure.snip1281.hover:after {
 	display: block;
 }
 .horo-d-list ul li a img{
-	width: 60px;
-    border: 2px solid #922828;
+	width: 50px;
+    border: 2px solid #ff6f00;
     border-radius: 50%;
     padding: 5px;
     background: #fff;
@@ -6393,12 +6397,17 @@ figure.snip1281.hover:after {
 	transform: rotateY(180deg);
 }
 .horo-d-list ul li a p{
-	font-size: 14px;
-    font-weight: 600;
+	font-size: 12px;
+	margin-bottom: -5px;
+	-webkit-transition: all 0.4s ease-out;
+	-moz-transition: all 0.4s ease-out;
+	-o-transition: all 0.4s ease-out;
+	transition: all 0.4s ease-out;	
 }
-.horo-d-list ul li a:hover p{
-	font-size: 16px;
-    color:#000
+.horo-d-list ul li a:hover p ,.horo-d-list ul li .active p{
+	font-size: 14px;
+    color: #ff6f00;
+    font-weight: 600;
 }
 .selected{
 	font-size: 16px;
@@ -6411,31 +6420,29 @@ figure.snip1281.hover:after {
 .horo-detail-page .horosc-headd{
     display: block;
     overflow: hidden;
-	padding: 15px;
     background: #ffffff;
-	margin-bottom:15px
 }
 .horo-detail-page .horosc-headd img{
-	width: 125px;
+	width: 80px;
     float: left;
 	margin-right: 25px;
 }
 
 .horo-detail-page .horosc-headd p{
-	font-size: 30px;
+	font-size: 20px;
     font-weight: 600;
-    color: #56081a;
-    margin-top: 30px;
-	display:block
+    color: #ff9900;
+    display: block;
+    margin: 5px;
 }
 .horo-detail-page .horosc-headd span{
-	font-size: 20px;
+	font-size: 16px;
 }
 .horo-detail-page .horosc-sing-content{
-	padding: 15px 40px;
-	background:#ffffff;
-	display:block;
-	overflow:hidden
+	padding: 0px 15px;
+    background: #fbfafa;
+    display: block;
+    overflow: hidden;
 }
 .product-more-btn{
 	text-align: center;
@@ -7079,4 +7086,53 @@ table.table.cart {
 }
 .addmoney-btn .btn-default:hover{
 	background: #ff9900;
+}
+
+
+
+
+
+
+
+
+
+.dropdown:hover>.dropdown-menu {
+  display: block;
+}
+.navbar-expand-lg .navbar-nav .dropdown-menu {
+    position: absolute;
+    margin-top: 0px;
+
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(234, 155, 2);
+    font-size: 18px;
+}
+.navbar {
+    padding: 7px 15px
+}
+.navbar-expand-lg .navbar-nav .nav-link {
+    padding-right: .8rem;
+    padding-left: .8rem;
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(255, 255, 255);
+    font-size: 16px;
+}
+.navbar-dark .navbar-nav .active{
+    color: #ffb900;
+    position: relative;
+}
+.navbar-dark .navbar-nav .active:after{
+	content: "";
+    position: absolute;
+    border: 1px solid #f0bb07;
+    width: 2px;
+    bottom: -10px;
+    height: 20px;
+    background: #ddd;
+    top: 8px;
+}
+.navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+    color: #f0bb07;
 }
