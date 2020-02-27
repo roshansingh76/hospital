@@ -76,6 +76,8 @@ const TalkastrologerAstologerlist=(props)=>{
 				
 		{ data.length>1  &&
 			data.map((rowData, index) => (
+			
+			
 			<div key={index+1} className="col-md-4 ap-pad">
 				<div className="astro-profile-box">
 					<div className="astro-pic">

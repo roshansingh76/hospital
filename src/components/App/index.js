@@ -57,14 +57,14 @@ const App= (props) => {
 			<FrontendHeader/>
 			<FrontendNavigation/>
 		 </div>
-			<Redirect to={ROUTES.Callingpack}/>
+			<Redirect to={ROUTES.Home}/>
 			<Route   exact path={ROUTES.Home} component={HomePage} />	
 			<Route   path={ROUTES.Talkastrologer} component={Talkastrologer} />
 			<Route   path={ROUTES.Callingpack} component={Callingpack} />
 			<Route   path={ROUTES.Chat} component={Chat} />
 			<Route   path={ROUTES.About} component={About} />
 			<Route   path={ROUTES.Blogs} component={Blogs} />
-			<Route   path={ROUTES.Horoscope} component={Horoscope} />	
+			<Route   path={ROUTES.Horoscope+"/:slug"} component={Horoscope} />	
 			<Footer/>
 		 </Router>
 	  </div>)

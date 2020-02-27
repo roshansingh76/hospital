@@ -15,7 +15,7 @@ class Talkastrologer extends Component{
 				token:'',
 				userId:'',
 				authFlag:false,
-				modalIsOpen: true,
+				modalIsOpen:false,
 				loading: false,
 				loader: false,
 				error: '',
@@ -23,8 +23,10 @@ class Talkastrologer extends Component{
 				flagMobilecontainer:true,
 				flagOtpcontainer:false,
 				flagSignin:false,
-				otp:[],
-				success:''
+				otp:'',
+				success:'',
+				errorStyle:false,
+				hasErrored:false
 		};
 	    this.getAllAstrologer = this.getAllAstrologer.bind(this);
 		this.checkUser = this.checkUser.bind(this);
@@ -60,9 +62,9 @@ class Talkastrologer extends Component{
 			flagMobilecontainer:true,
 			flagOtpcontainer:false,
 			flagSignin:false,
-			modalIsOpen:'',
+			modalIsOpen:false,
 			mobile:'',
-			otp:[],
+			otp:'',
 			error:''
 		});
 	  }
@@ -73,7 +75,8 @@ class Talkastrologer extends Component{
 	checkUser(astroId,type){
 		if(!this.state.token && !this.state.userId){
 			this.setState({
-				authFlag:true
+				authFlag:true,
+				modalIsOpen:true
 			});
 			this.openModal();
 		}
@@ -223,7 +226,8 @@ class Talkastrologer extends Component{
 	vfyOtp(){
 		if(!this.state.otp){
 			this.setState({
-				error: 'Enter Valid OTP'
+				hasErrored:true,
+				errorStyle:true
 			});
 			return false;
 			
@@ -231,11 +235,13 @@ class Talkastrologer extends Component{
 	 let length=this.state.otp.length;
 	 if(length<4){
 			this.setState({
-				error: 'Enter Valid OTP'
+				hasErrored:true,
+				errorStyle:true
 			});
 			return false;
 			
 		}
+	
 		let otp=this.state.otp.toString();
 		otp=otp.replace(/,/g, "");
 		this.setState({ 
@@ -255,7 +261,8 @@ class Talkastrologer extends Component{
 			}else{
 			   this.setState({ 
 					   loader: false,
-					   error:res.data.message
+						hasErrored:true,
+						error:res.data.message
 			   }); 
 			}
 		   }).catch((error) => {
@@ -263,13 +270,13 @@ class Talkastrologer extends Component{
 				 this.state.otp=[];
 					   this.setState({ 
 						   loader: false,
-						   error:error.response.data.message
+							error:error.response.data.message
 					   });
 			 } else if (error.request) {
 				  this.state.otp=[];
 				 this.setState({ 
 						   loader: false,
-						   error:error.message
+							error:error.request.data.message
 				   });
 			 }else{
 				 
@@ -287,9 +294,11 @@ class Talkastrologer extends Component{
 		});
 	}
 	changeOtp(e){
-	  this.state.otp.push(e);
+		this.setState({ 
+			hasErrored:false,
+		}); 
 	  this.setState({
-			otp:this.state.otp
+			otp:e
 	  })
 	}
 	render(){
@@ -314,9 +323,13 @@ class Talkastrologer extends Component{
 							}
 							{
 						 	authFlag &&
-							<LoginPage data={this.state} closeModal={this.closeModal} 
-							sendOtp={this.sendotpMobile} handleChange={this.formdata}
-							changeMobile={this.changeContact} verifyOtp={this.vfyOtp}
+							<LoginPage 
+							data={this.state}
+							closeModal={this.closeModal} 
+							sendOtp={this.sendotpMobile} 
+							handleChange={this.formdata}
+							changeMobile={this.changeContact} 
+							verifyOtp={this.vfyOtp}
 							signin={this.userSignin}
 							handleChangeOtp={this.changeOtp}
 							resendOtp={this.sendOtpagain}

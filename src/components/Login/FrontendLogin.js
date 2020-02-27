@@ -4,7 +4,6 @@ import Modal from 'react-modal';
 import OtpInput from 'react-otp-input';
 Modal.setAppElement('#root');
 
-
 const customStyles = {
   content : {
 	
@@ -14,8 +13,10 @@ const customStyles = {
 const containerStyle={
 	float:'right'
 }
-const disabledStyle='none';
-
+const errorStyle={
+	 border:'2px solid red'
+}
+const pStyle='';
 const FrontendLogin=(props)=>{
 	let model=props.data.modalIsOpen;
 	let loader=props.data.loader;
@@ -26,12 +27,20 @@ const FrontendLogin=(props)=>{
 	let mobile=props.data.mobile;
 	let otp=props.data.otp;
 	let success=props.data.success;
-	return (<Modal
+	let hasErrored=props.data.hasErrored;
+	let classNamex='';
+	
+	 if (hasErrored) {
+		 console.log(hasErrored);
+			classNamex = 'input-border';
+	 }
+	return (
+		<Modal
 	   isOpen={model}
 	   onAfterOpen={props.afterOpenModal}
 	   onRequestClose={props.closeModal}
 	     style={customStyles}
-	   >
+		>
 	   <a  className="model-close-cust" onClick={props.closeModal}><i className="fa fa-times"></i></a>
 		<form>
 			{flagMobilecontainer &&
@@ -82,9 +91,12 @@ const FrontendLogin=(props)=>{
 							numInputs={4}
 							separator={<span>-</span>}
 							name='otp'
-							value={otp}
-							disabledStyle={disabledStyle}
+							value={otp ? otp :''}
 							containerStyle={containerStyle}
+							hasErrored={hasErrored}
+							inputStyle={classNamex}
+						
+						
 							/>
 						
 						</div>

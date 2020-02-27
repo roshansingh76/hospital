@@ -12,6 +12,7 @@ class HomePage extends Component{
 		  this.state = {
             vastu: [],
             muhurat:[],
+		    kundli:[],
             horoscope:[],
             loading: false,
             error: ''
@@ -19,10 +20,12 @@ class HomePage extends Component{
 	   this.handleMuhurat = this.handleMuhurat.bind(this);
 	   this.handleVastut = this.handleVastut.bind(this);
 	   this.handleHoroscope = this.handleHoroscope.bind(this);
+	   this.handleKundli = this.handleKundli.bind(this);
 	}
 	
 	componentDidMount() {
 		this.handleHoroscope();
+		this.handleKundli();
 	}
 	handleHoroscope(){
 		config.get('/api/service/getHoroscopes',{
@@ -118,7 +121,38 @@ class HomePage extends Component{
 		  }
 	 });
 	}
+handleKundli(){
+	config.get('/api/service/getHandKundalis',{
+			withCredentials:false
+		})
+		.then((res) => {
+		this.setState({ loading: false });
+		 if(res.data.success){
+				this.setState({ 
+					kundli:res.data.data,
+					
+				});
+				
+   		 }else{
+			this.setState({ 
+					error:res.data.message
+			}); 
+		 }
+		}).catch((error) => {
+		  if (error.response) {
+					this.setState({ 
+					
+						error:error.response.data.message
+					});
+		  } else if (error.request) {
+			  this.setState({ 
+					
+						error:error.message
+				});
+		  }
+	 });
 	
+}
  render(){
 	   let {horoscope}=this.state; 
 		return(

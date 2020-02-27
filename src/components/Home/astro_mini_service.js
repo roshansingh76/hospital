@@ -7,6 +7,7 @@ import ContentLoader, { Facebook,Lis,BulletList   } from 'react-content-loader'
 const HomeAstro_mini_service=(props)=>{
     let muhurat=props.data.muhurat;
 	let vastu=props.data.vastu;
+	let kundli=props.data.kundli;
 	const regex = /(<([^>]+)>)/ig;
 
 	return (<section className="sub-vast-muh padding">
@@ -28,21 +29,22 @@ const HomeAstro_mini_service=(props)=>{
 					</div>
 					<div className="jyt_micro_astrology jyt_micro">
 						{ muhurat.length===0 &&
-							 <ul>
-								<center><BulletList></BulletList></center>
-							</ul>
+						
+							<center><BulletList  viewBox="1 1 200 400"
+							></BulletList></center>
+					
 						}
 						{	muhurat.length > 1 && 
 						<ul>
 							 {muhurat.map((rowData, index) => (
 							<li key={index+1}>
-								<a href="#">
-									<img src="https://www.jyotirvid.in/web_assets/muhurat/BUYING_P.png" alt={rowData.title} />
+						 	<Link  to={'muhurat/'+rowData.muhurat_slug.toLowerCase()}  >
+									<img src={ require(`../../assets/muhurat/${rowData.muhurat_image}`) } alt={rowData.title} />
 									<div className="ast_vedic_astro_info">
 										<h5>{rowData.title}</h5>
 										<p>{(rowData.description.substring(0,100).replace(regex,''))}.</p>
 									</div>
-								</a>
+								</Link>
 							</li>
 							
 							))};
@@ -60,22 +62,22 @@ const HomeAstro_mini_service=(props)=>{
 					</div>
 					<div className="jyt_micro_astrology jyt_micro">
 						{ vastu.length===0 &&
-							 <ul>
-								<center><BulletList></BulletList></center>
-							</ul>
+							
+								<center><BulletList  viewBox="1 1 200 400"></BulletList></center>
+							
 						}
-				=
+			
 						{	vastu.length > 1 && 
 						<ul>
 							 {vastu.map((rowData, index) => (
 							<li key={index+1}>
-								<a href="muhurat-list.html">
-									<img src="https://www.jyotirvid.in/web_assets/vastu/VASTU_for_the_Main_Entrance.png" alt={rowData.title}/>
+							   <Link  to={'vastu/'+rowData.vastu_slug.toLowerCase()}  >
+									<img src={ require(`../../assets/vastu/${rowData.vastu_image}`) } alt={rowData.title}/>
 									<div className="ast_vedic_astro_info">
 										<h5>{rowData.title}</h5>
 										<p>{(rowData.description.substring(0,100).replace(regex,''))}</p>
 									</div>
-								</a>
+								</Link>
 							</li>
 							))};
 						
@@ -87,32 +89,28 @@ const HomeAstro_mini_service=(props)=>{
 				</div>
 				
 				<div className="col-md-4">
-				
-					<div className="jyt_micro_astrology-head">
-						<h4>Handmade Janam Kundli</h4>
-					</div>
-					<div className="hvrbox">
-						<img src="images/basic.jpg" alt="Mountains" className="hvrbox-layer_bottom" />
-						<div className="hvrbox-layer_top hvrbox-layer_slideright">
-							<div className="hvrbox-text">
-								<p>Handmade Janam Kundli is a manually calculated horoscope based on the system of Sun/Zodiac Signs. In our exclusive Janam Kundli, we provide 100% genuine...</p>
-								<a href="muhurat-detail.html" className="btn btn-warning btn-sm">Know more</a>
+					{ kundli.length===0 &&
+							
+								<center><BulletList  viewBox="1 1 200 400"></BulletList></center>
+							
+					}
+				  {	kundli.length > 1 && 
+					kundli.map((rowData, index) => (
+					<div key={index+1}>
+						<div className="jyt_micro_astrology-head">
+							<h4>{rowData.title}</h4>
+						</div>
+						<div className="">
+							<img src={ require(`../../assets/${rowData.kundli_image}`) } alt={rowData.title} />
+							<div className="">
+								<div className="">
+									<p>{(rowData.description.substring(0,100).replace(regex,''))}</p>
+									<Link to={'kundli/'+rowData.kundli_slug.toLowerCase()}   className="btn btn-warning btn-sm">Know more</Link>
+								</div>
 							</div>
 						</div>
 					</div>
-				
-					<div className="jyt_micro_astrology-head">
-						<h4>Business Life Prediction Kundli</h4>
-					</div>
-					<div className="hvrbox">
-						<img src="images/advence.jpg" alt="Mountains" className="hvrbox-layer_bottom" />
-						<div className="hvrbox-layer_top hvrbox-layer_slideright">
-							<div className="hvrbox-text">
-								<p>Business Life-Prediction Kundli is one of a kind Kundli style. Business Kundli is conventionally introduced to take care your venture and new- undertaking’s ifs and buts. This unique commerci...</p>
-								<a href="muhurat-detail.html" className="btn btn-warning btn-sm">Know more</a>
-							</div>
-						</div>
-					</div>
+					))};
 				</div>
 			</div>
 		</div>
