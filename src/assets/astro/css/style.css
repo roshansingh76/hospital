@@ -6916,6 +6916,14 @@ font-weight: 600;
 	border-radius: 10px
 }
 /*astloger package*/
+.bookig-heding{
+	background: #fbfbfb;
+    padding: 5px 15px;
+    font-size: 30px;
+    margin-bottom: 20px;
+    color: #4c4c4c;
+    border-radius: 5px;
+}
 .asto-package-price{
 width: 100%;
     height: 125px;
@@ -6968,8 +6976,19 @@ width: 100%;
 	color:#fff;
 }
 
-
-
+.cart-total{
+	padding: 15px;
+    border-radius: 5px;
+    background: #fbfbfb;
+    box-shadow: 0px 0px 3px 0px #0000001f
+}
+.cart-total p{
+	font-size: 24px;
+	text-align: right;
+}
+.referl-info p{
+	font-size: 15px
+}
 table.table.cart {
     border: 1px solid #ebebeb;
 }
@@ -7026,10 +7045,38 @@ table.table.cart {
     margin-bottom: 15px;
 }
 .cart thead tr.cart_totle th, .cart tbody tr.cart_totle td {
-    padding: 15px;
-    vertical-align: middle;
+   padding: 15px;
+    vertical-align: super;
     border-color: #ebebeb;
+    background: #fff;
+    text-align: right;
 }
 .cart tbody tr.cart_totle td:first-child {
     background-color: #f8f8f8;
+}
+.referl-info {
+	padding-bottom: 10px;
+}
+.referl-info .form-control{
+	margin-right: 5px;
+    height: 35px !important;
+    border-radius: 5px !important;
+}
+.referl-info .btn-default{
+	padding: 5px 35px;
+    margin-top: -6px;
+    background: #949494;
+    border: 1px solid #ebebeb;
+    border-radius: 5px;
+}
+.referl-info .btn-default:hover{
+	background: #8e5c11;
+}
+.addmoney-btn .btn-default{
+	display: block;
+    width: 100%;
+    background: #242c42;
+}
+.addmoney-btn .btn-default:hover{
+	background: #ff9900;
 }

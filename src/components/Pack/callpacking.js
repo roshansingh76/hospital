@@ -10,7 +10,7 @@ class Callingpack extends Component {
 		return (
 		  		<section className="padding">
 		  			<div className="container">
-		  				<h1>Add money to your wallet</h1>
+		  				<h1 className="bookig-heding">Add money to your wallet</h1>
 		  				<div className="row">
 		  					<div className="col-md-8">
 		  						<div className="row">
