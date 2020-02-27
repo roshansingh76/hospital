@@ -122,6 +122,8 @@ class HomePage extends Component{
 	 });
 	}
 handleKundli(){
+	
+		this.kundli=[];
 	config.get('/api/service/getHandKundalis',{
 			withCredentials:false
 		})
