@@ -84,11 +84,15 @@ exports.getPackages = function(req, res) {
 				message:'Error in getting packages!'
 			});
 		}else{
-			res.status(200).json({
-				success: true,
-				data:result,
-				message:'Successfully Get packages!'
-			});		
+			let sql1="SELECT * FROM `packages` WHERE default_set = 1 ";
+			db.query(sql1,function(err,defpackage){
+				res.status(200).json({
+					success: true,
+					data:result,
+					default:defpackage,
+					message:'Successfully Get packages!'
+				});
+			});					
 		}
 	})
 }
