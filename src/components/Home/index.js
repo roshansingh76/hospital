@@ -14,18 +14,56 @@ class HomePage extends Component{
             muhurat:[],
 		    kundli:[],
             horoscope:[],
+			topastrologer:[],
             loading: false,
             error: ''
         };
 	   this.handleMuhurat = this.handleMuhurat.bind(this);
 	   this.handleVastut = this.handleVastut.bind(this);
 	   this.handleHoroscope = this.handleHoroscope.bind(this);
+	   this.handleTopastrologer = this.handleTopastrologer.bind(this);
 	   this.handleKundli = this.handleKundli.bind(this);
 	}
 	
 	componentDidMount() {
 		this.handleHoroscope();
+		this.handleMuhurat();
+		this.handleTopastrologer();
 		this.handleKundli();
+		this.handleVastut();
+	}
+	handleTopastrologer(){
+		
+	config.get('/api/service/getTopAstrologers',{
+			withCredentials:false
+		})
+		.then((res) => {
+		this.setState({ loading: false });
+		 if(res.data.success){
+				this.setState({ 
+					topastrologer:res.data.result,
+					
+				});
+				this.handleMuhurat();
+   		 }else{
+			this.setState({ 
+					error:res.data.message
+			}); 
+		 }
+		}).catch((error) => {
+		  if (error.response) {
+					this.setState({ 
+					
+						error:error.response.data.message
+					});
+		  } else if (error.request) {
+			  this.setState({ 
+					
+						error:error.message
+				});
+		  }
+	});
+	
 	}
 	handleHoroscope(){
 		config.get('/api/service/getHoroscopes',{
@@ -38,7 +76,7 @@ class HomePage extends Component{
 					horoscope:res.data.data,
 					
 				});
-				this.handleMuhurat();
+				
    		 }else{
 			this.setState({ 
 					error:res.data.message
@@ -70,7 +108,7 @@ class HomePage extends Component{
 					muhurat:res.data.data,
 					
 				});
-				this.handleVastut();
+				
    		 }else{
 			this.setState({ 
 					error:res.data.message
@@ -163,7 +201,7 @@ handleKundli(){
 				
 				<Free_horoscope  data={horoscope}/>
 				<Service_top/>
-				<Top_astrologer/>
+				<Top_astrologer data={this.state}/>
 				<Astro_mini_service data={this.state}/>
 			</React.Fragment>
 		);

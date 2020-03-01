@@ -52,19 +52,20 @@ const App= (props) => {
 	  return (
 		<div className="main-wrapper" >
 		 <Router>
-		 <div className="educare-header-section top-bar jy-header "> 
-			<FrontendTopbar/>
-			<FrontendHeader/>
-			<FrontendNavigation/>
-		 </div>
-			<Redirect to={ROUTES.Callingpack}/>
+		   <div className="educare-header-section top-bar jy-header "> 
+				<FrontendTopbar/>
+				<FrontendHeader/>
+				<FrontendNavigation/>
+		   </div>
+			
 			<Route   exact path={ROUTES.Home} component={HomePage} />	
 			<Route   path={ROUTES.Talkastrologer} component={Talkastrologer} />
 			<Route   path={ROUTES.Callingpack} component={Callingpack} />
 			<Route   path={ROUTES.Chat} component={Chat} />
 			<Route   path={ROUTES.About} component={About} />
 			<Route   path={ROUTES.Blogs} component={Blogs} />
-			<Route   path={ROUTES.Horoscope+"/:slug"} component={Horoscope} />	
+			<Route   path={ROUTES.Horoscopes+"/:slug"} component={Horoscope} />	
+			<Route   path={ROUTES.Horoscopesdefault} component={Horoscope} />	
 			<Footer/>
 		 </Router>
 	  </div>)

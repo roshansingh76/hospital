@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import ContentLoader, { Facebook,List  } from 'react-content-loader'
+import Moment from 'react-moment';
 
 
 
@@ -40,11 +41,11 @@ const HomeFree_horoscope=(props)=>{
 								<Link  to={'horoscope/'+rowData.sunsign_en.toLowerCase()}  >
 									<img  key={index+1} src ={ require(`../../assets/horoscope/${rowData.mphoto}`) } alt={rowData.sunsign_en}/>
 									<p>{rowData.sunsign_en}</p>
-									<span>Thursday, February 07, 2019</span>
+									<span><Moment format="D MMM YYYY" ></Moment></span>
 								</Link>
 							</div>
 						</li>
-				))};
+			 	))};
 				
 				 </ul>
 				}
