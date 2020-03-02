@@ -85,7 +85,7 @@ class Horoscope extends Component{
 	}
 	handleHoroscope(slug){
 	
-		config.get('/	',{
+		config.get('/api/service/getHoroscopes',{
 			withCredentials:false
 		})
 		.then((res) => {

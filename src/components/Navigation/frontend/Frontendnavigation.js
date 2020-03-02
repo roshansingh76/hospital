@@ -67,8 +67,7 @@ const Mainnav=()=>(
             </li>
             <li className="nav-item"><Link to={ROUTES.About} className="nav-link">About</Link></li>
             <li className="nav-item"><Link to={ROUTES.Horoscopesdefault+'/aries'} className="nav-link">Horoscope</Link></li>
-            <li className="nav-item"><Link to={ROUTES.Blogs} className="nav-link">Blog</Link></li>
-            <li className="nav-item"><a href="online-puja.html" className="nav-link">Online Puja</a></li>  
+         
         </ul>
       </div>  
       </div>

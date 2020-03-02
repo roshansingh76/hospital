@@ -39,7 +39,7 @@ const HomeFree_horoscope=(props)=>{
 						<li key={index+1}>
 							<div className="horoscope-inner no">
 								<Link  to={'horoscope/'+rowData.sunsign_en.toLowerCase()}  >
-									<img  key={index+1} src ={ require(`../../assets/horoscope/${rowData.mphoto}`) } alt={rowData.sunsign_en}/>
+									<img  key={index+1} src ={ require(`./../../assets/horoscope/${rowData.mphoto}`) } alt={rowData.sunsign_en}/>
 									<p>{rowData.sunsign_en}</p>
 									<span><Moment format="D MMM YYYY" ></Moment></span>
 								</Link>
