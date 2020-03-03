@@ -66,7 +66,7 @@ const App= (props) => {
 			<Route   path={ROUTES.Blogs} component={Blogs} />
 			<Route   path={ROUTES.Horoscopes+"/:slug"} component={Horoscope} />	
 			<Route   path={ROUTES.Horoscopesdefault} component={Horoscope} />	
-			<Footer/>
+			<Footer {...props }/>
 		 </Router>
 	  </div>)
   }

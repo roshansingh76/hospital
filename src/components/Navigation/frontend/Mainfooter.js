@@ -1,14 +1,14 @@
-
 import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../../config/routes';
+const subscribe=(props)=>{
+	alert('sdjksldjlfsdkl')
+	
+}
 
-const Footer = () => (
-		<Mainfooter/>		
-		
-);
-const Mainfooter=()=>(
-	<footer>
+const Footer=(props)=>{
+		console.log(props);
+	return (<footer>
 	  <div className="footer-main">
 		<div className="container">
 		  <div className="footer-main-wrapper">
@@ -70,11 +70,11 @@ const Mainfooter=()=>(
 				  <div className="footer-title-widget">MAILING</div>
 				  <div className="content-wiget">
 					<p>Sign up for our mailing list to get </p>
-					<form action="http://preview.templatehouse.net/educare/index.html">
+					<form action="">
 					  <div className="input-group">
-						<input type="text" placeholder="Email address" className="form-control form-email-widget"/>
+						<input type="text" placeholder="Email address" name="subscribe-email" id="subscribe-email" className="form-control form-email-widget"/>
 						<span className="input-group-btn">
-						<input type="submit" value="✓" className="btn btn-email"/>
+						<input type="button" value="✓" onClick={subscribe}  className="btn btn-email"/>
 						</span></div>
 					</form>
 					<p>We respect your privacy</p>
@@ -89,7 +89,7 @@ const Mainfooter=()=>(
 		  </div>
 		</div>
 	  </div>
-	</footer>
-)
-
+		</footer>
+	)
+}
 export default Footer;

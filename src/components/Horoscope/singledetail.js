@@ -9,7 +9,7 @@ const Singledetail=(props)=>{
 				<div className="horosc-headd">
 					<img src="http://rgyandigital.com/jyodemo/images/sign/aries.png" alt="aries"/>
 					<p>{ props.data.sunsign }</p>
-					<span><Moment format="dddd MMM YYYY" ></Moment></span>
+					<span><Moment format="DD, dddd ,MMM, YYYY" ></Moment></span>
 				</div>
 				<div className="horosc-sing-content">
 					
