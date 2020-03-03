@@ -22,7 +22,7 @@ const Horoscopetop=(props)=>{
 							<p className="selected">{rowData.sunsign_en}</p>
 						</Link>
 					</li>
-					))};
+					))}
 				</ul>
 				}
 			</div>

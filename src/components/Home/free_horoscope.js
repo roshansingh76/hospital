@@ -59,4 +59,4 @@ const HomeFree_horoscope=(props)=>{
 	);
 		
 };
-export default HomeFree_horoscope;
+export default HomeFree_horoscope

@@ -99,22 +99,22 @@ const HomeAstro_mini_service=(props)=>{
 						<div className="jyt_micro_astrology-head">
 							<h4>{rowData.title}</h4>
 						</div>
-						<div className="">
+						<div className="kundil-purc-wapp">
 						{ index==0 &&
 							<img src={ basic } alt={rowData.title} />
 						}
 						{ index==1 &&
 							<img src={ advence } alt={rowData.title} />
 						}
-							<div className="">
-								<div className="">
+							<div className="kundil-purc-inner">
+								<div className="kundil-purc">
 									<p>{(rowData.description.substring(0,100).replace(regex,''))}</p>
 									<Link to={'kundli/'+rowData.kundli_slug.toLowerCase()}   className="btn btn-warning btn-sm">Know more</Link>
 								</div>
 							</div>
 						</div>
 					</div>
-					))};
+					))}
 				</div>
 			</div>
 		</div>

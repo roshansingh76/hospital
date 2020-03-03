@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import axios from "axios";
 import  Horoscope_detail from './horoscope_detail';
-import  Leftnave from './leftnave';
+import Leftnav from './../Talkastrologer/leftnav';
 import config from '../../config/config';
 
 class Horoscope extends Component{
@@ -123,7 +123,7 @@ class Horoscope extends Component{
 				<section className="padding">
 						<div className="container">
 							<div className="row">
-								<Leftnave/>
+								<Leftnav/>
 								<Horoscope_detail data={this.state}/>
 							
 							</div>

@@ -14,22 +14,22 @@ const Singledetail=(props)=>{
 				<div className="horosc-sing-content">
 					
 					<p>
-						<strong>Personal Life:</strong>{props.data.details.personal_life}
+						<strong>Personal Life :</strong> {props.data.details.personal_life}
 					</p>
 					<p>
-						<strong>Profession:</strong>{props.data.details.profession}
+						<strong>Profession :</strong> {props.data.details.profession}
 					</p>
 					<p>
-						<strong>Health:</strong>{props.data.details.health}
+						<strong>Health :</strong> {props.data.details.health}
 					</p>
 					<p>
-						<strong>Travel:</strong>{props.data.details.travel}
+						<strong>Travel :</strong> {props.data.details.travel}
 					</p>
 					<p>
-						<strong>Luck:</strong>{props.data.details.luck}
+						<strong>Luck :</strong> {props.data.details.luck}
 					</p>
 					<p>
-						<strong>emotions:</strong>{props.data.details.emotions}
+						<strong>emotions :</strong> {props.data.details.emotions}
 					</p>
 				</div>
 			</div>

@@ -15,6 +15,9 @@ import AstrologerPage from '../Astrologer'
 import CreateAstro from '../Astrologer/create'
 import SettingPage from '../Setting'
 import Talkastrologer from '../Talkastrologer'
+import Muhurat from '../Muhurat'
+import Vastu from '../Vastu'
+import Kundli from '../Kundli'
 import Horoscope from '../Horoscope'
 import Chat from '../communication/chat'
 import About from '../About'
@@ -64,6 +67,9 @@ const App= (props) => {
 			<Route   path={ROUTES.Chat} component={Chat} />
 			<Route   path={ROUTES.About} component={About} />
 			<Route   path={ROUTES.Blogs} component={Blogs} />
+			<Route   path={ROUTES.Vastu} component={Vastu} />
+			<Route   path={ROUTES.Muhurat} component={Muhurat} />
+			<Route   path={ROUTES.Kundli} component={Kundli} />
 			<Route   path={ROUTES.Horoscopes+"/:slug"} component={Horoscope} />	
 			<Route   path={ROUTES.Horoscopesdefault} component={Horoscope} />	
 			<Footer {...props }/>

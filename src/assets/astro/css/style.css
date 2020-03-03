@@ -7088,9 +7088,90 @@ table.table.cart {
 	background: #ff9900;
 }
 
+/*muhurat*/
+.Muhuratlist-react-se{}
+.Muhuratlist-react-se ul{
+	margin:25px 0px;
+}
+.Muhuratlist-react-se li{
+	border: 1px solid #dddd;
+    margin-left: -1px;
+    width: 20%;
+    height: 100px;
+    float: left;
+    margin-bottom: -1px;
+}
+.Muhuratlist-react-se li a{
+	display: block;
+    overflow: hidden;
+    text-align: center;
+    padding: 5px 5px;
+}
+.Muhuratlist-react-se li a .comm-img img{
+	width: 100%;
+	height: 100%;
+	object-fit: contain;
+	 -webkit-transition: 0.5s ease-out;
+  -moz-transition: 0.5s ease-out;
+  -o-transition: 0.5s ease-out;
+  transition: 0.5s ease-out;
+}
+.Muhuratlist-react-se li a .comm-img{
+	width: 50px;
+    height: 50px;
+    margin: 0 auto;
+    display: block;
 
+}
+.Muhuratlist-react-se li a p{
+	line-height: normal;
+    font-size: 13px;
+    margin-top:10px;
+}
+.Muhuratlist-react-se li:hover{
+border-top:1px solid #ff9900;
+}
+.Muhuratlist-react-se li:hover a p{
+	color: #ff9900;
+	font-weight: 600
+}
+.Muhuratlist-react-se li:hover a .comm-img img{
+	border-radius: 50%;
+	border:1px solid #ff9900;
+	padding: 5px;
+	
+}
 
-
+.mu-vas-wapp{
+	margin-top: 53px;
+}
+.mu-vas-wapp .img-text{
+	display: block;
+    overflow: hidden;
+    background: #fbfafa;
+    padding: 15px;
+    border-radius: 5px;
+}
+.mu-vas-wapp .img-text img{
+	width: 60px;
+    float: left;
+    margin-right: 30px;
+}
+.mu-vas-wapp .img-text span{
+	margin-top: 15px;
+    display: block;
+    font-size: 18px;
+    color: #ff9900;
+    font-weight: 600;
+}
+.mu-vas-wapp .contten-m-v{
+padding: 15px 0px;
+font-size: 14px;
+}
+.mu-vas-wapp .contten-m-v .mob-btn{
+	background: #fd8b15;
+    border-radius: 5px;
+}
 
 
 
@@ -7135,4 +7216,31 @@ table.table.cart {
 }
 .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
     color: #f0bb07;
+}
+
+
+.kundil-purc-wapp{
+	position: relative;
+	overflow: hidden;
+	margin-bottom: 40px
+}
+.kundil-purc-wapp .kundil-purc-inner{
+	position: absolute;
+    display: none;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5294117647058824);
+    right: 0;
+    top: 0;
+}
+.kundil-purc-wapp .kundil-purc-inner .kundil-purc{
+	padding: 15px 25px;
+    text-align: center;
+    color: #fff;
+}
+.kundil-purc-wapp:hover .kundil-purc-inner{
+	display:block;
+
 }
