@@ -3,12 +3,24 @@ const express = require('express');
 const path = require('path');
 var cors = require('cors')
 var bodyParser = require('body-parser');
+const https = require('https');
+const fs = require('fs');
+const port = 3001;
+
+
 const db = require('./config/database');
 let middleware = require('./middleware/authmiddleware');
 const astro = require('./routes/astro');
 const index = require('./routes/index');
 const user = require('./routes/user');
 const service = require('./routes/service');
+var key = fs.readFileSync('./certs/apache.key');
+var cert = fs.readFileSync('./certs/apache.crt');
+var options = {
+  key: key,
+  cert: cert
+};
+
 
 //Ankur code
 var app = express();
@@ -30,12 +42,8 @@ app.use('/api/service',service);
 
 
 
+var server = https.createServer(options, app);
 
-const port = process.env.PORT || 5000;
-
-// Start the app
-app.listen(port, () => {
-  console.log('App started on port: ' + port);
+server.listen(port, () => {
+  console.log("server starting on port : " + port)
 });
-
-module.exports = app;
