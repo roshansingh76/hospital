@@ -7,7 +7,7 @@ const Topnavbar = () => (
 );
 const Tobbar=()=>(
 	
-		<div className="top hidden-xs">
+		<div className="top d-none d-sm-block">
 			<div className="container">
 				<div className="row">
 					<div className="col-lg-6 col-sm-12 mobile-center">
@@ -23,12 +23,12 @@ const Tobbar=()=>(
 								<li><a href="#" className="pinterest"><i className="fa fa-pinterest"></i></a></li>
 								<li><a href="#" className="blog"><i className="fa fa-rss"></i></a></li>
 							</ul>
-							<div className="flat-top flat-language">
+							{/*<div className="flat-top flat-language">
 								<ul className="unstyled">
 									<li><a href="sign-in.html">Login</a></li>
 									<li><a href="register.html">Register</a></li>
 								</ul>
-							</div>
+							</div>*/}
 						</div>
 					</div>
 				</div>

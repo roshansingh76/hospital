@@ -18,7 +18,7 @@ const Fheader=()=>(
                             </Link>
                             </div>
 						</div>
-						<div className="col-lg-9 hidden-xs">
+						<div className="col-lg-9 d-none d-sm-none d-md-block d-lg-block d-xl-block">
 							<div className="wrap-educare-info-header clearfix">
 								<aside className="educare-info educare-info-section">
 									<div className="btn-click"> <a href="#" className="flat-button"></a> </div>

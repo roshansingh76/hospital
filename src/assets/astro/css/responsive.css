@@ -355,6 +355,13 @@ padding: 15px;
  
 }
 @media only screen and (max-width: 768px) and (min-width: 300px){
+ .header .logo {
+    text-align: center;
+    margin: 5px auto;
+}
+.home-banner {
+    height: auto;
+}   
 .astro-left-filt {
     background: #fbfafa;
     margin-bottom: 15px

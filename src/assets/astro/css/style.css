@@ -7217,6 +7217,31 @@ font-size: 14px;
 .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
     color: #f0bb07;
 }
+.custom-larg{}
+.custom-larg .unstyled{}
+.custom-larg .unstyled li{
+	margin-right: 10px;
+	display: inline-block;
+}
+.custom-larg .unstyled li:last-child{
+	margin-right: 0px
+}
+.custom-larg .unstyled li a{
+	padding: 0;
+    color: #ffffff;
+}
+.custom-larg .unstyled .dropdown-menu-lin{
+	left: -50px;
+    top: 28px;
+    padding: 0;
+}
+.custom-larg .unstyled .dropdown-menu-lin a{
+	padding: 10px 15px;
+	color:#000;
+}
+.custom-larg .unstyled li a:hover{
+	color:#f0bb07
+}
 
 
 .kundil-purc-wapp{
