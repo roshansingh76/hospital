@@ -6777,6 +6777,7 @@ font-weight: 600;
 .ReactModal__Overlay{
         background-color: rgba(175, 175, 175, 0.75) !important;
         top:none;
+        z-index: 99999999;
 }
 .ReactModal__Overlay .ReactModal__Content{
 	position: relative !important;
