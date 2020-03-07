@@ -32,6 +32,9 @@ Header Section
 
 ---------------------------------------------------------------
 ---------------------------------------------------------------*/
+a{
+	cursor: pointer;
+}
 @media (min-width: 1200px){
 .container {
     width: 1170px;
@@ -6975,6 +6978,17 @@ width: 100%;
 }
 .asto-package-price:hover{
 	background: #fff;
+}
+.asto-package-price.active{
+	background: #fff;
+	border:1px solid #575a4c;
+}
+.asto-package-price.active p{
+	color:#000;
+}
+.asto-package-price.active span{
+	background: #ff9900;
+	color:#fff;
 }
 .asto-package-price:hover p{
 	color: #000;
