@@ -119,7 +119,7 @@ class Talkastrologer extends Component{
 	}
 	sendOtpagain(){
 		 this.setState({ loader: true,success:'' });
-		 config.get('/api/user/getOtp?phone='+this.state.mobile)
+		 config.get(url+'/api/user/getOtp?phone='+this.state.mobile)
 	   .then((res) => {
 		   this.setState({ loader: false });
 			if(res.data.success){
@@ -165,7 +165,7 @@ class Talkastrologer extends Component{
 	if(this.state.mobile.match(phoneno)) {
 	  
 	 this.setState({ loader: true,error:'',success:'' });
-	 config.get('/api/user/getOtp?phone='+this.state.mobile)
+	 config.get(url+'/api/user/getOtp?phone='+this.state.mobile)
 	   .then((res) => {
 		   this.setState({ loader: false });
 			if(res.data.success){
@@ -244,7 +244,7 @@ class Talkastrologer extends Component{
 			loader: true,
 			success:''
 		});
-		config.get('/api/user/verifyOtp?phone='+this.state.mobile+'&otp='+otp)
+		config.get(url+'/api/user/verifyOtp?phone='+this.state.mobile+'&otp='+otp)
 	   .then((res) => {
 		   this.setState({ loader: false });
 			if(res.data.success){

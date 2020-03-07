@@ -303,7 +303,7 @@ class Mainnav extends Component{
 								</Link>
 								<div className="dropdown-menu dropdown-menu-lin">
 									<Link to={'/users/myaccount'} className="dropdown-item" >Profile</Link>
-									<Link className="dropdown-item" to="#">Logout</Link>
+									<Link className="dropdown-item" onClick={deviceStorage.deleteJWT}>Logout</Link>
 								</div>
 							</li>
 						  }
