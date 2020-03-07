@@ -8,14 +8,18 @@ class Callingpack extends Component {
 		  this.state = {
             packList: [],
             loading: false,
+			defaultdata:[],
 			discount:0,
 			gst:0,
 			currentPrice:0,
 			totalPrice:'',
-            error: ''
+            error: '',
+			packId:'',
         };
 	
 	   this.checkPrice = this.checkPrice.bind(this);
+	   this.checkDefaultpackage = this.checkDefaultpackage.bind(this);
+
    }
   componentDidMount() {
 	const script = document.createElement("script");
@@ -37,9 +41,10 @@ class Callingpack extends Component {
         (result) => {
           this.setState({
             loading: false,
-            packList: result.data
+            packList: result.data,
+			defaultdata:result.default
           });
-		
+			this.checkDefaultpackage();
         },
         // Note: it's important to handle errors here
         // instead of a catch() block so that we don't swallow
@@ -54,13 +59,28 @@ class Callingpack extends Component {
 	   
 	
    }
+   checkDefaultpackage(){
+	   const pack=this.state.defaultdata;
+		if(pack.length===1){
+			let price=pack[0].price;
+			let gst=(price*18)/100;
+			let totalPrice=price+gst;
+			this.setState({
+			 currentPrice:price	,	
+			 gst:gst,	
+			 totalPrice:totalPrice,
+			 packId:pack[0].id
+		});
+		}
+   }
   checkPrice(id,price){
 		let gst=(price*18)/100;
 		let totalPrice=price+gst;
 		this.setState({
 			 currentPrice:price	,	
 			 gst:gst,	
-			 totalPrice:totalPrice	
+			 totalPrice:totalPrice,
+			 packId:id
 		});
   }
   onOpen() {
@@ -82,7 +102,7 @@ class Callingpack extends Component {
 
 
   render() {
-	    let {packList,discount,currentPrice,gst,totalPrice}=this.state; 
+	    let {packList,discount,currentPrice,gst,totalPrice,packId}=this.state; 
 		return (
 		  		<section className="padding">
 		  			<div className="container">
@@ -103,7 +123,7 @@ class Callingpack extends Component {
 									
 		  							<div  key={index+1} className="col-md-6">
 		  								<a onClick={e =>this.checkPrice(rowData.id,rowData.price)}>
-					  						<div className="asto-package-price">
+					  						<div className={rowData.id==packId ?'asto-package-price active':'asto-package-price'}>
 					  							<p>{rowData.price} <i className="fa fa-inr"></i></p>
 					  							<span>Add money</span>
 					  						</div>

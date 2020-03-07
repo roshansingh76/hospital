@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import OtpInput from 'react-otp-input';
 Modal.setAppElement('#root');
+var validator = require('validator');
 
 const customStyles = {
   content : {
@@ -55,9 +56,11 @@ const FrontendLogin=(props)=>{
 						  	<input type="text" placeholder="+91" className ="form-control form-control-l-t" name="mobile"/>
 						 	<input type="number" placeholder="Mobile Number" 
 							className ="form-control form-control-r-t"
-						
-							name="mobile" onChange={props.handleChange} 
+							name="mobile"
+							pattern="\d{3}[\-]\d{3}[\-]\d{4}"
+							onChange={props.handleChange} 
 						    maxLength={10}
+							autoFocus 
 							/>
 						</div>
 					  {loader &&

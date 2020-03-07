@@ -5,6 +5,7 @@ import login from '../../Login/LoginClass';
 import LoginPage from './../../Login/FrontendLogin';
 import config from './../../../config/config';
 import deviceStorage from './../../../config/deviceStorage';
+import validator from 'validator' 
 
 class Mainnav extends Component{
 	constructor(props) {
@@ -36,6 +37,7 @@ class Mainnav extends Component{
 		this.changeOtp = this.changeOtp.bind(this)
 		this.sendOtpagain = this.sendOtpagain.bind(this)
 		this.mainopenModal=this.mainopenModal.bind(this);
+		this.validatePhoneNumber=this.validatePhoneNumber.bind(this);
 	}
 	
 	componentDidMount() {
@@ -106,15 +108,20 @@ class Mainnav extends Component{
 	
 		
 	}
+	validatePhoneNumber = (number) => {
+	 const isValidPhoneNumber = validator.isMobilePhone(number)
+	 return (isValidPhoneNumber)
+	}
+
 	sendotpMobile(){
 		if(!this.state.mobile){
 			this.setState({
 				error: 'Enter Mobile Number'
 			});
 			return false;
-			
 		}
-     var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+	var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+	
 	if(this.state.mobile.match(phoneno)) {
 	  
 	 this.setState({ loader: true,error:'',success:'' });
@@ -303,7 +310,7 @@ class Mainnav extends Component{
 								</Link>
 								<div className="dropdown-menu dropdown-menu-lin">
 									<Link to={'/users/myaccount'} className="dropdown-item" >Profile</Link>
-									<Link className="dropdown-item" onClick={deviceStorage.deleteJWT}>Logout</Link>
+									<a className="dropdown-item" onClick={deviceStorage.deleteJWT}>Logout</a>
 								</div>
 							</li>
 						  }

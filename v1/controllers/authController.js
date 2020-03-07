@@ -17,7 +17,6 @@ exports.users_index = function(req, res) {
 };
 
 exports.users_login = function(req, res) {
-	console.log(req.body);
     var username = req.body.username;
     var password = req.body.password;
    if (username && password) {
@@ -114,10 +113,7 @@ exports.getOtp = function(req, res) {
 exports.verifyOtp = function(req, res) {
 	var phone 	= 	req.query.phone;
     var otp 	= 	req.query.otp; 
-	console.log("verify Otp");
-	console.log(phone+"---"+otp);
 	sendOtp.verify(phone, otp, function (error, data) {
-  		console.log(data); // data object with keys 'message' and 'type'
   		if(data.type == 'success'){
   			var sql = "SELECT id FROM `users` WHERE phone = '"+phone+"' limit 0,1";
   			console.log(sql);
@@ -133,9 +129,10 @@ exports.verifyOtp = function(req, res) {
 					res.status(200).json({
 			          	success: true,
 			          	message: 'Authentication successful!',
-			          	token: token
+			          	token: token,
+						name:checkuser.name
         			});
-			        console.log('OTP verified successfully')
+			     
   				}else{
   					var sql1 = "INSERT into users(phone,cb_roles_id) VALUES ('"+phone+"',3)";
   					console.log(sql1);
@@ -155,9 +152,10 @@ exports.verifyOtp = function(req, res) {
 							res.status(200).json({
 					          	success: true,
 					          	message: 'Authentication successful!',
-					          	token: token
+					          	token: token,
+								name:checkuser.name
 		        			});
-					        console.log('OTP verified successfully')									
+					       								
 							}
 					});
 				}
