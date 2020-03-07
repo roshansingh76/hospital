@@ -285,7 +285,7 @@ class Mainnav extends Component{
 						<ul className="navbar-nav mr-auto">
 							<li className="nav-item active"><Link to={ROUTES.Home} className="nav-link">Home</Link></li>
 							<li className="nav-item "><Link to={ROUTES.Talkastrologer} className="nav-link">Prediction</Link></li>
-							<li className="nav-item dropdown">
+							{/*<li className="nav-item dropdown">
 								<Link className="nav-link dropdown-toggle" to="#" id="navbardrop" data-toggle="dropdown">
 								Services
 								</Link>
@@ -294,9 +294,12 @@ class Mainnav extends Component{
 									<Link className="dropdown-item" to="#">Love & Relationship</Link>
 									<Link className="dropdown-item" to="#">Health</Link>
 								</div>
-							</li>
-							<li className="nav-item"><Link to={ROUTES.About} className="nav-link">About</Link></li>
+							</li>*/}
+							<li className="nav-item"><Link to={ROUTES.MuhuratList} className="nav-link">Muhurat</Link></li>
+							<li className="nav-item"><Link to={ROUTES.VastuList} className="nav-link">Vastu</Link></li>
+							<li className="nav-item"><Link to={ROUTES.KundliList} className="nav-link">Kundli</Link></li>
 							<li className="nav-item"><Link to={ROUTES.Horoscopesdefault+'/aries'} className="nav-link">Horoscope</Link></li>
+							<li className="nav-item"><Link to={ROUTES.About} className="nav-link">About</Link></li>
 						</ul>
 					  </div> 
 					   <ul className="unstyled d-none d-sm-block">
