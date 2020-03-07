@@ -27,7 +27,7 @@ const TalkastrologerAstologerlist=(props)=>{
 						</div>
 					</div> 
 					
-					<div className="dropdown-new">
+					{/*<div className="dropdown-new">
 						<button className="dropbtn-new"> Rating   <i className="fa fa-caret-down"></i></button>
 						<div className="dropdown-content-new">
 							<ul>
@@ -54,7 +54,9 @@ const TalkastrologerAstologerlist=(props)=>{
 								
 							</ul>
 						</div>
-					</div> 
+					</div>*/} 
+
+
 				</div>
 			</div>
 		</div>

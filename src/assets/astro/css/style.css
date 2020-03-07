@@ -7230,6 +7230,7 @@ font-size: 14px;
 .custom-larg .unstyled li a{
 	padding: 0;
     color: #ffffff;
+    cursor: pointer;
 }
 .custom-larg .unstyled .dropdown-menu-lin{
 	left: -50px;
