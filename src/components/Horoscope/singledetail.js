@@ -2,12 +2,22 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import ContentLoader, { Facebook,List  } from 'react-content-loader'
 import Moment from 'react-moment';
+import signimg from '../../assets/horoscope/aries.png';
 
 const Singledetail=(props)=>{
-	return (
+		 let imageUrl='';
+		 if(props.data.mphoto){
+			
+			 imageUrl=props.data.mphoto;
+		 }
+		return (
 			<div className="horo-detail-page">
 				<div className="horosc-headd">
-					<img src="http://rgyandigital.com/jyodemo/images/sign/aries.png" alt="aries"/>
+					{
+						 imageUrl &&
+						 
+						<img src ={ require(`../../assets/horoscope/${imageUrl}`) } alt={ props.data.sunsign }/>
+					}
 					<p>{ props.data.sunsign }</p>
 					<span><Moment format="DD, dddd ,MMM, YYYY" ></Moment></span>
 				</div>

@@ -28,7 +28,7 @@ const HomeTop_astrologer=(props)=>{
 					  {topastrologer.map((rowData, index) => (
 						<li key={index+1}>
 							<div className="astor-list-n-inner">
-								<Link to={rowData.slug}>
+								<Link to={'astrologer/'+rowData.slug}>
 									<img src="https://astrotalk.com/assets/astro/771.jpg" alt={rowData.name} />
 									<p>{rowData.name}</p>
 									<span>{rowData.language_name}</span>

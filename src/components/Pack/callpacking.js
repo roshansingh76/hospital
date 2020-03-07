@@ -1,6 +1,7 @@
 import React,{Component,Fragment}from 'react';
 import { BrowserRouter as Router,Link, Route,Redirect,withRouter,useHistory } from 'react-router-dom';
 import config from '../../config/config';
+const url ="https://www.jyotirvid.in:3000";
 class Callingpack extends Component {
 		constructor(props) {
 		super(props);
@@ -26,34 +27,32 @@ class Callingpack extends Component {
    }
    
    getPackList(){
-	  config.get('/api/service/getPackages',{
-			withCredentials:false
-		})
-		.then((res) => {
-		this.setState({ loading: false });
-		 if(res.data.success){
-				this.setState({ 
-					packList:res.data.data,
-					
-				});
-				
-   		 }else{
-			this.setState({ 
-				error:res.data.message
-			}); 
-		 }
-		}).catch((error) => {
-		  if (error.response) {
-				this.setState({ 
-					error:error.response.data.message
-				});
-		  } else if (error.request) {
-			  this.setState({ 
-						error:error.message
-				});
-		  }
-	});
-		 
+	   this.setState({
+			loading:false
+		});
+		
+	  fetch(url+"/api/service/getPackages")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            loading: false,
+            packList: result.data
+          });
+		
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            loading: true,
+            error
+          });
+        }
+      )
+	   
+	
    }
   checkPrice(id,price){
 		let gst=(price*18)/100;

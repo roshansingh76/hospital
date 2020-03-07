@@ -5,7 +5,7 @@ var cors = require('cors')
 var bodyParser = require('body-parser');
 const https = require('https');
 const fs = require('fs');
-const port = 3001;
+
 
 
 const db = require('./config/database');
@@ -40,7 +40,12 @@ app.use('/api/astro',astro);
 app.use('/api/user',user);
 app.use('/api/service',service);
 
+app.use(express.static(path.join(__dirname, 'build')))
 
+const port = process.env.PORT || 3000;
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'build', 'index.html'))
+})
 
 var server = https.createServer(options, app);
 

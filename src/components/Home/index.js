@@ -6,6 +6,7 @@ import Top_astrologer from './top_astrologer';
 import Astro_mini_service from './astro_mini_service';
 import Free_horoscope from './free_horoscope';
 import config from '../../config/config';
+const url ="https://www.jyotirvid.in:3000";
 class HomePage extends Component{
 	constructor(props) {
 		super(props);
@@ -27,170 +28,141 @@ class HomePage extends Component{
 	
 	componentDidMount() {
 		this.handleHoroscope();
-		this.handleMuhurat();
 		this.handleTopastrologer();
-		this.handleKundli();
+		this.handleMuhurat();
 		this.handleVastut();
+		this.handleKundli();
 	}
 	handleTopastrologer(){
-		
-	config.get('/api/service/getTopAstrologers',{
-			withCredentials:false
-		})
-		.then((res) => {
-		this.setState({ loading: false });
-		 if(res.data.success){
-				this.setState({ 
-					topastrologer:res.data.result,
-					
-				});
-				this.handleMuhurat();
-   		 }else{
-			this.setState({ 
-					error:res.data.message
-			}); 
-		 }
-		}).catch((error) => {
-		  if (error.response) {
-					this.setState({ 
-					
-						error:error.response.data.message
-					});
-		  } else if (error.request) {
-			  this.setState({ 
-					
-						error:error.message
-				});
-		  }
-	});
+		this.setState({
+			loading: true,
+	    });
+	   fetch(url+"/api/service/getTopAstrologers")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            loading: false,
+            topastrologer: result.result
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            loading: true,
+            error
+          });
+        }
+      )
+	
 	
 	}
 	handleHoroscope(){
-		config.get('/api/service/getHoroscopes',{
-			withCredentials:false
-		})
-		.then((res) => {
-		this.setState({ loading: false });
-		 if(res.data.success){
-				this.setState({ 
-					horoscope:res.data.data,
-					
-				});
-				
-   		 }else{
-			this.setState({ 
-					error:res.data.message
-			}); 
-		 }
-		}).catch((error) => {
-		  if (error.response) {
-					this.setState({ 
-					
-						error:error.response.data.message
-					});
-		  } else if (error.request) {
-			  this.setState({ 
-					
-						error:error.message
-				});
-		  }
-	});
+		this.setState({
+			loading: true,
+	    });
+	   fetch(url+"/api/service/getHoroscopes")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            loading: false,
+            horoscope: result.data
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            loading: true,
+            error
+          });
+        }
+      )
+	
 		
 	}
 	handleMuhurat(){
-		config.get('/api/service/getMuhuruat',{
-			withCredentials:false
-		})
-		.then((res) => {
-		this.setState({ loading: false });
-		 if(res.data.success){
-				this.setState({ 
-					muhurat:res.data.data,
-					
-				});
-				
-   		 }else{
-			this.setState({ 
-					error:res.data.message
-			}); 
-		 }
-		}).catch((error) => {
-		  if (error.response) {
-					this.setState({ 
-					
-						error:error.response.data.message
-					});
-		  } else if (error.request) {
-			  this.setState({ 
-					
-						error:error.message
-				});
-		  }
-	});
+		
+		
+		this.setState({
+			loading: true,
+	    });
+	   fetch(url+"/api/service/getMuhuruat")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            loading: false,
+            muhurat: result.data
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            loading: true,
+            error
+          });
+        }
+      )
+	  
+	
 	}
 	handleVastut(){
-		config.get('/api/service/geVastu',{
-			withCredentials:false
-		})
-		.then((res) => {
-		this.setState({ loading: false });
-		 if(res.data.success){
-				this.setState({ 
-					vastu:res.data.data,
-					
-				});
-				
-   		 }else{
-			this.setState({ 
-					error:res.data.message
-			}); 
-		 }
-		}).catch((error) => {
-		  if (error.response) {
-					this.setState({ 
-					
-						error:error.response.data.message
-					});
-		  } else if (error.request) {
-			  this.setState({ 
-					
-						error:error.message
-				});
-		  }
-	 });
+		
+		this.setState({
+			loading: true,
+	    });
+	   fetch(url+"/api/service/geVastu")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            loading: false,
+            vastu: result.data
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            loading: true,
+            error
+          });
+        }
+      )
+		
 	}
 handleKundli(){
-	
-		this.kundli=[];
-	config.get('/api/service/getHandKundalis',{
-			withCredentials:false
-		})
-		.then((res) => {
-		this.setState({ loading: false });
-		 if(res.data.success){
-				this.setState({ 
-					kundli:res.data.data,
-					
-				});
-				
-   		 }else{
-			this.setState({ 
-					error:res.data.message
-			}); 
-		 }
-		}).catch((error) => {
-		  if (error.response) {
-					this.setState({ 
-					
-						error:error.response.data.message
-					});
-		  } else if (error.request) {
-			  this.setState({ 
-					
-						error:error.message
-				});
-		  }
-	 });
+		
+		this.setState({
+			loading: true,
+	    });
+	   fetch(url+"/api/service/getHandKundalis")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            loading: false,
+            kundli: result.data
+          });
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            loading: true,
+            error
+          });
+        }
+      )
 	
 }
  render(){

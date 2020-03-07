@@ -13,12 +13,6 @@ const TalkastrologerAstologerlist=(props)=>{
 						<div className="dropdown-content-new">	
 							<ul>
 								<li><label className="cont">Astrologer<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Palmistry<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Gems Stone<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Vastu Consultant<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Palmistry<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Feng Shui<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Tarot card reader<input type="checkbox" value=""/><span className="checkmark"></span></label></li>
 							</ul>
 						</div>
 					</div> 
@@ -28,7 +22,7 @@ const TalkastrologerAstologerlist=(props)=>{
 						<div className="dropdown-content-new">
 							<ul>
 								<li><label className="cont">English<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Hindi<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
+								
 							</ul>
 						</div>
 					</div> 
@@ -38,8 +32,7 @@ const TalkastrologerAstologerlist=(props)=>{
 						<div className="dropdown-content-new">
 							<ul>
 								<li><label className="cont">3 Star<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">4 Star<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">4 Star<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
+							
 							</ul>
 						</div>
 					</div> 
@@ -49,9 +42,7 @@ const TalkastrologerAstologerlist=(props)=>{
 						<div className="dropdown-content-new">
 							<ul>
 								<li><label className="cont">0 To 5 Years<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">5 To 10 Years<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">10 To 15 Years<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">15 To 20 Years<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
+								
 							</ul>
 						</div>
 					</div> 
@@ -60,9 +51,7 @@ const TalkastrologerAstologerlist=(props)=>{
 						<div className="dropdown-content-new">
 							<ul>
 								<li><label className="cont">Price doesn't matter<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Upto ₹20/Min<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Between ₹20 - ₹50/Min<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
-								<li><label className="cont">Above ₹50/Min<input type="checkbox" value="checkbox"/><span className="checkmark"></span></label></li>
+								
 							</ul>
 						</div>
 					</div> 
@@ -70,8 +59,9 @@ const TalkastrologerAstologerlist=(props)=>{
 			</div>
 		</div>
 		<div className="row">
-		{ data.length===0 &&
-					<center><ContentLoader></ContentLoader></center>
+		{ data.length==0 &&
+			<center><img style={{ height: '20px',width: '20px' }}  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+			</center>				
 		}
 				
 		{ data.length>1  &&
@@ -92,7 +82,7 @@ const TalkastrologerAstologerlist=(props)=>{
 					</div>
 					<div className="astro-r-n">
 							<div className="astro-name">
-								<p><Link to={rowData.slug}>{rowData.name}</Link></p>
+								<p><Link to={'astrologer/'+rowData.slug}>{rowData.name}</Link></p>
 							</div>
 							<div className="astro-p-deatil">
 								<p>{rowData.expertise_name}</p>

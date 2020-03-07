@@ -1,4 +1,5 @@
 export const Home = '/';
+export const Astrodetails = '/astrologer/:slug';
 export const DONATE = '/donate';
 export const SIGN_UP = '/signup';
 export const ADMIN_LOGIN_IN = '/adminlogin';
@@ -17,7 +18,18 @@ export const FOODBANK = '/foodbank';
 export const Setting = '/Setting';
 export const Horoscopes = '/horoscope/:slug';
 export const Horoscopesdefault = '/horoscope';
-export const Muhurat = '/muhurat/:slug';
-export const Vastu = '/vastu/:slug';
-export const Kundli = '/Kundli/:slug';
+
+
+
+export const Muhuratdetails = '/muhurat/:slug';
+export const Vastudetals = '/micro-vastu/:slug';
+export const Kundlidetails = '/Kundli/:slug';
+
+export const MuhuratList = '/muhurat';
+export const VastuList = '/micro-vastu';
+export const KundliList = '/kundli';
+
+
+export const UserAccount = '/users/:slug';
+
 export const ADMIN_DETAILS = '/admin/:id';

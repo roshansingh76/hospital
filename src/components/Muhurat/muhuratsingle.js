@@ -1,4 +1,6 @@
-import React,{Component}from 'react';
+import React,{Component,Fragment}from 'react';
+import Leftnav from './../Talkastrologer/leftnav';
+
 import {
   BrowserRouter as Router,
   Link,
@@ -18,6 +20,11 @@ class Muhuratsingle extends Component{
 
 		return(
 			<React.Fragment>
+				<section className="padding">
+						<div className="container">
+							<div className="row">
+								<Leftnav/>
+								
 				<div className="col-md-9">
 					<div className="mu-vas-wapp">
 						<div className="img-text">
@@ -33,6 +40,10 @@ class Muhuratsingle extends Component{
 					</div>
 					
 				</div>
+							</div>
+						</div>
+				</section>
+			
 			</React.Fragment>
 		);
  }

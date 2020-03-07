@@ -2,12 +2,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../../config/routes';
 const subscribe=(props)=>{
-	alert('sdjksldjlfsdkl')
+	
 	
 }
 
 const Footer=(props)=>{
-		console.log(props);
+	
 	return (<footer>
 	  <div className="footer-main">
 		<div className="container">

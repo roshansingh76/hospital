@@ -1,5 +1,5 @@
 import React,{Component,Fragment}from 'react';
-import { Link } from 'react-router-dom';
+import { Link,browserHistory  } from 'react-router-dom';
 import Leftnav from './leftnav';
 import Astologerlist from './astologerlist';
 import Astologerdetails from './astologerdetails';
@@ -7,12 +7,13 @@ import LoginPage from './../Login/FrontendLogin';
 import config from '../../config/config';
 import { facebookConfig, googleConfig } from '../../config/social-config';
 import deviceStorage from '../../config/deviceStorage';
+const url ="https://www.jyotirvid.in:3000";
 class Talkastrologer extends Component{
 	constructor(props) {
 		super(props);
 		this.state={
 				astrolist:[],
-				token:'',
+				token:localStorage.getItem('token'),
 				userId:'',
 				authFlag:false,
 				modalIsOpen:false,
@@ -69,7 +70,11 @@ class Talkastrologer extends Component{
 		});
 	  }
 	componentDidMount() {
-	
+		this.setState({ 
+				token:localStorage.getItem('token'),
+			
+		
+		});
 		this.getAllAstrologer();
 	}
 	checkUser(astroId,type){
@@ -79,6 +84,9 @@ class Talkastrologer extends Component{
 				modalIsOpen:true
 			});
 			this.openModal();
+		}else{
+			 this.props.history.push('/callingpack')
+
 		}
 		
 	}
@@ -86,40 +94,28 @@ class Talkastrologer extends Component{
 		this.setState({
 			loading:false
 		});
-		config.get('/api/astro/getAstrologerlist',{
-			withCredentials:false
-		})
-		.then((res) => {
-		this.setState({ loading: false });
-		 if(res.data.success){
-				this.setState({ 
-					loading: false,
-					error:'',
-					astrolist:res.data.result,
-					
-				});
-			
-				
-		 }else{
-			this.setState({ 
-					loading: false,
-					error:res.data.message
-			}); 
-		 }
-		}).catch((error) => {
-		  if (error.response) {
-					this.setState({ 
-						loading: false,
-						error:error.response.data.message
-					});
-		  } else if (error.request) {
-			  this.setState({ 
-						loading: false,
-						error:error.message
-				});
-		  }
-	});
 		
+	  fetch(url+"/api/astro/getAstrologerlist")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            loading: false,
+            astrolist: result.result
+          });
+		
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            loading: true,
+            error
+          });
+        }
+      )
+	
 	}
 	sendOtpagain(){
 		 this.setState({ loader: true,success:'' });
@@ -317,10 +313,7 @@ class Talkastrologer extends Component{
 							 Astologerlist.length>0 &&
 								<Astologerlist data={astrolist} checkAstro={this.checkUser}/>
 							 }
-							{
-							 astrolist.length==0 &&
-								<h1>Data Not Found</h1>
-							}
+							
 							{
 						 	authFlag &&
 							<LoginPage 

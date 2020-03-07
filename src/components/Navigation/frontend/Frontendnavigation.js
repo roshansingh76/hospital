@@ -1,67 +1,334 @@
-
-import React from 'react';
+import React,{Component,Fragment}from 'react';
 import { Link } from 'react-router-dom';
 import * as ROUTES from '../../../config/routes';
+import login from '../../Login/LoginClass';
+import LoginPage from './../../Login/FrontendLogin';
+import config from './../../../config/config';
+import deviceStorage from './../../../config/deviceStorage';
 
-const Fnavigation = () => (
-		<Mainnav/>		
+class Mainnav extends Component{
+	constructor(props) {
+		super(props);
+			this.state={
+				isAuthenticated:localStorage.getItem('token'),
+				userId:'',
+				authFlag:false,
+				modalIsOpen:false,
+				loading: false,
+				loader: false,
+				error: '',
+				mobile:'',
+				flagMobilecontainer:true,
+				flagOtpcontainer:false,
+				flagSignin:false,
+				otp:'',
+				success:'',
+				errorStyle:false,
+				hasErrored:false
+		};
+		this.closeModal = this.closeModal.bind(this);
+		this.formdata = this.formdata.bind(this);
+		this.sendotpMobile = this.sendotpMobile.bind(this);
+		this.changeContact = this.changeContact.bind(this);
+		this.userSignin = this.userSignin.bind(this);
+		this.vfyOtp = this.vfyOtp.bind(this);
+		this.changeOtp = this.changeOtp.bind(this)
+		this.changeOtp = this.changeOtp.bind(this)
+		this.sendOtpagain = this.sendOtpagain.bind(this)
+		this.mainopenModal=this.mainopenModal.bind(this);
+	}
+	
+	componentDidMount() {
+		this.setState({ 
+				isAuthenticated:localStorage.getItem('token'),
+			
 		
-);
-const Mainnav=()=>(
-    <header id="header" className="header header-main educare-header navbar-main">
-        <nav className="navbar navbar-expand-lg bg-dark navbar-dark sticky-top custom-larg">
-            <div className="container">
-                <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
-                    <span className="navbar-toggler-icon"></span>
-                </button>
-                <ul className="unstyled  d-sm-none d-md-none d-lg-none d-xl-none">
-                    <li><a href="sign-in.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
-                    <li className="nav-item dropdown">
-                        <a  href="#" id="navbardrop" data-toggle="dropdown">
-                        Susil <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" width="30" class="rounded-circle z-depth-0" alt="avatar image" />  
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-lin">
-                            <a className="dropdown-item" href="#">Profile</a>
-                            <a className="dropdown-item" href="#">Logout</a>
-                        </div>
-                    </li>
-                </ul>
-              <div className="collapse navbar-collapse " id="collapsibleNavbar">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active"><Link to={ROUTES.Home} className="nav-link">Home</Link></li>
-                    <li className="nav-item "><Link to={ROUTES.Talkastrologer} className="nav-link">Prediction</Link></li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
-                        Services
-                        </a>
-                        <div className="dropdown-menu">
-                            <a className="dropdown-item" href="#">Career</a>
-                            <a className="dropdown-item" href="#">Love & Relationship</a>
-                            <a className="dropdown-item" href="#">Health</a>
-                        </div>
-                    </li>
-                    <li className="nav-item"><Link to={ROUTES.About} className="nav-link">About</Link></li>
-                    <li className="nav-item"><Link to={ROUTES.Horoscopesdefault+'/aries'} className="nav-link">Horoscope</Link></li>
-                </ul>
-              </div> 
-               <ul className="unstyled d-none d-sm-block">
-                    <li><a href="sign-in.html">Login</a></li>
-                    <li><a href="register.html">Register</a></li>
-                    <li className="nav-item dropdown">
-                        <a  href="#" id="navbardrop" data-toggle="dropdown">
-                        Susil <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" width="30" class="rounded-circle z-depth-0" alt="avatar image" />  
-                        </a>
-                        <div className="dropdown-menu dropdown-menu-lin">
-                            <a className="dropdown-item" href="#">Profile</a>
-                            <a className="dropdown-item" href="#">Logout</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-        </nav>
-    </header>
+		});
+	}
+	 closeModal() {
+		this.setState({ 
+			loader: false,
+			flagMobilecontainer:true,
+			flagOtpcontainer:false,
+			flagSignin:false,
+			modalIsOpen:false,
+			mobile:'',
+			otp:'',
+			error:''
+		});
+	  }
+	mainopenModal(){
+		this.setState({ 
+			loader: false,
+			authFlag:true,
+			flagMobilecontainer:true,
+			flagOtpcontainer:false,
+			flagSignin:false,
+			modalIsOpen:true,
+			mobile:'',
+			otp:'',
+			error:''
+		});
+	}
+	sendOtpagain(){
+		 this.setState({ loader: true,success:'' });
+		 config.get('/api/user/getOtp?phone='+this.state.mobile)
+	   .then((res) => {
+		   this.setState({ loader: false });
+			if(res.data.success){
+				   this.setState({ 
+					   loader: false,
+					   flagMobilecontainer:false,
+					   flagOtpcontainer:true,
+					   success:'Check Mobile  Otp send successfully!'
+				   });
+			}else{
+			   this.setState({ 
+					   loader: false,
+					   error:res.data.message
+			   }); 
+			}
+		   }).catch((error) => {
+			 if (error.response) {
+					   this.setState({ 
+						   loader: false,
+						   error:error.response.data.message
+					   });
+			 } else if (error.request) {
+				 this.setState({ 
+						   loader: false,
+						   error:error.message
+				   });
+			 }else{
+				 
+			 }
+	   });
+	
+		
+	}
+	sendotpMobile(){
+		if(!this.state.mobile){
+			this.setState({
+				error: 'Enter Mobile Number'
+			});
+			return false;
+			
+		}
+     var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+	if(this.state.mobile.match(phoneno)) {
+	  
+	 this.setState({ loader: true,error:'',success:'' });
+	 config.get('/api/user/getOtp?phone='+this.state.mobile)
+	   .then((res) => {
+		   this.setState({ loader: false });
+			if(res.data.success){
+				   this.setState({ 
+					   loader: false,
+					   flagMobilecontainer:false,
+					   flagOtpcontainer:true,
+				   });
+			}else{
+			   this.setState({ 
+					   loader: false,
+					   error:res.data.message
+			   }); 
+			}
+		   }).catch((error) => {
+			 if (error.response) {
+					   this.setState({ 
+						   loader: false,
+						   error:error.response.data.message
+					   });
+			 } else if (error.request) {
+				 this.setState({ 
+						   loader: false,
+						   error:error.message
+				   });
+			 }else{
+				 
+			 }
+	   });
+	}else{
+		this.setState({
+				error: 'Enter Valid Mobile Number'
+			});	
+		
+	}
+	}
+	formdata(e){
+		let change = {}
+		change[e.target.name] = e.target.value
+		this.setState(change)
+		
+		
+	}
+	
+	changeContact(){
+		this.setState({ 
+			loader: false,
+			flagMobilecontainer:true,
+			flagOtpcontainer:false,
+			mobile:'',
+			otp:''
+		});
+	}
+	vfyOtp(){
+		if(!this.state.otp){
+			this.setState({
+				hasErrored:true,
+				errorStyle:true
+			});
+			return false;
+			
+		}
+	 let length=this.state.otp.length;
+	 if(length<4){
+			this.setState({
+				hasErrored:true,
+				errorStyle:true
+			});
+			return false;
+			
+		}
+	
+		let otp=this.state.otp.toString();
+		otp=otp.replace(/,/g, "");
+		this.setState({ 
+			loader: true,
+			success:''
+		});
+		config.get('/api/user/verifyOtp?phone='+this.state.mobile+'&otp='+otp)
+	   .then((res) => {
+		   this.setState({ loader: false });
+			if(res.data.success){
+				   this.setState({ 
+					   loader: false,
+					});
+					
+					deviceStorage.saveItem('token',res.data.token);
+					window.location.href=window.location.href;
+			}else{
+			   this.setState({ 
+					   loader: false,
+						hasErrored:true,
+						error:res.data.message
+			   }); 
+			}
+		   }).catch((error) => {
+			 if (error.response) {
+				 this.state.otp=[];
+					   this.setState({ 
+						   loader: false,
+							error:error.response.data.message
+					   });
+			 } else if (error.request) {
+				  this.state.otp=[];
+				 this.setState({ 
+						   loader: false,
+							error:error.request.data.message
+				   });
+			 }else{
+				 
+			 }
+	   });
+	}
+	userSignin(){
+		this.setState({ 
+			loader: false,
+			flagMobilecontainer:false,
+			flagOtpcontainer:false,
+			flagSignin:true,
+			mobile:'',
+		    otp:''
+		});
+	}
+	changeOtp(e){
+		this.setState({ 
+			hasErrored:false,
+		}); 
+	  this.setState({
+			otp:e
+	  })
+	}
+	render(){
+		const {authFlag,isAuthenticated}=this.state;
+		
+		return (
+		<Fragment>
+			<header id="header" className="header header-main educare-header navbar-main">
+				<nav className="navbar navbar-expand-lg bg-dark navbar-dark sticky-top custom-larg">
+					<div className="container">
+						<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+							<span className="navbar-toggler-icon"></span>
+						</button>
+						<ul className="unstyled  d-sm-none d-md-none d-lg-none d-xl-none">
+							<li><Link to="sign-in.html">Login</Link></li>
+							<li><Link to="register.html">Register</Link></li>
+							<li className="nav-item dropdown">
+								<Link  to="#" id="navbardrop" data-toggle="dropdown">
+								Susil <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" width="30" className="rounded-circle z-depth-0" alt="avatar image" />  
+								</Link>
+								<div className="dropdown-menu dropdown-menu-lin">
+									<Link className="dropdown-item" to="#">Profile</Link>
+									<Link className="dropdown-item" to="#">Logout</Link>
+								</div>
+							</li>
+						</ul>
+					  <div className="collapse navbar-collapse " id="collapsibleNavbar">
+						<ul className="navbar-nav mr-auto">
+							<li className="nav-item active"><Link to={ROUTES.Home} className="nav-link">Home</Link></li>
+							<li className="nav-item "><Link to={ROUTES.Talkastrologer} className="nav-link">Prediction</Link></li>
+							<li className="nav-item dropdown">
+								<Link className="nav-link dropdown-toggle" to="#" id="navbardrop" data-toggle="dropdown">
+								Services
+								</Link>
+								<div className="dropdown-menu">
+									<Link className="dropdown-item" to="#">Career</Link>
+									<Link className="dropdown-item" to="#">Love & Relationship</Link>
+									<Link className="dropdown-item" to="#">Health</Link>
+								</div>
+							</li>
+							<li className="nav-item"><Link to={ROUTES.About} className="nav-link">About</Link></li>
+							<li className="nav-item"><Link to={ROUTES.Horoscopesdefault+'/aries'} className="nav-link">Horoscope</Link></li>
+						</ul>
+					  </div> 
+					   <ul className="unstyled d-none d-sm-block">
+						  { !isAuthenticated &&
+							<li><a onClick={this.mainopenModal}>Login</a></li>
+						  }
+						  {isAuthenticated &&
+							<li className="nav-item dropdown">
+								<Link  to="#" id="navbardrop" data-toggle="dropdown">
+								Susil <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" width="30" className="rounded-circle z-depth-0" alt="avatar image" />  
+								</Link>
+								<div className="dropdown-menu dropdown-menu-lin">
+									<Link to={'/users/myaccount'} className="dropdown-item" >Profile</Link>
+									<Link className="dropdown-item" to="#">Logout</Link>
+								</div>
+							</li>
+						  }
+						</ul>
+					</div>
+				</nav>
+				{
+					this.state.authFlag &&
+					<LoginPage 
+					data={this.state}
+					closeModal={this.closeModal} 
+					sendOtp={this.sendotpMobile} 
+					handleChange={this.formdata}
+					changeMobile={this.changeContact} 
+					verifyOtp={this.vfyOtp}
+					signin={this.userSignin}
+					handleChangeOtp={this.changeOtp}
+					resendOtp={this.sendOtpagain}
+					/>		
+				}
+			</header>
+			</Fragment>		
+	
+	)}
+	
+}
 
-)
-
-export default Fnavigation;
+export default Mainnav;

@@ -10,7 +10,7 @@ import axios from "axios";
 import  Horoscope_detail from './horoscope_detail';
 import Leftnav from './../Talkastrologer/leftnav';
 import config from '../../config/config';
-
+const url ="https://www.jyotirvid.in:3000";
 class Horoscope extends Component{
 	constructor(props) {
 		super(props);
@@ -84,36 +84,31 @@ class Horoscope extends Component{
 	
 	}
 	handleHoroscope(slug){
+	this.setState({
+			loading: true,
+	    });
+	   fetch(url+"/api/service/getHoroscopes")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            loading: false,
+            horoscope: result.data
+          });
+		 this.getHoroscopedetails();
+        },
+        // Note: it's important to handle errors here
+        // instead of a catch() block so that we don't swallow
+        // exceptions from actual bugs in components.
+        (error) => {
+          this.setState({
+            loading: true,
+            error
+          });
+        }
+      )
+	  
 	
-		config.get('/api/service/getHoroscopes',{
-			withCredentials:false
-		})
-		.then((res) => {
-		this.setState({ loading: false });
-		 if(res.data.success){
-				this.setState({ 
-					horoscope:res.data.data,
-					
-				});
-				this.getHoroscopedetails();
-   		 }else{
-			this.setState({ 
-					error:res.data.message
-			}); 
-		 }
-		}).catch((error) => {
-		  if (error.response) {
-					this.setState({ 
-					
-						error:error.response.data.message
-					});
-		  } else if (error.request) {
-			  this.setState({ 
-					
-						error:error.message
-				});
-		  }
-	 });
 		
 	}
  render(){
@@ -123,7 +118,7 @@ class Horoscope extends Component{
 				<section className="padding">
 						<div className="container">
 							<div className="row">
-								<Leftnav/>
+								<Leftnav  data={this.state}/>
 								<Horoscope_detail data={this.state}/>
 							
 							</div>

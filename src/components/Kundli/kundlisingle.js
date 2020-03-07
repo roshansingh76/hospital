@@ -8,7 +8,7 @@ import {
 } from "react-router-dom";
 import Leftnav from './../Talkastrologer/leftnav';
 
-class Vastusingle extends Component{
+class Kundlisingle extends Component{
 	constructor(props) {
 		super(props);
 	}
@@ -18,7 +18,7 @@ class Vastusingle extends Component{
  render(){
 
 		return(
-			<React.Fragment>
+		<React.Fragment>
 				<section className="padding">
 						<div className="container">
 							<div className="row">
@@ -48,4 +48,4 @@ class Vastusingle extends Component{
  }
 
 }
-export default Vastusingle;
+export default Kundlisingle;

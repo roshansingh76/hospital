@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route,Redirect,withRouter,useHistory } from 'react-router-dom';
+import { BrowserRouter as Router, Route,Redirect,withRouter,useHistory,Switch } from 'react-router-dom';
 import deviceStorage from '../../config/deviceStorage';
 import * as ROUTES from '../../config/routes';
 import Navigation from '../Navigation';
@@ -15,6 +15,7 @@ import AstrologerPage from '../Astrologer'
 import CreateAstro from '../Astrologer/create'
 import SettingPage from '../Setting'
 import Talkastrologer from '../Talkastrologer'
+import Talkastrologerdetail from '../Talkastrologer/detail'
 import Muhurat from '../Muhurat'
 import Vastu from '../Vastu'
 import Kundli from '../Kundli'
@@ -23,6 +24,11 @@ import Chat from '../communication/chat'
 import About from '../About'
 import Blogs from '../Blogs'
 import Callingpack from '../Pack/callpacking'
+import MuhuratDeatil from  '../Muhurat/muhuratsingle'
+import VastuDetail from  '../Vastu/vastusingle'
+import KundliDetail from  '../Kundli/kundlisingle'
+
+import UserAccountPage from  '../Users'
 
 const App= (props) => {
 	const isAuthenticated = localStorage.getItem('token');
@@ -56,22 +62,34 @@ const App= (props) => {
 		<div className="main-wrapper" >
 		 <Router>
 		   <div className="educare-header-section top-bar jy-header "> 
-				<FrontendTopbar/>
-				<FrontendHeader/>
-				<FrontendNavigation/>
+				<FrontendTopbar {...props}/>
+				<FrontendHeader {...props}/>
+				<FrontendNavigation {...props}/>
 		   </div>
-			
-			<Route   exact path={ROUTES.Home} component={HomePage} />	
+		   	<Route   exact path={ROUTES.Home} component={HomePage} />	
+		
 			<Route   path={ROUTES.Talkastrologer} component={Talkastrologer} />
+			<Route   path={ROUTES.Astrodetails} component={Talkastrologerdetail} />
 			<Route   path={ROUTES.Callingpack} component={Callingpack} />
 			<Route   path={ROUTES.Chat} component={Chat} />
 			<Route   path={ROUTES.About} component={About} />
 			<Route   path={ROUTES.Blogs} component={Blogs} />
-			<Route   path={ROUTES.Vastu} component={Vastu} />
-			<Route   path={ROUTES.Muhurat} component={Muhurat} />
-			<Route   path={ROUTES.Kundli} component={Kundli} />
+			<Switch>
+			<Route   path={ROUTES.Vastudetals+':slug'} component={VastuDetail} />
+			<Route   path={ROUTES.Muhuratdetails+':slug'} component={MuhuratDeatil} />
+			<Route   path={ROUTES.Kundlidetails+':slug'} component={KundliDetail} />
+			
+			<Route   path={ROUTES.VastuList} component={Vastu} />
+			<Route   path={ROUTES.MuhuratList} component={Muhurat} />
+			<Route   path={ROUTES.KundliList} component={Kundli} />
+			</Switch>
 			<Route   path={ROUTES.Horoscopes+"/:slug"} component={Horoscope} />	
+			
 			<Route   path={ROUTES.Horoscopesdefault} component={Horoscope} />	
+			<Route   path={ROUTES.UserAccount} component={UserAccountPage} />	
+
+			
+			
 			<Footer {...props }/>
 		 </Router>
 	  </div>)
