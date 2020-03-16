@@ -378,4 +378,7 @@ padding: 15px;
     width: 20% !important;
     float: none !important;
 }
+.tab-v1 .nav-tabs > li {
+    width: 33.3%;
+}
 }

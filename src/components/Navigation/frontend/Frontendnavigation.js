@@ -5,7 +5,11 @@ import login from '../../Login/LoginClass';
 import LoginPage from './../../Login/FrontendLogin';
 import config from './../../../config/config';
 import deviceStorage from './../../../config/deviceStorage';
+import $ from 'jquery';
 import validator from 'validator' 
+
+
+
 
 class Mainnav extends Component{
 	constructor(props) {
@@ -263,7 +267,7 @@ class Mainnav extends Component{
 		return (
 		<Fragment>
 			<header id="header" className="header header-main educare-header navbar-main">
-				<nav className="navbar navbar-expand-lg bg-dark navbar-dark sticky-top custom-larg">
+				<nav className="navbar navbar-expand-lg bg-dark navbar-dark  custom-larg">
 					<div className="container">
 						<button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
 							<span className="navbar-toggler-icon"></span>
@@ -340,5 +344,19 @@ class Mainnav extends Component{
 	)}
 	
 }
+
+
+
+$(window).scroll(function () {
+  console.log($(window).scrollTop())
+  if ($(window).scrollTop() > 63) {
+    $('.navbar').addClass('navbar-fixed');
+  }
+  if ($(window).scrollTop() < 64) {
+    $('.navbar').removeClass('navbar-fixed');
+  }
+});
+
+
 
 export default Mainnav;
