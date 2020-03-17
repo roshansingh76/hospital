@@ -10,7 +10,7 @@ import axios from "axios";
 import Leftnav from './../Talkastrologer/leftnav';
 import Vastulist from './vastulist';
 import Vastusingle from './vastusingle';
-const url ="https://www.jyotirvid.in:3000";
+const url ="https://www.jyotirvid.in";
 
 
 class About extends Component{

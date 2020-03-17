@@ -26,8 +26,8 @@ const deviceStorage = {
   },
   async deleteJWT() {
 	try{
-    localStorage.setItem('token','');
-    localStorage.setItem('isPrivilage','');
+		localStorage.setItem('token','');
+		localStorage.setItem('isPrivilage','');
 		window.location.href=window.location.href;
     
     } catch (error) {

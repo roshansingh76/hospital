@@ -14,6 +14,10 @@ const astro = require('./routes/astro');
 const index = require('./routes/index');
 const user = require('./routes/user');
 const service = require('./routes/service');
+const payment = require('./routes/payment');
+
+
+
 var key = fs.readFileSync('./certs/apache.key');
 var cert = fs.readFileSync('./certs/apache.crt');
 var options = {
@@ -39,14 +43,19 @@ app.use('/api/login', index);
 app.use('/api/astro',astro);
 app.use('/api/user',user);
 app.use('/api/service',service);
+app.use('/api/payment',payment);
 
-app.use(express.static(path.join(__dirname, 'build')))
 
 const port = process.env.PORT || 3000;
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'))
-})
 
+app.disable('x-powered-by');
+app.use(express.static(path.join(__dirname, 'build')));
+// need to declare a "catch all" route on your express server 
+  // that captures all page requests and directs them to the client
+  // the react-router do the route part
+  app.get('*', function (req, res) {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
 var server = https.createServer(options, app);
 
 server.listen(port, () => {

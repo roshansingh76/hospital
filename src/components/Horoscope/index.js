@@ -10,7 +10,7 @@ import axios from "axios";
 import  Horoscope_detail from './horoscope_detail';
 import Leftnav from './../Talkastrologer/leftnav';
 import config from '../../config/config';
-const url ="https://www.jyotirvid.in:3000";
+const url ="https://www.jyotirvid.in";
 class Horoscope extends Component{
 	constructor(props) {
 		super(props);

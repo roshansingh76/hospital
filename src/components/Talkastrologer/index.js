@@ -7,13 +7,14 @@ import LoginPage from './../Login/FrontendLogin';
 import config from '../../config/config';
 import { facebookConfig, googleConfig } from '../../config/social-config';
 import deviceStorage from '../../config/deviceStorage';
-const url ="https://www.jyotirvid.in:3000";
+const url ="https://www.jyotirvid.in";
 class Talkastrologer extends Component{
 	constructor(props) {
 		super(props);
 		this.state={
 				astrolist:[],
 				token:localStorage.getItem('token'),
+				wallet:localStorage.getItem('wallet'),
 				userId:'',
 				authFlag:false,
 				modalIsOpen:false,
@@ -77,6 +78,11 @@ class Talkastrologer extends Component{
 		});
 		this.getAllAstrologer();
 	}
+	handleError(error){
+		if (error) {
+			alert(error.message);
+		}
+	}
 	checkUser(astroId,type){
 		if(!this.state.token && !this.state.userId){
 			this.setState({
@@ -85,8 +91,33 @@ class Talkastrologer extends Component{
 			});
 			this.openModal();
 		}else{
+			if(this.state.wallet===0){
 			 this.props.history.push('/callingpack')
+			}else{
+				  var session = window.OT.initSession('46557562', this.state.token);
+				session.on('streamCreated', function(event) {
+					session.subscribe(event.stream, 'subscriber', {
+					  insertMode: 'append',
+					  width: '100%',
+					  height: '100%'
+					},this.handleError);
+				  });
+				  var publisher = window.OT.initPublisher('publisher', {
+					insertMode: 'append',
+					width: '100%',
+					height: '100%'
+				  },this.handleError);
 
+				session.connect('base64:468CXyOf19W8yPMmj5yGXvUg57e3axpIqU/hXthajeM=', function(error) {
+				// If the connection is successful, publish to the session
+				if (error) {
+					this.handleError(error);
+				} else {
+					session.publish(publisher, this.handleError);
+				}
+				});
+	
+			}
 		}
 		
 	}
@@ -313,7 +344,10 @@ class Talkastrologer extends Component{
 							 Astologerlist.length>0 &&
 								<Astologerlist data={astrolist} checkAstro={this.checkUser}/>
 							 }
-							
+								<div id="videos">
+								<div id="subscriber"></div>
+								<div id="publisher"></div>
+								</div>
 							{
 						 	authFlag &&
 							<LoginPage 

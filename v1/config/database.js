@@ -4,8 +4,8 @@ var pool=mysql.createPool({
     connectionLimit : 100,
     host:'localhost',
     user:'root',
-    password:'',
-    database:'dbastro',
+    password:'rgyan@2025',
+    database:'mydb',
     waitForConnections: true,
     queueLimit: 0
 	

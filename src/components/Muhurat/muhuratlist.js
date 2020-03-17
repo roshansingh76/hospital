@@ -22,7 +22,7 @@ const Muhuratlist=(props)=>{
 						{	data.length > 1 && 
 							<ul>
 							 {data.map((rowData, index) => (
-								<li>
+								<li key={index+1}>
 									<Link  to={'/muhurat/'+rowData.muhurat_slug.toLowerCase()}  >
 									<div className="comm-img">
 										<img src={ require(`../../assets/muhurat/${rowData.muhurat_image}`) } alt={rowData.title} />

@@ -1,7 +1,8 @@
 import React,{Component,Fragment}from 'react';
 import { BrowserRouter as Router,Link, Route,Redirect,withRouter,useHistory } from 'react-router-dom';
 import config from '../../config/config';
-const url ="https://www.jyotirvid.in:3000";
+const url ="https://www.jyotirvid.in";
+const tempurl ="https://localhost:5000";
 class Callingpack extends Component {
 		constructor(props) {
 		super(props);
@@ -19,15 +20,16 @@ class Callingpack extends Component {
 	
 	   this.checkPrice = this.checkPrice.bind(this);
 	   this.checkDefaultpackage = this.checkDefaultpackage.bind(this);
+	   this.redirectToPayU = this.redirectToPayU.bind(this);
+
+	   
 
    }
   componentDidMount() {
-	const script = document.createElement("script");
-	script.src = "https://js.instamojo.com/v1/checkout.js";
-	script.async = true;
-	script.onload = () => this.onOpen();
-    document.body.appendChild(script);
+	  
 	this.getPackList();  
+  
+
    }
    
    getPackList(){
@@ -59,7 +61,7 @@ class Callingpack extends Component {
 	   
 	
    }
-   checkDefaultpackage(){
+  checkDefaultpackage(){
 	   const pack=this.state.defaultdata;
 		if(pack.length===1){
 			let price=pack[0].price;
@@ -83,20 +85,146 @@ class Callingpack extends Component {
 			 packId:id
 		});
   }
-  onOpen() {
-	  
-		
-  }
-  onClose(){
-	  
+ payumoney() {
+	var pd = {
+		 key: '7pDTZjon',
+		 txnid: '1233',
+		 amount:this.state.totalPrice,
+		 firstname: 'Roshan',
+		 email: 'roshansingh@gmail.com',
+		 phone:'7696689508',
+		 productinfo:'1',
+		 surl:'paymentsuccess',
+		 furl:'paymentfaild',
+		 hash: 'lJSLB6aMGZ'
+	}
+	let data = {
+		'txnid': pd.txnid,
+		'email': pd.email,
+		'amount': pd.amount,
+		'productinfo': pd.productinfo,
+		'firstname': pd.firstname
+	}
+	let self = this;
+	fetch(url + '/api/payment/payUMoneyPayment', {
+		method: 'post',
+		headers: {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		},
+		body: JSON.stringify(data)
+	})
+	.then(function (a) {
+		return a.json(); 
+	})
+	.then(function (json) {
+		pd.hash = json.hash;
+		self.redirectToPayU(pd);
+	});
+}
+  redirectToPayU(pd) {
+	  console.log(localStorage.getItem('token'));
+	 window.bolt.launch(pd, {
+		responseHandler: function (response) {
+			let data=response.response;
+			if(data.txnStatus==="SUCCESS"){
+				
+			  let formdata={
+					token:localStorage.getItem('token'),
+					country:data.country,
+					udf10:data.udf10,
+					discount:data.discount,
+					mode:data.mode,
+					cardhash:data.cardhash,
+					error_Message:data.error_Message,
+					state:data.state,
+					bankcode:data.bankcode,
+					txnid:data.txnid,
+					net_amount_debit:data.net_amount_debit,
+					firstname:data.firstname,
+					lastname:data.lastname,
+					zipcode:data.zipcode,
+					phone:data.phone,
+					productinfo:data.productinfo,
+					status:data.status,
+					city:data.city,
+					isConsentPayment:data.isConsentPayment,
+					error:data.error,
+					addedon:data.addedon,
+					udf9:data.udf9,
+					udf7:data.udf7,
+					udf8:data.udf8,
+					encryptedPaymentId:data.encryptedPaymentId,
+					bank_ref_num:data.bank_ref_num,
+					email:data.email,
+					amount:data.amount,
+					unmappedstatus:data.unmappedstatus,
+					address2:data.address2,
+					payuMoneyId:data.payuMoneyId,
+					address1: data.address1,
+					udf5:data.udf5,
+					mihpayid:data.mihpayid,
+					udf6: data.udf6,
+					udf3:data.udf3,
+					udf4:data.udf4,
+					udf1: data.udf1,
+					udf2: data.udf2,
+					field1:data.field1,
+					cardnum:data.cardnum,
+					field7:data.field7,
+					field6: data.field6,
+					field9: data.field9,
+					field8: data.field8,
+					amount_split:data.amount_split,
+					field3:data.field3,
+					field2: data.field2,
+					field5: data.field5,
+					PG_TYPE:data.PG_TYPE,
+					field4:data.field4,
+					name_on_card:data.name_on_card,
+					txnStatus:data.txnStatus,
+					txnMessage:data.txnMessage
+
+			  };
+			fetch(url + '/api/payment/payUMoneyPaymentstatus', {
+				method: 'post',
+				headers: {
+					'Accept': 'application/json',
+					'Content-Type': 'application/json',
+					'x-access-token':localStorage.getItem('token')
+				},
+				body: JSON.stringify(formdata)
+			})
+			.then(function (a) {
+				return a.json(); 
+			})
+			.then(function (json) {
+				localStorage.setItem('wallet',json.wallet);
+			 });
+	
+	
+			 
+			}else if(data.txnStatus=="CANCEL"){
+				
+			}else{
+				
+			}
+			
+			//console.log(response.response.txnStatus);
+			//console.log(response);
+		},
+		catchException: function (response) {
+		 console.log(response);
+		}
+	});
   }
   onSuccess(response) {
 	  
 	  
   }
- onFailure(response) {
+  onFailure(response) {
 	 
- }
+  }
 
 
 
@@ -190,7 +318,7 @@ class Callingpack extends Component {
 		  							</div>
 
 		  							<div className="addmoney-btn">
-										<button type="submit" className="btn btn-default" onClick={e =>this.onOpen()}>Proceed to Recharge</button>
+										<button type="submit" className="btn btn-default" onClick={e =>this.payumoney()}>Proceed to Recharge</button>
 		  							</div>
 
 		  						</div>

@@ -2,7 +2,6 @@ import React,{Component}from 'react';
 import { Link } from 'react-router-dom';
 import Profilenav from './profilenav';
 import Profileedit from './profileedit';
-import Profilepassword from './profilepassword';
 import Recharge from './recharge';
 import Userwallet from './userwallet';
 import Customercare from './customercare';
@@ -27,7 +26,6 @@ constructor(props) {
 										<Recharge/>
 										<Profileedit/>
 										<Callhistory/>
-										<Profilepassword/>
 										<Userwallet/>
 										<Customercare/>
 									</div>

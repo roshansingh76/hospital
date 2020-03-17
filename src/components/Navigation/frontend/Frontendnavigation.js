@@ -1,13 +1,14 @@
 import React,{Component,Fragment}from 'react';
 import { Link } from 'react-router-dom';
+import $ from 'jquery';
+import axios from 'axios'
 import * as ROUTES from '../../../config/routes';
 import login from '../../Login/LoginClass';
 import LoginPage from './../../Login/FrontendLogin';
 import config from './../../../config/config';
 import deviceStorage from './../../../config/deviceStorage';
-import $ from 'jquery';
 import validator from 'validator' 
-
+const url ="https://www.jyotirvid.in:3000";
 
 
 
@@ -17,6 +18,8 @@ class Mainnav extends Component{
 			this.state={
 				isAuthenticated:localStorage.getItem('token'),
 				userId:'',
+				name:localStorage.getItem('name'),
+				wallet:localStorage.getItem('wallet'),
 				authFlag:false,
 				modalIsOpen:false,
 				loading: false,
@@ -78,7 +81,7 @@ class Mainnav extends Component{
 	}
 	sendOtpagain(){
 		 this.setState({ loader: true,success:'' });
-		 config.get('/api/user/getOtp?phone='+this.state.mobile)
+		axios.get(url+'/api/user/getOtp?phone='+this.state.mobile)
 	   .then((res) => {
 		   this.setState({ loader: false });
 			if(res.data.success){
@@ -129,7 +132,7 @@ class Mainnav extends Component{
 	if(this.state.mobile.match(phoneno)) {
 	  
 	 this.setState({ loader: true,error:'',success:'' });
-	 config.get('/api/user/getOtp?phone='+this.state.mobile)
+	axios.get(url+'/api/user/getOtp?phone='+this.state.mobile)
 	   .then((res) => {
 		   this.setState({ loader: false });
 			if(res.data.success){
@@ -208,7 +211,7 @@ class Mainnav extends Component{
 			loader: true,
 			success:''
 		});
-		config.get('/api/user/verifyOtp?phone='+this.state.mobile+'&otp='+otp)
+		axios.get(url+'/api/user/verifyOtp?phone='+this.state.mobile+'&otp='+otp)
 	   .then((res) => {
 		   this.setState({ loader: false });
 			if(res.data.success){
@@ -217,6 +220,9 @@ class Mainnav extends Component{
 					});
 					
 					deviceStorage.saveItem('token',res.data.token);
+					deviceStorage.saveItem('name',res.data.name);
+					deviceStorage.saveItem('email',res.data.email);
+
 					window.location.href=window.location.href;
 			}else{
 			   this.setState({ 
@@ -262,7 +268,7 @@ class Mainnav extends Component{
 	  })
 	}
 	render(){
-		const {authFlag,isAuthenticated}=this.state;
+		const {authFlag,isAuthenticated,name,wallet}=this.state;
 		
 		return (
 		<Fragment>
@@ -277,7 +283,7 @@ class Mainnav extends Component{
 							<li><Link to="register.html">Register</Link></li>
 							<li className="nav-item dropdown">
 								<Link  to="#" id="navbardrop" data-toggle="dropdown">
-								Susil <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" width="30" className="rounded-circle z-depth-0" alt="avatar image" />  
+								{name}({wallet}) <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" width="30" className="rounded-circle z-depth-0" alt="avatar image" />  
 								</Link>
 								<div className="dropdown-menu dropdown-menu-lin">
 									<Link className="dropdown-item" to="#">Profile</Link>
@@ -313,7 +319,7 @@ class Mainnav extends Component{
 						  {isAuthenticated &&
 							<li className="nav-item dropdown">
 								<Link  to="#" id="navbardrop" data-toggle="dropdown">
-								Susil <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" width="30" className="rounded-circle z-depth-0" alt="avatar image" />  
+								{name}({wallet}) <img src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg" width="30" className="rounded-circle z-depth-0" alt="avatar image" />  
 								</Link>
 								<div className="dropdown-menu dropdown-menu-lin">
 									<Link to={'/users/myaccount'} className="dropdown-item" >Profile</Link>
@@ -348,7 +354,6 @@ class Mainnav extends Component{
 
 
 $(window).scroll(function () {
-  console.log($(window).scrollTop())
   if ($(window).scrollTop() > 63) {
     $('.navbar').addClass('navbar-fixed');
   }

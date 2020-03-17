@@ -77,14 +77,11 @@ var username = req.body.username;
     }
 };
 exports.getOtp = function(req, res) {
-	console.log('get Otp function');
-	console.log(req.query.phone);
 	var phone = req.query.phone;
 	try{
 		if(phone.length==10){
-			sendOtp.send(phone, "RGYANO", function (error, data) {
-  				console.log(data);
-	  			if(error){
+			sendOtp.send(phone, "RRGYAN", function (error, data) {
+  				if(error){
 	  				res.status(401).json({
 						success: false,
 						message:"Erro While Sending Otp"
@@ -115,12 +112,12 @@ exports.verifyOtp = function(req, res) {
     var otp 	= 	req.query.otp; 
 	sendOtp.verify(phone, otp, function (error, data) {
   		if(data.type == 'success'){
-  			var sql = "SELECT id FROM `users` WHERE phone = '"+phone+"' limit 0,1";
-  			console.log(sql);
+  			var sql = "SELECT * FROM `users` WHERE phone = '"+phone+"' limit 0,1";
   			db.query(sql, function (err, checkuser){
   				var user_id = '';
+				
   				if(checkuser.length > 0){
-  					user_id = checkuser.id;
+  					user_id = checkuser[0].id;
   					let token = jwt.sign(
 										{id: user_id},
 					          			config.secret,
@@ -130,12 +127,14 @@ exports.verifyOtp = function(req, res) {
 			          	success: true,
 			          	message: 'Authentication successful!',
 			          	token: token,
-						name:checkuser.name
+						name:checkuser[0].name,
+						wallet:checkuser[0].wallet,
+						email:checkuser[0].email,
+						
         			});
 			     
   				}else{
   					var sql1 = "INSERT into users(phone,cb_roles_id) VALUES ('"+phone+"',3)";
-  					console.log(sql1);
   					db.query(sql1, function (err, result){						
 						if(err){
 							res.status(401).json({
@@ -153,7 +152,8 @@ exports.verifyOtp = function(req, res) {
 					          	success: true,
 					          	message: 'Authentication successful!',
 					          	token: token,
-								name:checkuser.name
+								name:checkuser.name,
+								result:result
 		        			});
 					       								
 							}

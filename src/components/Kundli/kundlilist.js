@@ -25,7 +25,7 @@ const Kundlilist=(props)=>{
 				
 				 {	data.length > 1 && 
 					data.map((rowData, index) => (
-					<div className="col-md-6">
+					<div className="col-md-6" key={index+1}>
 					
 						<div  key={index+1} className="kundil-purc-wapp">
 						{ index==0 &&

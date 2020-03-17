@@ -6,7 +6,7 @@ import Top_astrologer from './top_astrologer';
 import Astro_mini_service from './astro_mini_service';
 import Free_horoscope from './free_horoscope';
 import config from '../../config/config';
-const url ="https://www.jyotirvid.in:3000";
+const url ="https://www.jyotirvid.in";
 class HomePage extends Component{
 	constructor(props) {
 		super(props);

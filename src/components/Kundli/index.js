@@ -10,7 +10,7 @@ import axios from "axios";
 import Leftnav from './../Talkastrologer/leftnav';
 import Kundlilist from './kundlilist';
 
-const url ="https://www.jyotirvid.in:3000";
+const url ="https://www.jyotirvid.in";
 
 class Kundli extends Component{
 	constructor(props) {

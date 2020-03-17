@@ -9,7 +9,7 @@ import {
 import axios from "axios";
 import Leftnav from './../Talkastrologer/leftnav';
 import Muhuratlist from './muhuratlist';
-const url ="https://www.jyotirvid.in:3000";
+const url ="https://www.jyotirvid.in";
 
 
 class Muhurat extends Component{

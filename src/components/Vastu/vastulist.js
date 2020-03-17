@@ -22,7 +22,7 @@ const Vastulist =(props)=>{
 						{data.length > 1 && 
 						<ul>
 						 {data.map((rowData, index) => (
-							<li> 
+							<li key={index+1}> 
 						  	  <Link  to={'/micro-vastu/'+rowData.vastu_slug.toLowerCase()}  >
 								<div className="comm-img">
 									<img  src={ require(`../../assets/vastu/${rowData.vastu_image}`) } alt={rowData.title} />
