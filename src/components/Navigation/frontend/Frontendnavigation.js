@@ -222,6 +222,7 @@ class Mainnav extends Component{
 					deviceStorage.saveItem('token',res.data.token);
 					deviceStorage.saveItem('name',res.data.name);
 					deviceStorage.saveItem('email',res.data.email);
+					deviceStorage.saveItem('wallet',res.data.wallet);
 
 					window.location.href=window.location.href;
 			}else{

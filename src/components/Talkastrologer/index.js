@@ -1,5 +1,8 @@
 import React,{Component,Fragment}from 'react';
 import { Link,browserHistory  } from 'react-router-dom';
+import OpenTok  from 'opentok';
+//import { OTSession, OTPublisher, OTStreams, OTSubscriber } from 'opentok-react';
+
 import Leftnav from './leftnav';
 import Astologerlist from './astologerlist';
 import Astologerdetails from './astologerdetails';
@@ -8,6 +11,8 @@ import config from '../../config/config';
 import { facebookConfig, googleConfig } from '../../config/social-config';
 import deviceStorage from '../../config/deviceStorage';
 const url ="https://www.jyotirvid.in";
+//const opentok = new OpenTok('46557562', '6e0ca424d79d412f61b33691f3fc79fbbafeeb6a');
+
 class Talkastrologer extends Component{
 	constructor(props) {
 		super(props);
@@ -28,7 +33,10 @@ class Talkastrologer extends Component{
 				otp:'',
 				success:'',
 				errorStyle:false,
-				hasErrored:false
+				hasErrored:false,
+				sessionId:'',
+				talkToken:'',
+				streams: []
 		};
 	    this.getAllAstrologer = this.getAllAstrologer.bind(this);
 		this.checkUser = this.checkUser.bind(this);
@@ -84,6 +92,7 @@ class Talkastrologer extends Component{
 		}
 	}
 	checkUser(astroId,type){
+		
 		if(!this.state.token && !this.state.userId){
 			this.setState({
 				authFlag:true,
@@ -94,33 +103,20 @@ class Talkastrologer extends Component{
 			if(this.state.wallet===0){
 			 this.props.history.push('/callingpack')
 			}else{
-				  var session = window.OT.initSession('46557562', this.state.token);
-				session.on('streamCreated', function(event) {
-					session.subscribe(event.stream, 'subscriber', {
-					  insertMode: 'append',
-					  width: '100%',
-					  height: '100%'
-					},this.handleError);
-				  });
-				  var publisher = window.OT.initPublisher('publisher', {
-					insertMode: 'append',
-					width: '100%',
-					height: '100%'
-				  },this.handleError);
+				if(type=='chat'){
+					this.props.history.push('/chat')
+				}else if(type=='call'){
+					this.props.history.push('/call')
 
-				session.connect('base64:468CXyOf19W8yPMmj5yGXvUg57e3axpIqU/hXthajeM=', function(error) {
-				// If the connection is successful, publish to the session
-				if (error) {
-					this.handleError(error);
-				} else {
-					session.publish(publisher, this.handleError);
+				}else{
+					this.props.history.push('/report')
 				}
-				});
-	
+				
 			}
 		}
 		
 	}
+	
 	getAllAstrologer(){
 		this.setState({
 			loading:false
@@ -284,7 +280,9 @@ class Talkastrologer extends Component{
 					});
 					
 					deviceStorage.saveItem('token',res.data.token);
-					window.location.href=window.location.href;
+					deviceStorage.saveItem('name',res.data.name);
+					deviceStorage.saveItem('email',res.data.email);
+					deviceStorage.saveItem('wallet',res.data.wallet);
 			}else{
 			   this.setState({ 
 					   loader: false,
@@ -336,6 +334,18 @@ class Talkastrologer extends Component{
 				<section className="padding">
 					<div className="container">
 						<div className="row">
+						
+						<div className="col-md-12">
+								<div id="videos">
+								 <div id="subscriber"></div>
+								<div id="publisher"></div>
+								</div>
+
+							</div>
+						
+						
+						
+						
 							<Leftnav/>
 							{loading &&
 								<img style={{ height: '25px',width: '25px' }}  src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
@@ -344,10 +354,6 @@ class Talkastrologer extends Component{
 							 Astologerlist.length>0 &&
 								<Astologerlist data={astrolist} checkAstro={this.checkUser}/>
 							 }
-								<div id="videos">
-								<div id="subscriber"></div>
-								<div id="publisher"></div>
-								</div>
 							{
 						 	authFlag &&
 							<LoginPage 
@@ -362,8 +368,13 @@ class Talkastrologer extends Component{
 							resendOtp={this.sendOtpagain}
 							/>		
 							}
+							
+							
 						</div>
 					</div>
+					
+					
+													
 				</section>
 			</Fragment>
 		);
