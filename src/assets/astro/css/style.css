@@ -7471,3 +7471,330 @@ nav > div a.nav-item.nav-link:focus
 .navbar-fixed + .padding{
 padding-top: 1000px;
 }
+
+
+/*chat css*/
+.bg-colr{
+	background-color: #f8f9fa;
+}
+.card-new-user .card-body .card-title .user-balance{
+	font-size: 16px;
+    background: #ff9900;
+    color: #fff;
+    margin-right: 15px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-weight: 500;
+    margin-top: 5px;
+}
+.card-new-user .card-body .card-title .user-balance span{}
+.card-new-user .card-body .card-title {
+    display: block;
+    overflow: hidden;
+    border-bottom: 1px solid #ddd;
+    margin-right: -20px;
+    margin-left: -20px;
+}
+.user-img {
+   display: inline-block;
+    position: relative;
+    padding-left: 20px;
+    padding: 0px 0px 15px 15px;
+}
+.float-left {
+    float: left!important;
+}
+.avatar {
+    position: relative;
+    display: inline-block;
+    width: 3rem;
+    height: 3rem;
+}
+.mr-2, .mx-2 {
+    margin-right: .5rem!important;
+}
+.avatar-sm {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+.avatar > img {
+    width: 100%;
+    height: 100%;
+    -o-object-fit: cover;
+    object-fit: cover;
+}
+.rounded-circle {
+    border-radius: 50%!important;
+}
+.user-info a {
+    color: #272b41;
+    font-weight: 500;
+}
+.last-seen {
+    color: #888;
+    display: block;
+    font-size: 12px;
+}
+
+.voice-call-avatar {
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    -ms-flex: 2;
+    flex: 2;
+}
+.voice-call-avatar .call-avatar {
+    margin: 15px;
+    width: 150px;
+    height: 150px;
+    border-radius: 100%;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding: 3px;
+    background-color: #fff;
+}
+.voice-call-avatar .username {
+    font-size: 20px;
+    font-weight: 600;
+}
+.voice-call-avatar .call-timing-count {
+    padding: 5px;
+}
+.call-contents{
+	padding-bottom: 15px
+}
+.call-footer {
+    background-color: #fff;
+    border-top: 1px solid #dddddd;
+    padding: 15px;
+    margin-bottom: -20px;
+}
+.call-icons {
+    text-align: center;
+    position: relative;
+}
+.call-icons .call-items {
+    border-radius: 5px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    display: inline-block;
+}
+.call-icons .call-items .call-item {
+    display: inline-block;
+    text-align: center;
+    margin-right: 5px;
+}
+.call-icons .call-items .call-item a {
+    color: #343a40;
+    border: 2px solid #FF9800;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    border-radius: 50px;
+    display: inline-block;
+    font-size: 20px;
+}
+.call-icons .call-items .call-item a i {
+    width: 18px;
+    height: 18px;
+    font-weight: 500;
+}
+.end-call {
+    position: absolute;
+    top: 7px;
+    right: 0;
+}
+.end-call a {
+    background-color: #ef3939;
+    border-radius: 50px;
+    color: #fff;
+    display: inline-block;
+    line-height: 10px;
+    padding: 8px 25px;
+    text-transform: uppercase;
+    -webkit-box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.49);
+    -moz-box-shadow:0px 2px 4px 0px rgba(0,0,0,0.49);
+    box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.49);
+}
+.end-call a:hover{
+	background-color: #d40a0a;
+	color:#fff;
+}
+/*chat*/
+.card-borer{
+	border:none;
+	-webkit-box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+    -moz-box-shadow:0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.4);
+    border-radius: 15px;
+}
+.card-body-pg{
+padding: 0px
+}
+.astologer-chat-war{
+	position: relative;
+}
+.avatar-online::before {
+    background-color: #00bcd4;
+}
+.avatar-away::before, .avatar-offline::before, .avatar-online::before {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 25%;
+    height: 25%;
+    border-radius: 50%;
+    content: '';
+    border: 2px solid #fff;
+}
+.astologer-chat-avt{
+	position: absolute;
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    padding: 10px 15px;
+    -webkit-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.25);
+	box-shadow: 0px 3px 5px 0px rgba(0,0,0,0.25);
+	z-index: 9;
+	border-radius: 15px 15px 0px 0px;
+}
+.astologer-chat-avt .avatar{
+	float: left;
+    margin-right: 20px;
+}
+.astologer-chat-avt .user-name{
+	font-size: 16px;
+    font-weight: 600;
+    margin: 5px 0px;
+    display: inline-block;
+}
+.astologer-chat-war .astologer-chat-content{
+	width: 100%;
+    min-height: 300px;
+    max-height: calc(100vh - 250px);
+    overflow-y: auto;
+    padding: 85px 20px 20px 20px;
+}
+.chat-footer {
+    background-color: #fff;
+    padding: 10px 15px;
+    position: relative;
+    -webkit-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.25);
+	-moz-box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.25);
+	box-shadow: 0px -1px 5px 0px rgba(0,0,0,0.25);
+	border-radius: 0px 0px 15px 15px;
+}
+.input-group-prepend {
+    margin-right: -1px;
+}
+.chat-footer .input-group .input-group-prepend .btn, .chat-footer .input-group .input-group-append .btn {
+    background-color: transparent;
+    border: none;
+    color: #9f9f9f;
+}
+.btn-file input {
+    cursor: pointer;
+    filter: alpha(opacity=0);
+    font-size: 23px;
+    height: 100%;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+.chat-footer .input-group .form-control {
+    background-color: #f5f5f6;
+    border: none !important;
+    border-radius: 50px !important;
+}
+.chat-footer .input-group .input-group-append .btn.msg-send-btn {
+    background-color: #f28723;
+    border-color: #f28723;
+    border-radius: 50%;
+    color: #fff;
+    margin-left: 10px;
+    min-width: 46px;
+    font-size: 20px;
+}
+.astologer-chat-content{}
+.astologer-chat-content .msg-box{}
+.astologer-chat-content .msg-box .message-astloger {
+	padding: 10px 30px;
+    background: #eee;
+    float: right;
+    clear: both;
+    position: relative;
+     margin-bottom: 10px;
+      border-radius: 5px
+}
+.astologer-chat-content .msg-box .message-user{
+	padding: 10px 30px;
+    background:#617b94;
+    float: left;
+    clear: both;
+    position: relative;
+    margin-bottom: 10px;
+    border-radius: 5px
+}
+.astologer-chat-content .msg-box .message-user:before {
+    border-bottom: 6px solid transparent;
+    border-right: 6px solid #617b94;
+    border-top: 6px solid transparent;
+    content: "";
+    height: 0;
+    left: -6px;
+    position: absolute;
+    right: auto;
+    top: 8px;
+    width: 0;
+}
+.astologer-chat-content .msg-box .message-astloger:before {
+    border-bottom: 6px solid transparent;
+    border-left: 6px solid #e3e3e3;
+    border-top: 6px solid transparent;
+    content: "";
+    height: 0;
+    left: auto;
+    position: absolute;
+    right: -6px;
+    top: 8px;
+    width: 0;
+}
+.astologer-chat-content .msg-box .message-user p,
+.astologer-chat-content .msg-box .message-astloger p{
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.astologer-chat-content .msg-box .message-user p{
+	color: #fff;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.astologer-chat-content .msg-box .message-astloger p{
+	color: #000;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+.astologer-chat-content .msg-box .message-user span{
+	color:#fff;
+}
+.astologer-chat-content .msg-box .message-astloger span{
+color:#676767;
+}
+.astologer-chat-content .msg-box .message-user span,
+.astologer-chat-content .msg-box .message-astloger span{
+	font-size: 12px;
+    text-align: right;
+    display: block;
+}

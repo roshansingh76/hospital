@@ -36,23 +36,74 @@ class  Chat extends Component{
     }
     render(){
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-4">
-                        <div className="card">
-                            <div className="card-body">
-                                <div className="card-title">Global Chat</div>
-                                <hr/>
-                                <div className="messages">
-                                    {this.state.messages.map(message => {
-                                        return (
-                                            <div>{message.author}: {message.message}</div>
-                                        )
-                                    })}
-                                </div>
+            <div className="padding bg-colr">
+                <div className="container">
+                    <div className="row justify-content-md-center">
+                        <div className="col-md-8">
+                            <div className="card card-borer">
+                                <div className="card-body card-body-pg">
+                                   <div className="astologer-chat-war">
+                                        <div className="astologer-chat-avt">
+                                            <div className="avatar avatar-online">
+                                                <img src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image" className="avatar-img rounded-circle"/>
+                                            </div>
+                                            <div class="user-name">Astrologer Name</div>
+                                            <div class="user-status">online</div>
+                                        </div>
+                                        <div className="astologer-chat-content">
+                                            <div className="msg-box">
+                                                <div className="message-astloger">
+                                                    <p>Hello. What can I do for you?</p>
+                                                    <span>8:30 AM</span>
+                                                </div>
+                                                <div className="message-user">
+                                                    <p>Nahi Hay</p>
+                                                    <span>8:30 AM</span>
+                                                </div>
+                                                <div className="message-user">
+                                                    <p>Nahi Hay</p>
+                                                    <span>8:30 AM</span>
+                                                </div>
+                                                <div className="message-user">
+                                                    <p>Nahi Hay</p>
+                                                    <span>8:30 AM</span>
+                                                </div>
+                                                <div className="message-astloger">
+                                                    <p>Hello. What can I do for you?</p>
+                                                    <span>8:30 AM</span>
+                                                </div>
+                                                <div className="message-astloger">
+                                                    <p>Hello. What can I do for you?</p>
+                                                    <span>8:30 AM</span>
+                                                </div>
+                                            </div>
+                                        </div>
 
+
+
+
+                                        <div class="chat-footer">
+                                            <div class="input-group">
+                                                {/*<div class="input-group-prepend">
+                                                    <div class="btn-file btn">
+                                                        <i class="fa fa-paperclip"></i>
+                                                        <input type="file"/>
+                                                    </div>
+                                                </div>*/}
+                                                <input type="text" class="input-msg-send form-control" placeholder="Type something"/>
+                                                <div class="input-group-append">
+                                                    <button type="button" class="btn msg-send-btn"><i class="fa fa-paper-plane"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+
+
+                                   </div>
+                                </div>
+                             
                             </div>
-                         
                         </div>
                     </div>
                 </div>

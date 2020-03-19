@@ -21,6 +21,8 @@ import Vastu from '../Vastu'
 import Kundli from '../Kundli'
 import Horoscope from '../Horoscope'
 import Chat from '../communication/chat'
+import Call from '../communication/call'
+import Report from '../communication/report'
 import About from '../About'
 import Blogs from '../Blogs'
 import Callingpack from '../Pack/callpacking'
@@ -72,6 +74,8 @@ const App= (props) => {
 			<Route   path={ROUTES.Astrodetails} component={Talkastrologerdetail} />
 			<Route   path={ROUTES.Callingpack} component={Callingpack} />
 			<Route   path={ROUTES.Chat} component={Chat} />
+			<Route   path={ROUTES.Call} component={Call} />
+			<Route   path={ROUTES.Report} component={Report} />
 			<Route   path={ROUTES.About} component={About} />
 			<Route   path={ROUTES.Blogs} component={Blogs} />
 			<Switch>

@@ -1,6 +1,6 @@
 import React,{Component,Fragment}from 'react';
 import { Link,browserHistory  } from 'react-router-dom';
-import OpenTok  from 'opentok';
+//import OpenTok  from 'opentok';
 //import { OTSession, OTPublisher, OTStreams, OTSubscriber } from 'opentok-react';
 
 import Leftnav from './leftnav';
