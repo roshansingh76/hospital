@@ -341,13 +341,12 @@ exports.createAstro= function(req, res) {
 	
 
 	
-	db.query(sql, function (err, result) {
+	/*db.query(sql, function (err, result) {
 	if (err) throw err;
 		if(result){
 			for(let i =0;i<expertisex.length;i++){
 				let expsql  = "INSERT into user_expertise(user_id,expertise_id) VALUES ('"+result.insertId+"','"+expertisex[i]+"')";
 				db.query(expsql, function (err, result) {
-					console.log(result.insertId);
 					res.status(200).json({
 						success: true,
 						data:req.body,
@@ -358,7 +357,7 @@ exports.createAstro= function(req, res) {
 			
 		}
 		
-	});
+	});*/
 	
 
 }

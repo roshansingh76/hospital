@@ -200,6 +200,7 @@ class Callingpack extends Component {
 			})
 			.then(function (json) {
 				localStorage.setItem('wallet',json.wallet);
+				window.location.href=window.location.href;
 			 });
 	
 	

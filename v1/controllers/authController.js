@@ -123,13 +123,16 @@ exports.verifyOtp = function(req, res) {
 					          			config.secret,
 					          			{ expiresIn: '24h'}
 		        					); 
+									
 					res.status(200).json({
 			          	success: true,
 			          	message: 'Authentication successful!',
 			          	token: token,
+						id:checkuser[0].id,
 						name:checkuser[0].name,
 						wallet:checkuser[0].wallet,
 						email:checkuser[0].email,
+						cb_roles_id:checkuser[0].cb_roles_id,
 						
         			});
 			     
@@ -145,15 +148,18 @@ exports.verifyOtp = function(req, res) {
 							user_id = result.insertId;
 							let token = jwt.sign(
 										{id: user_id},
-					          			config.secret,
+										 config.secret,
 					          			{ expiresIn: '24h'}
 		        					); 
 							res.status(200).json({
 					          	success: true,
 					          	message: 'Authentication successful!',
 					          	token: token,
+								id:user_id,
 								name:checkuser.name,
-								result:result
+								email:checkuser.email,
+								wallet:checkuser.wallet,
+								cb_roles_id:checkuser.cb_roles_id
 		        			});
 					       								
 							}

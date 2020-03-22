@@ -18,7 +18,7 @@ const Horoscopetop=(props)=>{
 				 {data.map((rowData, index) => (
 					<li   key={index+1}>
 						<Link to={'/horoscope/'+rowData.sunsign_en.toLowerCase()} className={index===0 ? 'active':''}>
-							<img  key={index+1} src ={ require(`../../assets/horoscope/${rowData.mphoto}`) } alt={rowData.sunsign_en}/>
+							<img  key={index+1} src ={ require(`./../../assets/horoscope/${rowData.mphoto}`) } alt={rowData.sunsign_en}/>
 							<p className="selected">{rowData.sunsign_en}</p>
 						</Link>
 					</li>

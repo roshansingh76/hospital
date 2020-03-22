@@ -18,7 +18,7 @@ class Mainnav extends Component{
 			this.state={
 				isAuthenticated:localStorage.getItem('token'),
 				userId:'',
-				name:localStorage.getItem('name'),
+				name:localStorage.getItem('name')==='null' ?'Username':localStorage.getItem('name'),
 				wallet:localStorage.getItem('wallet'),
 				authFlag:false,
 				modalIsOpen:false,
@@ -218,11 +218,14 @@ class Mainnav extends Component{
 				   this.setState({ 
 					   loader: false,
 					});
-					
+					deviceStorage.saveItem('id',res.data.id);
 					deviceStorage.saveItem('token',res.data.token);
 					deviceStorage.saveItem('name',res.data.name);
 					deviceStorage.saveItem('email',res.data.email);
 					deviceStorage.saveItem('wallet',res.data.wallet);
+					deviceStorage.saveItem('cb_roles_id',res.data.cb_roles_id);
+
+					
 
 					window.location.href=window.location.href;
 			}else{

@@ -100,7 +100,7 @@ class Talkastrologer extends Component{
 			});
 			this.openModal();
 		}else{
-			if(this.state.wallet===0){
+			if(this.state.wallet==0){
 			 this.props.history.push('/callingpack')
 			}else{
 				if(type=='chat'){
@@ -145,7 +145,7 @@ class Talkastrologer extends Component{
 	
 	}
 	sendOtpagain(){
-		 this.setState({ loader: true,success:'' });
+		 this.setState({ loader: true,success:'' ,error:''});
 		 config.get(url+'/api/user/getOtp?phone='+this.state.mobile)
 	   .then((res) => {
 		   this.setState({ loader: false });
@@ -279,10 +279,14 @@ class Talkastrologer extends Component{
 					   loader: false,
 					});
 					
+					deviceStorage.saveItem('id',res.data.id);
+					deviceStorage.saveItem('name',res.data.name);
 					deviceStorage.saveItem('token',res.data.token);
 					deviceStorage.saveItem('name',res.data.name);
 					deviceStorage.saveItem('email',res.data.email);
 					deviceStorage.saveItem('wallet',res.data.wallet);
+					deviceStorage.saveItem('cb_roles_id',res.data.cb_roles_id);
+					window.location.href=window.location.href;
 			}else{
 			   this.setState({ 
 					   loader: false,

@@ -3,6 +3,8 @@ const express = require('express');
 const path = require('path');
 var cors = require('cors')
 var bodyParser = require('body-parser');
+const socketIo = require("socket.io");
+
 const https = require('https');
 const fs = require('fs');
 
@@ -30,6 +32,8 @@ var options = {
 var app = express();
 app.use(cors())
 // view engine setup
+
+app.use(express.static(__dirname + '/assets'));
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
@@ -53,10 +57,35 @@ app.use(express.static(path.join(__dirname, 'build')));
 // need to declare a "catch all" route on your express server 
   // that captures all page requests and directs them to the client
   // the react-router do the route part
-  app.get('*', function (req, res) {
+app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, 'build', 'index.html'));
-  });
+});
 var server = https.createServer(options, app);
+
+const io = socketIo(server);
+
+
+var usernames = {};
+var rooms = [];
+
+var people={};
+
+//Setting up a socket with the namespace "connection" for new sockets
+io.on("connection", socket => {
+   // console.log("New client connected");
+   socket.on('subscribe', function(room) {
+		console.log('joining room', room);
+		socket.join(room);
+	});
+   socket.on('chat message', function (data,to) {
+	   io.to(socket.id).emit('chat message', {
+            username: data.username,
+            chatMessage: data.chatMessage
+        });
+    });
+    //A special namespace "disconnect" for when a client disconnects
+    socket.on("disconnect", () => console.log(""));
+});
 
 server.listen(port, () => {
   console.log("server starting on port : " + port)

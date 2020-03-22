@@ -2,11 +2,10 @@ import React,{Component}from 'react';
 import { Link } from 'react-router-dom';
 import { ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import Button from '@material-ui/core/Button';
-
+import axios from 'axios';
 import * as ROUTES from '../../config/routes';
 import avatar01 from '../../assets/img/profiles/avatar-01.jpg';
-import config from '../../config/config';
-
+const url ="https://www.jyotirvid.in";
 class CreateAstro extends Component{
 	constructor(props) {
 		super(props);
@@ -78,7 +77,7 @@ class CreateAstro extends Component{
 	}
 
 	getAllInfo(e){
-		config.get('/api/astro/getAllinfo',{
+		axios.get(url+'/api/astro/getAllinfo',{
 				withCredentials:false
 		})
 		.then((res) => {
@@ -126,7 +125,7 @@ class CreateAstro extends Component{
 			
 		});
 
-		config.post('/api/astro/createAstro',{
+		axios.post(url+'/api/astro/createAstro',{
 			fname:this.state.fname,
 			lname:this.state.lname,
 			email:this.state.email,
@@ -235,7 +234,7 @@ class CreateAstro extends Component{
 		 this.setState({
 				countryx:val
 		 });
-		config.get('/api/astro/getState?id='+val)
+		axios.get(url+'/api/astro/getState?id='+val)
 		.then((res) => {
 			this.setState({ loading: false });
 			 if(res.data.success){
@@ -290,7 +289,7 @@ class CreateAstro extends Component{
 		 this.setState({
 				statex:val
 		 });
-	   config.get('/api/astro/getCity?id='+val)
+	   axios.get(url+'/api/astro/getCity?id='+val)
 	   .then((res) => {
 		   this.setState({ loading: false });
 			if(res.data.success){

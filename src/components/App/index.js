@@ -89,7 +89,7 @@ const App= (props) => {
 			</Switch>
 			<Route   path={ROUTES.Horoscopes+"/:slug"} component={Horoscope} />	
 			
-			<Route   path={ROUTES.Horoscopesdefault} component={Horoscope} />	
+			<Route   path={ROUTES.Horoscopes} component={Horoscope} />	
 			<Route   path={ROUTES.UserAccount} component={UserAccountPage} />	
 
 			

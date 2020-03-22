@@ -66,7 +66,7 @@ const TalkastrologerAstologerlist=(props)=>{
 			</center>				
 		}
 				
-		{ data.length>1  &&
+		{ data.length>0  &&
 			data.map((rowData, index) => (
 			
 			
@@ -94,9 +94,9 @@ const TalkastrologerAstologerlist=(props)=>{
 							</div>
 					</div>
 					<div className="astro--actin-btn">
-						<span className="astro-price-r"><div className="astro-price">₹{rowData.chatprice}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'chat')}><i class="fa fa-comment-alt"></i> chat</a></span>
-						<span className="astro-price-b"><div className="astro-price">₹{rowData.callprice}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'call')}><i class="fa fa-phone"></i> Call </a></span>
-						<span className="astro-price-g"><div className="astro-price">₹{rowData.reportprice}</div><a   onClick={e =>props.checkAstro(rowData.id,'report')}><i class="fa fa-book-open"></i> Get Report</a></span>
+						<span className="astro-price-r"><div className="astro-price">₹{rowData.chatprice}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'chat')}><i className="fa fa-comment"></i> chat</a></span>
+						<span className="astro-price-b"><div className="astro-price">₹{rowData.callprice}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'call')}><i className="fa fa-phone"></i> Call </a></span>
+						<span className="astro-price-g"><div className="astro-price">₹{rowData.reportprice}</div><a   onClick={e =>props.checkAstro(rowData.id,'report')}><i className="fa fa-book"></i> Report</a></span>
 					</div>
 				</div>
 			</div>
