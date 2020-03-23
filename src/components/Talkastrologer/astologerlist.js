@@ -89,14 +89,14 @@ const TalkastrologerAstologerlist=(props)=>{
 							<div className="astro-p-deatil">
 								<p>{rowData.expertise_name}</p>
 								<p>{rowData.language_name}</p>
-								<p>Exp: {rowData.exp} Years</p>
+								<p>Exp: {rowData.experience} Years</p>
 								<p>{rowData.name}</p>
 							</div>
 					</div>
 					<div className="astro--actin-btn">
-						<span className="astro-price-r"><div className="astro-price">₹{rowData.chatprice}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'chat')}><i className="fa fa-comment"></i> chat</a></span>
-						<span className="astro-price-b"><div className="astro-price">₹{rowData.callprice}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'call')}><i className="fa fa-phone"></i> Call </a></span>
-						<span className="astro-price-g"><div className="astro-price">₹{rowData.reportprice}</div><a   onClick={e =>props.checkAstro(rowData.id,'report')}><i className="fa fa-book"></i> Report</a></span>
+						<span className="astro-price-r"><div className="astro-price">₹{rowData.chat_price}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'chat')}><i className="fa fa-comment"></i> chat</a></span>
+						<span className="astro-price-b"><div className="astro-price">₹{rowData.call_price}/Min</div><a onClick={e =>props.checkAstro(rowData.id,'call')}><i className="fa fa-phone"></i> Call </a></span>
+						<span className="astro-price-g"><div className="astro-price">₹{rowData.report_price}</div><a   onClick={e =>props.checkAstro(rowData.id,'report')}><i className="fa fa-book"></i> Report</a></span>
 					</div>
 				</div>
 			</div>
