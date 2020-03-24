@@ -8,7 +8,7 @@ import LoginPage from "./../../Login/FrontendLogin";
 import config from "./../../../config/config";
 import deviceStorage from "./../../../config/deviceStorage";
 import validator from "validator";
-import UserInformation from "../../UserInformation";
+import UserInformation from "../../Users/UserInformation";
 const url = "https://www.jyotirvid.in:3000";
 
 class Mainnav extends Component {
@@ -467,14 +467,14 @@ class Mainnav extends Component {
               resendOtp={this.sendOtpagain}
             />
           )}
-          {isAuthenticated && !name && (
+          {/* {isAuthenticated && !name && (
             <UserInformation
               updateUser={this.updateUser}
               loader={this.state.loader}
               hasErrored={this.state.hasErrored}
               error={this.state.error}
             />
-          )}
+          )} */}
           {/* {!isAuthenticated && <UserInformation />} */}
         </header>
       </Fragment>

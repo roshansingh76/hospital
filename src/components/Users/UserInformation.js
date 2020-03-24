@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import validator from "validator";
 
 Modal.setAppElement("#root");
 
@@ -24,6 +25,7 @@ const UserInformation = props => {
     setGender(event.target.value);
   };
   const handleFormSubmit = event => {
+    event.preventDefault();
     if (name && email && gender) {
       props.updateUser({
         name,
@@ -51,8 +53,9 @@ const UserInformation = props => {
             {error}
           </div>
         )}
-        <form style={{ padding: "20px" }}>
+        <form style={{ padding: "20px" }} onSubmit={handleFormSubmit}>
           <input
+            required
             type="text"
             autoComplete="off"
             placeholder="Name"
@@ -63,6 +66,7 @@ const UserInformation = props => {
             onChange={handleInputChange}
           />
           <input
+            required
             type="email"
             autoComplete="off"
             placeholder="Email"
@@ -101,11 +105,10 @@ const UserInformation = props => {
             </label>
           </div>
           <button
-            type="button"
+            type="submit"
             class="btn mob-btn btn-block"
             disabled={loader}
             style={{ marginTop: "15px" }}
-            onClick={handleFormSubmit}
           >
             Submit
           </button>
