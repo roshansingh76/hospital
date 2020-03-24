@@ -9,6 +9,7 @@ const url = 'https://www.jyotirvid.in';
 class  Chat extends Component{
     constructor(props){
         super(props);
+		
 
         this.state = {
 			userId:localStorage.getItem('id'),
@@ -29,6 +30,7 @@ class  Chat extends Component{
 			showStartTimeInput: false,
 			chatMessages:[],
 			chatMessage: "",
+			astroName:''
         };
 		this.updateInputValue=this.updateInputValue.bind(this);
 
@@ -40,6 +42,12 @@ class  Chat extends Component{
 
 	}
 	componentDidMount() {
+		let aname=this.props.location.data;
+		if(aname){
+			 this.setState({ astroName:aname.name});   
+		}else{
+			 this.setState({ astroName:''});   
+		}
 		this.socket = io(url);
 		this.socket.on("chat message", msg => {
 			  this.setState({ chatMessages: [...this.state.chatMessages, msg]   
@@ -141,10 +149,7 @@ class  Chat extends Component{
   };
 	handleKeyPress(event){
 		   if (event.key === "Enter") {
-			   let chatRome=this.state.userId+'-'+this.state.astroId;
-			   this.socket.emit('subscribe',chatRome);
-			 	 this.socket.emit('chat message',{
-					'subscribe':chatRome,
+			  	 this.socket.emit('chat message',{
 					'chatMessage':this.state.chatMessage,
 					'username':this.state.username,
 					'cb_roles_id':this.state.cb_roles_id
@@ -187,7 +192,7 @@ class  Chat extends Component{
                                             <div className="avatar avatar-online">
                                                 <img src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image" className="avatar-img rounded-circle"/>
                                             </div>
-                                            <div className="user-name">Astrologer Name</div>
+                                            <div className="user-name">{this.state.astroName}</div>
                                             <div className="user-status">online</div>
 										    <div className="user-balance float-right">
 												{timer}
@@ -196,18 +201,21 @@ class  Chat extends Component{
                                         </div>
                                         <div className="astologer-chat-content">
                                             <div className="msg-box">
-                                                <div className="message-user">
-                                                    <p>Hello. What can I do for you?</p>
-                                                    <span>8:30 AM</span>
-                                                </div>
-												
-												{ usertext.length>0  &&
-													usertext.map((data, index) => (
-														<div key={index+1} className="message-astloger">
+                                             	{ usertext.length>0  &&
+													usertext.map((data, index) => {
+														
+														if(data.cb_roles_id==2){
+															return (<div ckey={index+1}  className="message-user">
+																<p>{data.chatMessage}</p>
+																<span></span>
+															</div>)
+														}else{
+														return (<div key={index+1} className="message-astloger">
 															<p>{data.chatMessage}</p>
-															<span>8:30 AM</span>
-														</div>
-												))}
+															<span></span>
+														</div>)       
+														}
+													})}
 												
                                             </div>
                                         </div>

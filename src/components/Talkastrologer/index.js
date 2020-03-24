@@ -91,7 +91,7 @@ class Talkastrologer extends Component{
 			alert(error.message);
 		}
 	}
-	checkUser(astroId,type){
+	checkUser(astroId,type,data){
 		
 		if(!this.state.token && !this.state.userId){
 			this.setState({
@@ -101,15 +101,15 @@ class Talkastrologer extends Component{
 			this.openModal();
 		}else{
 			if(this.state.wallet==0){
-			 this.props.history.push('/callingpack')
+			 this.props.history.push({pathname:'/callingpack',data:data})
 			}else{
 				if(type=='chat'){
-					this.props.history.push('/chat')
+					this.props.history.push({pathname:'/chat',data:data})
 				}else if(type=='call'){
-					this.props.history.push('/call')
+					this.props.history.push({pathname:'/call',data:data})
 
 				}else{
-					this.props.history.push('/report')
+					this.props.history.push({pathname:'/report',data:data})
 				}
 				
 			}
