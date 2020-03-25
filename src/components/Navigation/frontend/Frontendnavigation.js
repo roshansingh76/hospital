@@ -423,11 +423,7 @@ class Mainnav extends Component {
                 </ul>
               </div>
               <ul className="unstyled d-none d-sm-block">
-                {!isAuthenticated && (
-                  <li>
-                    <a onClick={this.mainopenModal}>Login</a>
-                  </li>
-                )}
+               
                 {(isAuthenticated) && (this.state.cb_roles_id==3)?
 			      <li className="nav-item dropdown">
                     <Link to="#" id="navbardrop" data-toggle="dropdown">
@@ -453,6 +449,7 @@ class Mainnav extends Component {
                     </div>
                   </li>
 				  :
+				  (isAuthenticated) && (this.state.cb_roles_id==2)?
 				  <li className="nav-item dropdown">
                     <Link to="#" id="navbardrop" data-toggle="dropdown">
                       {name}
@@ -479,7 +476,10 @@ class Mainnav extends Component {
                       </a>
                     </div>
                   </li>
-				 
+				 :
+				  <li>
+                    <a onClick={this.mainopenModal}>Login</a>
+                  </li>
 				  
                }
               </ul>
