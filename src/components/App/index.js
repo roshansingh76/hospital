@@ -86,18 +86,9 @@ const App = props => {
           <Route path={ROUTES.About} component={About} />
           <Route path={ROUTES.Blogs} component={Blogs} />
           <Switch>
-            <Route
-              path={ROUTES.Vastudetals + ":slug"}
-              component={VastuDetail}
-            />
-            <Route
-              path={ROUTES.Muhuratdetails + ":slug"}
-              component={MuhuratDeatil}
-            />
-            <Route
-              path={ROUTES.Kundlidetails + ":slug"}
-              component={KundliDetail}
-            />
+            <Route path={ROUTES.Vastudetals} component={VastuDetail} />
+            <Route path={ROUTES.Muhuratdetails} component={MuhuratDeatil} />
+            <Route path={ROUTES.Kundlidetails} component={KundliDetail} />
 
             <Route path={ROUTES.VastuList} component={Vastu} />
             <Route path={ROUTES.MuhuratList} component={Muhurat} />

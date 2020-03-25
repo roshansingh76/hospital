@@ -1,52 +1,69 @@
-import React,{Component,Fragment}from 'react';
-import Leftnav from './../Talkastrologer/leftnav';
+import React from "react";
+import axios from "axios";
+import ReactHtmlParser from "react-html-parser";
+import Leftnav from "./../Talkastrologer/leftnav";
 
-import {
-  BrowserRouter as Router,
-  Link,
-  Switch,
-  Route,
-  useParams
-} from "react-router-dom";
+const url = "https://www.jyotirvid.in";
 
-class Muhuratsingle extends Component{
-	constructor(props) {
-		super(props);
-	}
-	componentDidMount() {
-		console.log('dddddd');
-	}
- render(){
+class Muhuratsingle extends React.Component {
+  state = {
+    muhurats: []
+  };
+  async componentDidMount() {
+    try {
+      const apiUrl = `${url}/api/service/getMuhuratdetails?slug=${this.props.match.params.slug}`;
+      const response = await axios.get(apiUrl);
+      if (response.data.success) {
+        this.setState({
+          muhurats: [...this.state.muhurats, ...response.data.data]
+        });
+      }
+    } catch (error) {
+      console.error();
+    }
+  }
+  render() {
+    return (
+      <React.Fragment>
+        <section className="padding">
+          <div className="container">
+            <div className="row">
+              <Leftnav />
 
-		return(
-			<React.Fragment>
-				<section className="padding">
-						<div className="container">
-							<div className="row">
-								<Leftnav/>
-								
-				<div className="col-md-9">
-					<div className="mu-vas-wapp">
-						<div className="img-text">
-							<img src="/static/media/BUYING_P.508f0fb5.png" alt="image"/>
-							<span>Make a purchase</span>
-						</div>
-						<div className="contten-m-v">
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
-							<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.ently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>
+              <div className="col-md-9">
+                <div className="mu-vas-wapp">
+                  {!this.state.muhurats ? (
+                    <p>
+                      There isn't any information available for
+                      {this.props.match.params.slug}
+                    </p>
+                  ) : (
+                    this.state.muhurats.map(muhurat => (
+                      <>
+                        <div className="img-text">
+                          <img
+                            src={require(`../../assets/muhurat/${muhurat.muhurat_image}`)}
+                            alt=""
+                          />
+                          <span>{muhurat.title}</span>
+                        </div>
 
-							<button type="button" class="mob-btn">Get an Enquiry</button>
-						</div>
-					</div>
-					
-				</div>
-							</div>
-						</div>
-				</section>
-			
-			</React.Fragment>
-		);
- }
-
+                        <div className="contten-m-v">
+                          {ReactHtmlParser(muhurat.description)}
+                          <button type="button" class="mob-btn">
+                            Get an Enquiry
+                          </button>
+                        </div>
+                      </>
+                    ))
+                  )}
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </React.Fragment>
+    );
+  }
 }
 export default Muhuratsingle;
