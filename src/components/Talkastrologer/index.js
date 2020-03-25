@@ -103,11 +103,12 @@ class Talkastrologer extends Component{
 			});
 			this.openModal();
 		}else{
-			if(this.state.wallet==0){
+			if(this.state.wallet!=0){
 			 this.props.history.push({pathname:'/callingpack',data:data})
 			}else{
 				
 				localStorage.setItem('astroname',data.name);
+				localStorage.setItem('astroId',data.id);
 				if(type=='chat'){
 					this.props.history.push({pathname:'/chat',data:data})
 				}else if(type=='call'){

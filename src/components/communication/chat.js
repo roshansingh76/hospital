@@ -9,7 +9,9 @@ const url = 'https://www.jyotirvid.in';
 class  Chat extends Component{
     constructor(props){
         super(props);
-		
+		if(localStorage.getItem('token')===''){
+			this.props.history.push('/');	
+		}
 
         this.state = {
 			userId:localStorage.getItem('id'),

@@ -10,6 +10,9 @@ import Callhistory from './callhistory';
 class Setting extends Component{
 constructor(props) {
 	super(props);
+	if(localStorage.getItem('token')===''){
+		this.props.history.push('/');	
+		}
 }
 
 	render(){

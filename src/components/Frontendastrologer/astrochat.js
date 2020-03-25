@@ -10,6 +10,9 @@ let receiver='';
 class  AstroChat extends Component{
     constructor(props){
         super(props);
+		if(localStorage.getItem('token')===''){
+		this.props.history.push('/');	
+		}
 		this.state = {
 			sender:'',
 			receiver:'',

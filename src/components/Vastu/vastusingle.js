@@ -10,7 +10,6 @@ class Vastusingle extends Component {
     vastus: []
   };
   async componentDidMount() {
-    console.log(this.props);
     try {
       const apiUrl = `${url}/api/service/getVastudetails?slug=${this.props.match.params.slug}`;
       const response = await axios.get(apiUrl);

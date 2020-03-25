@@ -1,11 +1,17 @@
 import React,{Component,Fragment}from 'react';
 import { BrowserRouter as Router,Link, Route,Redirect,withRouter,useHistory } from 'react-router-dom';
 import config from '../../config/config';
+import utility from '../../config/deviceStorage';
+import axios from "axios";
 const url ="https://www.jyotirvid.in";
 const tempurl ="https://localhost:5000";
 class Callingpack extends Component {
 		constructor(props) {
 		super(props);
+		
+		if(localStorage.getItem('token')===''){
+		this.props.history.push('/');	
+		}
 		  this.state = {
             packList: [],
             loading: false,
@@ -16,23 +22,39 @@ class Callingpack extends Component {
 			totalPrice:'',
             error: '',
 			packId:'',
+			users:[],
         };
 	
 	   this.checkPrice = this.checkPrice.bind(this);
 	   this.checkDefaultpackage = this.checkDefaultpackage.bind(this);
 	   this.redirectToPayU = this.redirectToPayU.bind(this);
-
-	   
-
-   }
-  componentDidMount() {
-	  
-	this.getPackList();  
-  
+		
 
    }
    
-   getPackList(){
+  async componentDidMount() {
+	 try {
+      const apiUrl = `${url}/api/user/getUserDetails?id=${localStorage.getItem('id')}`;
+      const response = await axios.get(apiUrl,{
+		   headers: {
+			 Authorization: `Bearer ${localStorage.getItem('token')}`,
+			'Content-Type': 'application/json',
+			'Access-Control-Allow-Origin': '*'
+    
+		}
+	  });
+      if (response.data.success) {
+        this.setState({
+          users: [...this.state.users, ...response.data.result]
+        });
+      }
+    } catch (error) {
+      console.error();
+    }
+	 	this.getPackList();  
+  }
+   
+   async getPackList(){
 	   this.setState({
 			loading:false
 		});
@@ -86,23 +108,34 @@ class Callingpack extends Component {
 		});
   }
  payumoney() {
+	let user=this.state.users[0];
+	let phone='';
+	if(user.phone){
+		phone=user.phone;
+	}else{
+		phone=user.mobile;
+	}
+	var rand =  Math.floor((Math.random() * 100000000)); 
+	
 	var pd = {
 		 key: '7pDTZjon',
-		 txnid: '1233',
+		 txnid:'JY-'+rand,
 		 amount:this.state.totalPrice,
-		 firstname: 'Roshan',
-		 email: 'roshansingh@gmail.com',
-		 phone:'7696689508',
-		 productinfo:'1',
+		 firstname:user.name,
+		 email: user.email,
+		 phone:user.phone,
+		 productinfo:'Silver',
 		 surl:'paymentsuccess',
 		 furl:'paymentfaild',
 		 hash: 'lJSLB6aMGZ'
 	}
+	
+	
 	let data = {
 		'txnid': pd.txnid,
 		'email': pd.email,
 		'amount': pd.amount,
-		'productinfo': pd.productinfo,
+		'productinfo':'Silver',
 		'firstname': pd.firstname
 	}
 	let self = this;
@@ -110,7 +143,8 @@ class Callingpack extends Component {
 		method: 'post',
 		headers: {
 			'Accept': 'application/json',
-			'Content-Type': 'application/json'
+			'Content-Type': 'application/json',
+			'x-access-token':localStorage.getItem('token')
 		},
 		body: JSON.stringify(data)
 	})
@@ -123,7 +157,6 @@ class Callingpack extends Component {
 	});
 }
   redirectToPayU(pd) {
-	  console.log(localStorage.getItem('token'));
 	 window.bolt.launch(pd, {
 		responseHandler: function (response) {
 			let data=response.response;
