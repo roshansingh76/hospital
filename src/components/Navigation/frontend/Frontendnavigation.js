@@ -17,7 +17,8 @@ class Mainnav extends Component {
     this.state = {
       showUser: false,
       isAuthenticated: localStorage.getItem("token"),
-      userId: "",
+      userId: localStorage.getItem("id"),
+	  cb_roles_id: localStorage.getItem("cb_roles_id"),
       name:
         localStorage.getItem("name") === "null"
           ? ""
@@ -427,8 +428,8 @@ class Mainnav extends Component {
                     <a onClick={this.mainopenModal}>Login</a>
                   </li>
                 )}
-                {isAuthenticated && (
-                  <li className="nav-item dropdown">
+                {(isAuthenticated) && (this.state.cb_roles_id==3)?
+			      <li className="nav-item dropdown">
                     <Link to="#" id="navbardrop" data-toggle="dropdown">
                       {name}({wallet}){" "}
                       <img
@@ -442,6 +443,7 @@ class Mainnav extends Component {
                       <Link to={"/users/myaccount"} className="dropdown-item">
                         Profile
                       </Link>
+
                       <a
                         className="dropdown-item"
                         onClick={deviceStorage.deleteJWT}
@@ -450,7 +452,36 @@ class Mainnav extends Component {
                       </a>
                     </div>
                   </li>
-                )}
+				  :
+				  <li className="nav-item dropdown">
+                    <Link to="#" id="navbardrop" data-toggle="dropdown">
+                      {name}
+                      <img
+                        src="https://mdbootstrap.com/img/Photos/Avatars/avatar-2.jpg"
+                        width="30"
+                        className="rounded-circle z-depth-0"
+                        alt="avatar"
+                      />
+                    </Link>
+				
+                    <div className="dropdown-menu dropdown-menu-lin">
+                      <Link to={ROUTES.AstrologerProfile} className="dropdown-item">
+                        Profile
+                      </Link>
+						<Link to={ROUTES.AstrologerChat} className="dropdown-item">
+						Chat
+					   </Link>
+                      <a
+                        className="dropdown-item"
+                        onClick={deviceStorage.deleteJWT}
+                      >
+                        Logout
+                      </a>
+                    </div>
+                  </li>
+				 
+				  
+               }
               </ul>
             </div>
           </nav>
@@ -467,14 +498,14 @@ class Mainnav extends Component {
               resendOtp={this.sendOtpagain}
             />
           )}
-          {/* {isAuthenticated && !name && (
+           {isAuthenticated && !name && (
             <UserInformation
               updateUser={this.updateUser}
               loader={this.state.loader}
               hasErrored={this.state.hasErrored}
               error={this.state.error}
             />
-          )} */}
+          )} 
           {/* {!isAuthenticated && <UserInformation />} */}
         </header>
       </Fragment>

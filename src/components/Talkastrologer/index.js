@@ -20,7 +20,8 @@ class Talkastrologer extends Component{
 				astrolist:[],
 				token:localStorage.getItem('token'),
 				wallet:localStorage.getItem('wallet'),
-				userId:'',
+				userId:localStorage.getItem('id'),
+				cb_roles_id:localStorage.getItem('cb_roles_id'),
 				authFlag:false,
 				modalIsOpen:false,
 				loading: false,
@@ -92,7 +93,9 @@ class Talkastrologer extends Component{
 		}
 	}
 	checkUser(astroId,type,data){
-		
+		if(this.state.cb_roles_id==2){
+			return false;
+		}
 		if(!this.state.token && !this.state.userId){
 			this.setState({
 				authFlag:true,
@@ -103,6 +106,8 @@ class Talkastrologer extends Component{
 			if(this.state.wallet==0){
 			 this.props.history.push({pathname:'/callingpack',data:data})
 			}else{
+				
+				localStorage.setItem('astroname',data.name);
 				if(type=='chat'){
 					this.props.history.push({pathname:'/chat',data:data})
 				}else if(type=='call'){

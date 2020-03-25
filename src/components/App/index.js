@@ -37,6 +37,9 @@ import MuhuratDeatil from "../Muhurat/muhuratsingle";
 import VastuDetail from "../Vastu/vastusingle";
 import KundliDetail from "../Kundli/kundlisingle";
 
+import AstrologerProfile from "../Frontendastrologer";
+import AstrologerchatPage from "../Frontendastrologer/astrochat";
+
 import UserAccountPage from "../Users";
 
 const App = props => {
@@ -107,6 +110,9 @@ const App = props => {
 
           <Route path={ROUTES.Horoscopes} component={Horoscope} />
           <Route path={ROUTES.UserAccount} component={UserAccountPage} />
+		  
+		  <Route path={ROUTES.AstrologerProfile} component={AstrologerProfile} />
+          <Route path={ROUTES.AstrologerChat} component={AstrologerchatPage} />
 
           <Footer {...props} />
         </Router>

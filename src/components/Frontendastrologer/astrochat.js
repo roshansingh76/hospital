@@ -5,13 +5,14 @@ import io from "socket.io-client";
 import moment from 'moment';
 import config from '../../config/config';
 const url = 'https://www.jyotirvid.in';
-
-class  Chat extends Component{
+let receiver='';
+	  
+class  AstroChat extends Component{
     constructor(props){
         super(props);
-		
-
-        this.state = {
+		this.state = {
+			sender:'',
+			receiver:'',
 			userId:localStorage.getItem('id'),
 			astroId:localStorage.getItem('astroId'),
             token:localStorage.getItem('token'),
@@ -38,8 +39,6 @@ class  Chat extends Component{
 	componentWillUnmount(){
 		 this.handleStopTimer();
 		 this.handleResetTimer();	
-	
-
 	}
 	componentDidMount() {
 		let aname=this.props.location.data;
@@ -49,13 +48,31 @@ class  Chat extends Component{
 			 this.setState({ astroName:''});   
 		}
 		this.socket = io(url);
-		this.socket.on('user_connected',this.state.userId)
+		
+		//this.socket.emit('user_connected',this.state.n);
+		 
+		this.setState({
+			sender:this.state.userId
+		});
+		
+		this.socket.on("user_connected", function (username) {
+			if(localStorage.getItem('id')!=username){
+				if(username){
+					receiver=username;
+					var html = "";
+					html += "<li><button onclick='onUserSelected(this.innerHTML);'>" + username + "</button></li>";
+					document.getElementById("users").innerHTML += html;
+				}
+			}
+		});
+		
 		this.socket.on("messages", msg => {
 			  this.setState({ chatMessages: [...this.state.chatMessages, msg]   
 		 });
 		});
 	}
-   handleStartTimer = () => {
+
+  handleStartTimer = () => {
     if (!this.state.startTime) {
       const startTime = moment().format("L LTS");
       this.setState({
@@ -150,13 +167,13 @@ class  Chat extends Component{
   };
 	handleKeyPress(event){
 		   if (event.key === "Enter") {
-			  	 this.socket.emit('messages',{
+			   this.socket.emit('messages',{
 					'chatMessage':this.state.chatMessage,
 					'username':this.state.username,
 					'cb_roles_id':this.state.cb_roles_id
 				 
 				 });
-				 this.setState({chatMessage: ''});
+			   this.setState({chatMessage: ''});
 		   }
 	}
 	
@@ -185,6 +202,15 @@ class  Chat extends Component{
             <div className="padding bg-colr">
                 <div className="container">
                     <div className="row justify-content-md-center">
+					<div className="col-md-4">
+							<div className="card card-borer">
+                                <div className="card-body card-body-pg">
+								<ul id="users"></ul>
+
+								</div>
+							</div>
+								
+					</div>
                         <div className="col-md-8">
                             <div className="card card-borer">
                                 <div className="card-body card-body-pg">
@@ -193,7 +219,7 @@ class  Chat extends Component{
                                             <div className="avatar avatar-online">
                                                 <img src="assets/img/doctors/doctor-thumb-03.jpg" alt="User Image" className="avatar-img rounded-circle"/>
                                             </div>
-                                            <div className="user-name">{localStorage.getItem('astroname')}</div>
+                                            <div className="user-name">{this.state.astroName}</div>
                                             <div className="user-status">online</div>
 										    <div className="user-balance float-right">
 												{timer}
@@ -206,7 +232,7 @@ class  Chat extends Component{
 													usertext.map((data, index) => {
 														
 														if(data.cb_roles_id==2){
-															return (<div ckey={index+1}  className="message-user">
+															return (<div key={index+1}  className="message-user">
 																<p>{data.chatMessage}</p>
 																<span></span>
 															</div>)
@@ -260,4 +286,4 @@ class  Chat extends Component{
     }
 }
 
-export default Chat;
+export default AstroChat;

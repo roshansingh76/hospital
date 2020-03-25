@@ -1,5 +1,5 @@
 export const Home = '/';
-export const Astrodetails = '/astrologer/:slug';
+export const Astrodetails = '/astrologer-detail/:slug';
 export const DONATE = '/donate';
 export const SIGN_UP = '/signup';
 export const ADMIN_LOGIN_IN = '/adminlogin';
@@ -30,6 +30,13 @@ export const Kundlidetails = '/Kundli/:slug';
 export const MuhuratList = '/muhurat';
 export const VastuList = '/micro-vastu';
 export const KundliList = '/kundli';
+
+export const AstrologerProfile = '/astrologer/myaccount';
+export const AstrologerChat = '/astrologer/chat';
+
+
+
+
 
 
 export const UserAccount = '/users/:slug';
