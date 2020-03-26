@@ -84,7 +84,7 @@ const TalkastrologerAstologerlist=(props)=>{
 					</div>
 					<div className="astro-r-n">
 							<div className="astro-name">
-								<p><Link to={'astrologer/'+rowData.slug}>{rowData.name}</Link></p>
+								<p><Link to={'astrologer-detail/'+rowData.slug}>{rowData.name}</Link></p>
 							</div>
 							<div className="astro-p-deatil">
 								<p>{rowData.expertise_name}</p>
