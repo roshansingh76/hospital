@@ -332,7 +332,7 @@ padding: 15px;
 .fac-goog .btn {
     font-size: 10px;
     font-weight: 600;
-	padding: 10px 2px;
+    padding: 10px 2px;
 }
 .or-d span {
     font-size: 14px;
@@ -366,13 +366,13 @@ padding: 15px;
     background: #fbfafa;
     margin-bottom: 15px
 }
-.horo-d-list ul {
+.horo-d-list ul ,.horoscope-main-inn ul{
     margin-top: 0;
     list-style-type: none;
     white-space: nowrap;
     overflow-x: auto;
 }
-.horo-d-list ul li {
+.horo-d-list ul li{
     display: inline-block;
     margin: 5px;
     width: 20% !important;
@@ -381,4 +381,30 @@ padding: 15px;
 .tab-v1 .nav-tabs > li {
     width: 33.3%;
 }
+.horoscope-main-inn ul li {
+    display: inline-block;
+    margin: 5px;
+    width: 33% !important;
+    float: none !important;
+}
+.horoscope-main-inn ul li:hover{
+    -ms-transform: scale(1); /* IE 9 */
+  -webkit-transform: scale(1); /* Safari 3-8 */
+  transform: scale(1);
+  background:#fff;
+
+}
+.horoscope-inner a img {
+    width: 45px;
+    }
+    .horoscope-inner a p {
+    font-size: 14px;
+}
+.horoscope-inner {
+    padding: 10px;
+}
+.fluid-padd {
+    padding-left: 15px;
+    }
+
 }

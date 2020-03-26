@@ -155,6 +155,36 @@ a{
 .flat-top {
 	float: right;
 }
+.fluid-padd{
+	padding-left: 0px
+}
+.bg-home{
+	background-color: #ff7b000a
+}
+.er img{
+	width: 100%;
+	height: 390px;
+	object-fit: cover
+}
+.card-home {
+   border-radius: 90px 90px 90px 0px;
+    -webkit-box-shadow: 0 1px 15px 1px rgba(0,0,0,.04), 0 1px 6px rgba(0,0,0,.04);
+    box-shadow: 0 1px 15px 1px rgba(0,0,0,.04), 0 1px 6px rgba(0,0,0,.04);
+    border: 0;
+    -webkit-transition: all .15s ease-in;
+    transition: all .15s ease-in;
+    margin: 20px 0px;
+}
+.card-home .card-body img{
+	width: 60px
+}
+.card-home .card-body h4{
+	font-size: 14px
+}
+.card-home:hover{
+	webkit-box-shadow: 0 10px 16px rgba(0,0,0,.2);
+    box-shadow: 0 10px 16px rgba(0,0,0,.2);
+}
 /* Flat Socials
 -------------------------------------------------------------- */
 .social-links li {
@@ -1091,9 +1121,64 @@ Banner Section
 
 .home-banner{
 	width: 100%;
-    height: 300px;
+    height: 340px;
     display: block;
     overflow: hidden;
+    position: relative;
+}
+.home-banner:before{
+	content: "";
+	position: absolute;
+	content: "";
+    position: absolute;
+    background: -webkit-linear-gradient(56deg, #fdcd3b87 45%, #a1610917 45%);
+    background: -o-linear-gradient(56deg, #fdcd3b87 45%, #a1610917 45%);
+    background: -moz-linear-gradient(56deg, #fdcd3b87 45%, #a1610917 45%);
+    background: linear-gradient(56deg, #fdcd3b87 45%, #a1610917 45%);
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.banner-services-icons{
+	position: absolute;
+	bottom: 20px;
+	width: 30%;
+	left: 100px
+}
+.banner-services-icons ul li{
+	width: 47%;
+    float: left;
+    margin: 5px;
+}
+.banner-services-icons ul li a{
+	color: #fff;
+    font-size: 18px;
+    text-align: center;
+    display: block;
+    background: #0202027a;
+    padding: 15px;
+    border-radius: 5px;
+    margin: 0 auto;
+    -webkit-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.7);
+
+}
+.banner-services-icons ul li a img{
+	width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+   -webkit-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.7);
+    box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.7);
+}
+.banner-services-icons ul li a span{
+	display: block;
+    color: #ffffff;
+   font-size: 14px;
+    font-weight: 600;
 }
 .banner-style6 .staff-member {
 	position: relative;
@@ -4314,7 +4399,7 @@ input.demo_vertical {
 */
 /*vast*/
 .sub-vast-muh{
-	background-color: #ffffff;
+	background-color: #f9f9f9;
 }
 .jyt_micro{
 	height: 432px;
@@ -4683,8 +4768,11 @@ input.demo_vertical {
     padding: 10px;
     display: block;
 }
-.astor-list-n-inner a {}
+.astor-list-n-inner a {word-break: break-word;
+    white-space: pre-wrap;}
 .astor-list-n-inner a img{
+	width: 100px;
+    height: 100px;
     margin: 0 auto;
     background: #fff;
 	-webkit-transition: all 0.4s ease-out;
@@ -4701,7 +4789,8 @@ input.demo_vertical {
     margin-bottom: 5px;
 }
 .astor-main-inn ul li .astor-list-n-inner a:hover p {
-	color:#56081a
+	color:#56081a;
+	font-size: 17px
 }
 .astor-list-n-inner a span{
 	display: block;
@@ -6602,6 +6691,18 @@ figure.snip1281.hover:after {
 .h-astro-l ul li img{
 	width:100px
 }
+.h-astro-l h4,.h-astro-r h4{
+	color: #ff9900;
+}
+.h-astro-l h4 i,.h-astro-r h4 i{
+padding: 2px 5px;
+    border-radius: 5px;
+    line-height: normal;
+    border: 2px solid #fff;
+}
+.h-astro-l p,.h-astro-r p{
+	color: #fff;
+}
 .h-astro-r{
 	text-align:left
 }
@@ -7797,4 +7898,28 @@ color:#676767;
 	font-size: 12px;
     text-align: right;
     display: block;
+}
+
+.section-bg-1{
+	position: relative;
+	background: url('https://elements-video-cover-images-0.imgix.net/files/222438755/primag.jpg?auto=compress&crop=edges&fit=crop&fm=jpeg&h=800&w=1200&s=ac0415fb46a7611c9af37c13edb1d4ec') no-repeat center;
+	width: 100%;
+	background-size: cover;
+	background-attachment: fixed;
+	min-height: 400px; 
+
+
+}
+.section-bg-1:before{
+	content: "";
+    position: absolute;
+    background: #482006ba;
+    /* z-index: 1; */
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+.text-uppercase-col{
+	color: #fff
 }
