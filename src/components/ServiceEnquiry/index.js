@@ -28,19 +28,29 @@ const ServiceEnquiryForm = props => {
   });
 
   const { loader, error, hasErrored } = props;
+
+const customStyles = {
+  content : {
+    width : '500px',
+    top: '130px',
+
+  }
+};
+
   console.log(formik);
   return (
     <Modal
       isOpen={props.open}
       onRequestClose={props.toggleOpen}
       contentLabel="Example Modal"
+      style={customStyles}
     >
-      <div style={{ maxWidth: "500px", padding: "20px" }}>
+      <div>
         <div className="model-close-cust" onClick={props.toggleOpen}>
           <i className="fa fa-times"></i>
         </div>
 
-        <h3>Please share the details</h3>
+        <h3 style={{ padding: "10px 20px" ,marginBottom: "-10px",fontSize:"18px"}}>Please share the details</h3>
         {hasErrored && (
           <div class="alert alert-danger" role="alert">
             {error}

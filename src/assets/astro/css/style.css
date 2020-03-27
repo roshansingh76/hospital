@@ -4950,7 +4950,7 @@ input.demo_vertical {
 }*/
 .astro-pic{
 	float: left;
-    width: 35%;
+    width: 30%;
 	text-align:center
 }
 .astro-pic .astro-star {
@@ -4977,13 +4977,13 @@ text-align:center
 }
 .astro-r-n{
 	float: left;
-    width: 65%;
+    width: 70%;
 }
 .astro-name{
 	
 }
 .astro-name p{
-	font-size: 16px;
+	font-size: 15px;
     margin-bottom: 5px;
 	font-weight:600
 	
@@ -4995,6 +4995,7 @@ text-align:center
 	font-size: 12px;
     line-height: normal;
     margin-bottom: 3px;
+    word-break: break-all;
 }
 .astro-map-te{
 	display: block;
