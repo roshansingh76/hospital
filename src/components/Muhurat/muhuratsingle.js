@@ -2,12 +2,14 @@ import React from "react";
 import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import Leftnav from "./../Talkastrologer/leftnav";
+import ServiceForm from "../ServiceEnquiry";
 
 const url = "https://www.jyotirvid.in";
 
 class Muhuratsingle extends React.Component {
   state = {
-    muhurats: []
+    muhurats: [],
+    showForm: false
   };
   async componentDidMount() {
     try {
@@ -22,6 +24,13 @@ class Muhuratsingle extends React.Component {
       console.error();
     }
   }
+  toggleShowForm = () => {
+    this.setState({ showForm: !this.state.showForm });
+  };
+
+  handleServiceEnquiry = data => {
+    console.log(data);
+  };
   render() {
     return (
       <React.Fragment>
@@ -29,7 +38,6 @@ class Muhuratsingle extends React.Component {
           <div className="container">
             <div className="row">
               <Leftnav />
-
               <div className="col-md-9">
                 <div className="mu-vas-wapp">
                   {!this.state.muhurats ? (
@@ -50,10 +58,19 @@ class Muhuratsingle extends React.Component {
 
                         <div className="contten-m-v">
                           {ReactHtmlParser(muhurat.description)}
-                          <button type="button" class="mob-btn">
+                          <button
+                            type="button"
+                            class="mob-btn"
+                            onClick={this.toggleShowForm}
+                          >
                             Get an Enquiry
                           </button>
                         </div>
+                        <ServiceForm
+                          open={this.state.showForm}
+                          toggleOpen={this.toggleShowForm}
+                          handleServiceEnquiry={this.handleServiceEnquiry}
+                        />
                       </>
                     ))
                   )}

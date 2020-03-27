@@ -3,11 +3,14 @@ import axios from "axios";
 import ReactHtmlParser from "react-html-parser";
 import Leftnav from "./../Talkastrologer/leftnav";
 
+import ServiceForm from "../ServiceEnquiry";
+
 const url = "https://www.jyotirvid.in";
 
 class Kundlisingle extends Component {
   state = {
-    kundalis: []
+    kundalis: [],
+    showForm: false
   };
   async componentDidMount() {
     try {
@@ -22,6 +25,15 @@ class Kundlisingle extends Component {
       console.error();
     }
   }
+
+  toggleShowForm = () => {
+    this.setState({ showForm: !this.state.showForm });
+  };
+
+  handleServiceEnquiry = data => {
+    console.log(data);
+  };
+
   render() {
     return (
       <React.Fragment>
@@ -50,10 +62,19 @@ class Kundlisingle extends Component {
 
                         <div className="contten-m-v">
                           {ReactHtmlParser(kundli.description)}
-                          <button type="button" class="mob-btn">
+                          <button
+                            type="button"
+                            class="mob-btn"
+                            onClick={this.toggleShowForm}
+                          >
                             Get an Enquiry
                           </button>
                         </div>
+                        <ServiceForm
+                          open={this.state.showForm}
+                          toggleOpen={this.toggleShowForm}
+                          handleServiceEnquiry={this.handleServiceEnquiry}
+                        />
                       </>
                     ))
                   )}
