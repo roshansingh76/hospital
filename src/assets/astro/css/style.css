@@ -1121,7 +1121,7 @@ Banner Section
 
 .home-banner{
 	width: 100%;
-    height: 340px;
+    height: 295px;
     display: block;
     overflow: hidden;
     position: relative;
@@ -1131,10 +1131,10 @@ Banner Section
 	position: absolute;
 	content: "";
     position: absolute;
-    background: -webkit-linear-gradient(56deg, #fdcd3b87 45%, #a1610917 45%);
-    background: -o-linear-gradient(56deg, #fdcd3b87 45%, #a1610917 45%);
-    background: -moz-linear-gradient(56deg, #fdcd3b87 45%, #a1610917 45%);
-    background: linear-gradient(56deg, #fdcd3b87 45%, #a1610917 45%);
+    background: -webkit-linear-gradient(56deg, #875f7412 45%, #130b0117 45%);
+    background: -o-linear-gradient(56deg, #875f7412 45%, #130b0117 45%);
+    background: -moz-linear-gradient(56deg, #875f7412 45%, #130b0117 45%);
+    background: linear-gradient(56deg, #875f7412 45%, #130b0117 45%);
     width: 100%;
     height: 100%;
     top: 0;
@@ -1142,9 +1142,9 @@ Banner Section
 }
 .banner-services-icons{
 	position: absolute;
-	bottom: 20px;
+	bottom: 30px;
 	width: 30%;
-	left: 100px
+	left: 15px
 }
 .banner-services-icons ul li{
 	width: 47%;
@@ -1166,13 +1166,14 @@ Banner Section
 
 }
 .banner-services-icons ul li a img{
-	width: 70px;
-    height: 70px;
+	width: 60px;
+    height: 60px;
     border-radius: 50%;
     margin-bottom: 5px;
    -webkit-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.7);
     -moz-box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.7);
     box-shadow: 2px 4px 5px 0px rgba(0, 0, 0, 0.7);
+    background-color:#ffffff;
 }
 .banner-services-icons ul li a span{
 	display: block;
@@ -6689,6 +6690,9 @@ figure.snip1281.hover:after {
 	text-align:right
 }
 .h-astro-l ul{}
+.h-astro-l ul li ,.h-astro-r ul li {
+height: 110px
+}
 .h-astro-l ul li img{
 	width:100px
 }
@@ -7314,7 +7318,7 @@ font-size: 14px;
 }
 .navbar-dark .navbar-nav .nav-link {
     color: rgb(255, 255, 255);
-    font-size: 16px;
+    font-size: 15px;
 }
 .navbar-dark .navbar-nav .active{
     color: #ffb900;
@@ -7346,6 +7350,7 @@ font-size: 14px;
 	padding: 0;
     color: #ffffff;
     cursor: pointer;
+    font-size: 13px
 }
 .custom-larg .unstyled .dropdown-menu-lin{
 	left: -50px;
@@ -7627,6 +7632,7 @@ padding-top: 1000px;
 }
 .rounded-circle {
     border-radius: 50%!important;
+    margin-left:5px;
 }
 .user-info a {
     color: #272b41;
@@ -7907,7 +7913,7 @@ color:#676767;
 	width: 100%;
 	background-size: cover;
 	background-attachment: fixed;
-	min-height: 400px; 
+	min-height: 370px; 
 
 
 }

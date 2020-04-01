@@ -297,6 +297,17 @@ padding: 15px;
 .astor-main-inn ul li {
     width: 48.44%;
 }
+.astor-list-n-inner a img {
+    width: 60px;
+    height: 60px;
+    }
+    .astor-list-n-inner a p {
+    font-size: 13px;
+    line-height: normal;
+}
+.astor-main-inn ul li .astor-list-n-inner a:hover p {
+    font-size: 13px;
+}
 .jyt_micro_astrology {
     float: none;
 }
@@ -360,8 +371,20 @@ padding: 15px;
     margin: 5px auto;
 }
 .home-banner {
-    height: auto;
-}   
+    height: 300px;
+} 
+.home-banner a img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.banner-services-icons ul li a img {
+    width: 50px;
+    height: 50px;
+    }
+    .banner-services-icons ul li a span {
+    font-size: 12px;
+}
 .astro-left-filt {
     background: #fbfafa;
     margin-bottom: 15px
@@ -424,5 +447,15 @@ padding: 15px;
     margin-bottom: 25px;
     text-align: left;
 }
+
+.banner-services-icons {
+    position: absolute;
+    bottom: 50px;
+    width: 100%;
+    left: 5px;
+}
+.banner-services-icons ul li {
+    width: 45%;
+    }
 
 }

@@ -36,7 +36,7 @@ const Fheader=()=>(
 									<div className="texteducare-info clearfix">
 										<div className="info-icon"> <i className="fa fa-comments"></i> </div>
 										<div className="info-text">
-											<p><Link to={ROUTES.Talkastrologer}>Chat Astrologer</Link></p>
+											<p><Link to={ROUTES.Talkastrologer}>Chat With Astrologer</Link></p>
 										</div>
 									</div>
 								</aside>
@@ -44,7 +44,7 @@ const Fheader=()=>(
 									<div className="texteducare-info clearfix">
 										<div className="info-icon"> <i className="fa fa-phone"></i> </div>
 										<div className="info-text">
-											<p><Link to={ROUTES.Talkastrologer}>Talk Astrologer</Link></p>
+											<p><Link to={ROUTES.Talkastrologer}>Consult With Astrologer  </Link></p>
 										</div>
 									</div>
 								</aside>

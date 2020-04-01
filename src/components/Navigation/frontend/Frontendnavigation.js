@@ -344,12 +344,12 @@ class Mainnav extends Component {
                 <span className="navbar-toggler-icon"></span>
               </button>
               <ul className="unstyled  d-sm-none d-md-none d-lg-none d-xl-none">
-                <li>
+                {/*<li>
                   <Link to="sign-in.html">Login</Link>
                 </li>
                 <li>
                   <Link to="register.html">Register</Link>
-                </li>
+                </li>*/}
                 <li className="nav-item dropdown">
                   <Link to="#" id="navbardrop" data-toggle="dropdown">
                     {name}({wallet}){" "}
@@ -379,7 +379,7 @@ class Mainnav extends Component {
                   </li>
                   <li className="nav-item ">
                     <Link to={ROUTES.Talkastrologer} className="nav-link">
-                      Prediction
+                     Consult Astrologer
                     </Link>
                   </li>
                   {/*<li className="nav-item dropdown">
@@ -394,17 +394,17 @@ class Mainnav extends Component {
 							</li>*/}
                   <li className="nav-item">
                     <Link to={ROUTES.MuhuratList} className="nav-link">
-                      Muhurat
+                     Shubh Muhurat
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link to={ROUTES.VastuList} className="nav-link">
-                      Vastu
+                      Micro Vastu
                     </Link>
                   </li>
                   <li className="nav-item">
                     <Link to={ROUTES.KundliList} className="nav-link">
-                      Kundli
+                     Handmade Kundli
                     </Link>
                   </li>
                   <li className="nav-item">
@@ -412,7 +412,7 @@ class Mainnav extends Component {
                       to={ROUTES.Horoscopesdefault + "/aries"}
                       className="nav-link"
                     >
-                      Horoscope
+                     Free Horoscope
                     </Link>
                   </li>
                   <li className="nav-item">

@@ -10,7 +10,7 @@ const TalkastrologerLeftnav=(props)=>{
 			<div className="astro-left-filt">
 				<p>Our Services</p>
 				<ul>
-					<li className={slug==='talk-astrologer' ? 'active':''}><Link to={ROUTES.Talkastrologer} className={slug==='talk-astrologer' ? 'active':''}>Astrologer  <i className="fa fa-bell-o" aria-hidden="true"></i></Link></li>
+					<li className={slug==='talk-astrologer' ? 'active':''}><Link to={ROUTES.Talkastrologer} className={slug==='talk-astrologer' ? 'active':''}>Consult Astrologer  <i className="fa fa-bell-o" aria-hidden="true"></i></Link></li>
 					<li  className={slug==='horoscope/aries' ? 'active':''}><Link className={slug==='horoscope/aries' ? 'active':''}  to={ROUTES.Horoscopesdefault+'/aries'}>Free Horoscope</Link></li>
 					<li  className={slug==='muhurat' ? 'active':''}><Link className={slug==='muhurat' ? 'active':''} to={ROUTES.MuhuratList}>Shubh Muhurat</Link></li>
 					<li  className={slug==='micro-vastu' ? 'active':''}><Link   className={slug==='micro-vastu' ? 'active':''} to={ROUTES.VastuList}>Micro Vastu</Link></li>

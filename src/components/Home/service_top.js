@@ -27,13 +27,13 @@ const Hservice_top=()=>(
 							<li>
 								
 								<h4><i className="fa fa-phone"></i> Select the astrologer</h4>
-								<p>Go through the list of expert astrologers, analyze the astrologer's profile by biography, rating, languages, services, availability then choose the astrologer and select the services</p>
+								<p>Recharge your wallet and consult with various verified astrologers through Chat or Call Options.</p>
 							</li>
 							
 							<li>
 								
 								<h4><i className="fa fa-phone"></i> Get report</h4>
-								<p>Go through the list of expert astrologers, analyze the astrologer's profile by biography, rating, languages, services, availability then choose the astrologer and select the services</p>
+								<p>Get reports related to Love, Health, Relationship or Career predictions.</p>
 							</li>
 							
 						</ul>
@@ -44,14 +44,14 @@ const Hservice_top=()=>(
 						<ul>
 							<li>
 								
-								<h4><i className="fa fa-phone"></i>  Enter birth details</h4>
-								<p>Go through the list of expert astrologers, analyze the astrologer's profile by biography, rating, languages, services, availability then choose the astrologer and select the services</p>
+								<h4><i className="fa fa-phone"></i> Get Muhurat and Vastu</h4>
+								<p>Planning for any auspicious activity? Get customised Shubh Muhurat  and Micro Vastu reports.</p>
 							</li>
 							
 							<li>
 								
-								<h4><i className="fa fa-phone"></i> Chat with astrologer</h4>
-								<p>Go through the list of expert astrologers, analyze the astrologer's profile by biography, rating, languages, services, availability then choose the astrologer and select the services</p>
+								<h4><i className="fa fa-phone"></i> Free Horoscope</h4>
+								<p>Explore Free Horoscope, Match Making, Handmade Kundli and astrological products.</p>
 							</li>
 							
 						</ul>
