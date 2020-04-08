@@ -43,6 +43,18 @@
 
 /* Smaller than standard 992 */
 @media only screen and (max-width: 991px) {
+    .values .card {
+    border: 0;
+   padding: 20px 35px;
+}
+    .values .card-body{
+       position: relative;
+    width: 100%;
+    padding: 30px 20px;
+    }
+    .values .card-title a {
+    font-size: 18px;
+}
  .educare-btn-menu {
  display: block;
 }
@@ -373,6 +385,12 @@ padding: 15px;
 .home-banner {
     height: 300px;
 } 
+.home-banner:before {
+    background: linear-gradient(56deg, #875f74b8 45%, #130b0161 45%);
+    }
+    .banner-services-icons ul li a{
+        padding:7px;
+    }
 .home-banner a img {
     width: 100%;
     height: 300px;
@@ -450,12 +468,15 @@ padding: 15px;
 
 .banner-services-icons {
     position: absolute;
-    bottom: 50px;
+    bottom: 20%;
     width: 100%;
-    left: 5px;
+    left: 3%;
 }
 .banner-services-icons ul li {
     width: 45%;
+    }
+    .h-astro-l ul li, .h-astro-r ul li{
+        height: auto
     }
 
 }

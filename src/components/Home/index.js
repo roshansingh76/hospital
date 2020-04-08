@@ -5,6 +5,7 @@ import Service_top from './service_top';
 import Top_astrologer from './top_astrologer';
 import Astro_mini_service from './astro_mini_service';
 import Free_horoscope from './free_horoscope';
+import Service_bottom from './service_bottom';
 import config from '../../config/config';
 const url ="https://www.jyotirvid.in";
 class HomePage extends Component{
@@ -175,6 +176,7 @@ handleKundli(){
 				<Service_top/>
 				<Top_astrologer data={this.state}/>
 				<Astro_mini_service data={this.state}/>
+        <Service_bottom/>
 			</React.Fragment>
 		);
  }

@@ -19,7 +19,7 @@ const Hslider = () => (
         <li>
           <Link to="talk-astrologer">
              <img src={img1} alt="Chat.png" />
-            <span>Chat Astrologer</span>
+            <span>Chat With Astrologer</span>
           </Link>
         </li>
         <li>

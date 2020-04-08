@@ -50,7 +50,7 @@ const customStyles = {
           <i className="fa fa-times"></i>
         </div>
 
-        <h3 style={{ padding: "10px 20px" ,marginBottom: "-10px",fontSize:"18px"}}>Please share the details</h3>
+        <h3 style={{ padding: "10px 30px" ,marginBottom: "-10px",fontSize:"18px"}}>Please share the details</h3>
         {hasErrored && (
           <div class="alert alert-danger" role="alert">
             {error}

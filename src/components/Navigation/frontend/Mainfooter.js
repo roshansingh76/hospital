@@ -17,7 +17,8 @@ const Footer=(props)=>{
 				<div className="footer-educare-widget widget">
 				  <div className="footer-title-widget">Jyotirvid</div>
 				  <div className="footer-content-widget">
-					<p>Mauris accumsan eros eget libero posuere vulputate. Etiam elit elit, elementum sed varius at, adipiscing vitae est. Sed nec felis pellentesque, lacinia dui sed, ultricies sapien. Mauris accumsan eros eget </p>
+					<p>Jyotirvid is the most genuine online destination for all kinds of astrological services. We make sure to connect you with tried and tested, highly professional predictors who are experts of the science of planets. 
+Chat or talk with predictors and seek all your answers about your future predictions.</p>
 				  </div>
 				</div>
 			  </div>
@@ -30,17 +31,15 @@ const Footer=(props)=>{
 						<div className="col-lg-6 col-sm-6 col-xs-6">
 						  <ul className="list-unstyled">
 							<li><i className="fa fa-angle-right"></i><Link to={ROUTES.About}>About</Link></li>
-							<li><i className="fa fa-angle-right"></i><a href="#">Careers</a></li>
-							<li><i className="fa fa-angle-right"></i><a href="#">Book astrologer</a></li>
-							<li><i className="fa fa-angle-right"></i><a href="#">Muhurat</a></li>
+							<li><i className="fa fa-angle-right"></i><Link to={ROUTES.Talkastrologer}>Chat With Astrologer</Link></li>
+							<li><i className="fa fa-angle-right"></i><Link to={ROUTES.MuhuratList}>Shubh Muhurat</Link></li>
+							
 						  </ul>
 						</div>
 						<div className="col-lg-6 col-sm-6 col-xs-6">
 						  <ul className="list-unstyled">
-							<li><i className="fa fa-angle-right"></i><a href="#">Handmade Janam Kundli</a></li>
-							<li><i className="fa fa-angle-right"></i><a href="#">Business Kundli</a></li>
-							<li><i className="fa fa-angle-right"></i><a href="#">Products</a></li>
-							<li><i className="fa fa-angle-right"></i><a href="#">Blog</a></li>
+						  	<li><i className="fa fa-angle-right"></i><Link to={ROUTES.VastuList}>Micro Vastu</Link></li>
+							<li><i className="fa fa-angle-right"></i><Link to={ROUTES.KundliList}>Handmade Janam Kundli</Link></li>
 						  </ul>
 						</div>
 					  </div>
@@ -78,7 +77,13 @@ const Footer=(props)=>{
 						</span></div>
 					</form>
 					<p>We respect your privacy</p>
-					<div className="socials"><a href="#" className="facebook"><i className="fa fa-facebook"></i></a><a href="#" className="google"><i className="fa fa-google-plus"></i></a><a href="#" className="twitter"><i className="fa fa-twitter"></i></a><a href="#" className="pinterest"><i className="fa fa-pinterest"></i></a><a href="#" className="blogss"><i className="fa fa-rss"></i></a></div>
+					<div className="socials">
+						<a href="https://www.facebook.com/jyotirvid2017/" className="facebook" target="_blank"><i className="fa fa-facebook" ></i></a>
+						<a href="https://twitter.com/Jyotirvid2018" className="twitter" target="_blank"><i className="fa fa-twitter"></i></a>
+						<a href="https://in.pinterest.com/jyotirvid2018/" className="pinterest" target="_blank"><i className="fa fa-pinterest"></i></a>
+						{/*<a href="#" className="blogss" target="_blank"><i className="fa fa-rss"></i></a>*/}
+
+						</div>
 				  </div>
 				</div>
 			  </div>

@@ -137,6 +137,9 @@ a{
 	opacity: 1;
 	visibility: visible;
 }
+.bg-dark {
+    background-color: #542a0f!important;
+}
 /* float */
 .float-left {
 	float: left;
@@ -1028,6 +1031,72 @@ Banner Section
 /* ================================= */
 /* --------- Features  Css  ------- */
 /* ================================= */
+
+.values .card {
+  border: 0;
+ padding: 150px 60px;
+  position: relative;
+  width: 100%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-bottom: 15px;
+}
+
+.values .card-body {
+  z-index: 10;
+  background: rgba(36, 3, 45, 0.43);
+    padding: 90px 20px;
+  box-shadow: 0px 2px 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+  transition: ease-in-out 0.4s;
+  position: absolute;
+    bottom: 0;
+    right: 0;
+    height: 100%;
+    top: 0;
+    border-radius: 0;
+    color: #fff;
+    width: 35%;
+}
+
+.values .card-title {
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.values .card-title a {
+    color: #ffffff;
+    font-size: 26px;
+    line-height: 1.4;
+}
+
+.values .card-text {
+  color: #4b4949;
+}
+
+.values .read-more a {
+    color: #ffffff;
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.4s;
+    text-align: center;
+    display: block;
+}
+
+.values .read-more a:hover {
+  text-decoration: underline;
+}
+
+.values .card:hover .card-body {
+  background: #ff5821;
+}
+
+.values .card:hover .read-more a, .values .card:hover .card-title, .values .card:hover .card-title a, .values .card:hover .card-text {
+  color: #fff;
+}
 #main-features .col-sm-7 {
 	padding-left: 30px;
 }
@@ -4425,7 +4494,7 @@ input.demo_vertical {
 }
 .jyt_micro_astrology-head{
 	padding: 5px 15px;
-    background-color: rgba(86, 8, 26, 0.611764705882353);
+       background-color: rgb(84, 42, 15);
     margin-bottom: 5px;
 	/*-webkit-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.35);
 	-moz-box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.35);
@@ -4870,7 +4939,13 @@ input.demo_vertical {
     margin-bottom: 0;
 }
 
-.astro-left-filt ul{}
+.astro-left-filt ul{
+	background: #fff;
+    -webkit-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+    -moz-box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+    box-shadow: 0px 0px 5px 0px rgba(0, 0, 0, 0.23);
+    border-radius: 5px;
+}
 .astro-left-filt ul li {
     border-bottom: 1px solid #f1f1f1;
 }
@@ -4879,11 +4954,20 @@ input.demo_vertical {
 }
 .astro-left-filt ul li a{
 	display: block;
-    padding: 10px 20px;
+    padding: 15px 20px;
+    position: relative;
+}
+.astro-left-filt ul li a img{
+	width: 46px;
+    float: right;
+    background: rgb(255, 255, 255);
+    top: 0px;
+    position: absolute;
+    right: 0px;
 }
 .astro-left-filt ul li a.active{
-	background: #b3b3b3;
-	color:#fff;
+	background: #ff9900;
+    color: #fff;
 }
 .astro-left-filt ul li a:hover{
 	background: #585858;
@@ -6511,14 +6595,18 @@ figure.snip1281.hover:after {
 	display:block
 }
 .horo-detail-page .horosc-headd{
-    display: block;
+   display: block;
     overflow: hidden;
-    background: #ffffff;
+    background: #3c0842;
+    padding: 10px;
 }
 .horo-detail-page .horosc-headd img{
-	width: 80px;
+	width: 60px;
     float: left;
-	margin-right: 25px;
+    margin-right: 25px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 5px;
 }
 
 .horo-detail-page .horosc-headd p{
@@ -6530,9 +6618,10 @@ figure.snip1281.hover:after {
 }
 .horo-detail-page .horosc-headd span{
 	font-size: 16px;
+	color: #fff
 }
 .horo-detail-page .horosc-sing-content{
-	padding: 0px 15px;
+	padding: 15px 15px;
     background: #fbfafa;
     display: block;
     overflow: hidden;
@@ -6699,6 +6788,14 @@ height: 110px
 .h-astro-l h4,.h-astro-r h4{
 	color: #ff9900;
 }
+.h-astro-l h4 img,.h-astro-r h4 img{
+	width: 45px !important;
+    background: #fff;
+    border-radius: 50%;
+    padding: 3px;
+    box-shadow: 0px 1px 15px 3px #191002d9;
+}
+
 .h-astro-l h4 i,.h-astro-r h4 i{
 padding: 2px 5px;
     border-radius: 5px;
@@ -7350,7 +7447,7 @@ font-size: 14px;
 	padding: 0;
     color: #ffffff;
     cursor: pointer;
-    font-size: 13px
+    font-size: 15px
 }
 .custom-larg .unstyled .dropdown-menu-lin{
 	left: -50px;
@@ -7909,7 +8006,8 @@ color:#676767;
 
 .section-bg-1{
 	position: relative;
-	background: url('https://elements-video-cover-images-0.imgix.net/files/222438755/primag.jpg?auto=compress&crop=edges&fit=crop&fm=jpeg&h=800&w=1200&s=ac0415fb46a7611c9af37c13edb1d4ec') no-repeat center;
+	background-repeat: no-repeat;
+	background-position: center;
 	width: 100%;
 	background-size: cover;
 	background-attachment: fixed;
