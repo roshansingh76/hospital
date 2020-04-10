@@ -11,7 +11,7 @@ import img5 from "./../../assets/banner/Kundli.png";
 const TalkastrologerLeftnav=(props)=>{
 		const history = createBrowserHistory()
 	    let slug=history.location.pathname.replace('/', "");
-	 return (<div className="col-md-3">
+	 return (<div className="col-md-3 d-none d-sm-none d-md-block">
 			<div className="astro-left-filt">
 				<p>Our Services</p>
 				<ul>

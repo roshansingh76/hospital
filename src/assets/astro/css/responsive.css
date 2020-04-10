@@ -45,7 +45,7 @@
 @media only screen and (max-width: 991px) {
     .values .card {
     border: 0;
-   padding: 20px 35px;
+   padding: 50px 35px;
 }
     .values .card-body{
        position: relative;
@@ -477,6 +477,22 @@ padding: 15px;
     }
     .h-astro-l ul li, .h-astro-r ul li{
         height: auto
+    }
+    .Muhuratlist-react-se li {
+    width: 33.5%;
+    
+}
+.Muhuratlist-react-se li a p {
+    line-height: normal;
+    font-size: 11px;
+    margin-top: 10px;
+    font-weight: 600;
+}
+.mu-vas-wapp {
+    margin-top: 10px;
+}
+.form-new-pop .from-right .custom-in-cls .form-control-l-t {
+    width: 19%;
     }
 
 }

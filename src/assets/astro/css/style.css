@@ -7017,6 +7017,7 @@ font-weight: 600;
 .form-new-pop .from-left img{
 	width:100%;
 	height:400px;
+	object-fit: cover
 }
 .form-new-pop .from-right{
 	width: 60%;

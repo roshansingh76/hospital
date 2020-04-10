@@ -38,6 +38,7 @@ Chat or talk with predictors and seek all your answers about your future predict
 						</div>
 						<div className="col-lg-6 col-sm-6 col-xs-6">
 						  <ul className="list-unstyled">
+						  	<li><i className="fa fa-angle-right"></i><a href="https://rgyan.com/horoscope/" target="_blank">Free Horoscope Report</a></li>
 						  	<li><i className="fa fa-angle-right"></i><Link to={ROUTES.VastuList}>Micro Vastu</Link></li>
 							<li><i className="fa fa-angle-right"></i><Link to={ROUTES.KundliList}>Handmade Janam Kundli</Link></li>
 						  </ul>
@@ -56,7 +57,7 @@ Chat or talk with predictors and seek all your answers about your future predict
 						<li><i className="fa fa-envelope-o"></i><a href="#">info@Jyotirvid.in</a></li>
 						<li><i className="fa fa-phone"></i><a href="#">P:+91 770 3881 443</a></li>
 						<li><i className="fa fa-map-marker"></i><a href="#">
-						  <p>925-P , Sector 51 </p>
+						  <p>177-P , Sector 51 </p>
 						  <p>Gurugram, Haryana - 122001</p>
 						  </a></li>
 					  </ul>

@@ -2,6 +2,7 @@ import React,{Component,Fragment}from 'react';
 import { Link } from 'react-router-dom';
 import Modal from 'react-modal';
 import OtpInput from 'react-otp-input';
+import Signupimg from '../../assets/sign-up-bg.jpg';
 Modal.setAppElement('#root');
 var validator = require('validator');
 
@@ -47,7 +48,7 @@ const FrontendLogin=(props)=>{
 			{flagMobilecontainer &&
 				<div className="form-new-pop">
 					<div className="from-left">
-						<img src="https://images.astroyogi.com/astroyogi2017/english/images/tta/sign_up_banner.jpg" alt="img"/>
+						<img src={Signupimg} alt="img"/>
 					</div>
 
 					<div className="from-right">
@@ -82,7 +83,7 @@ const FrontendLogin=(props)=>{
 
 				<div className="form-new-pop">
 					<div className="from-left">
-						<img src="https://images.astroyogi.com/astroyogi2017/english/images/tta/sign_up_banner.jpg" alt="img"/>
+						<img src={Signupimg} alt="img"/>
 					</div>
 
 					<div className="from-right from-right-margin">

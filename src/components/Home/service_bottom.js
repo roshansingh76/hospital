@@ -14,9 +14,9 @@ const Hservice_bottom=()=>(
 				<div className="col-md-6">
 					<a href="https://rgyan.com/horoscope/" target="_blank"><div class="card card-bg" style={{ backgroundImage:`url(${bg2})`}}>
 		              <div class="card-body">
-		                <h5 class="card-title"><a href="#">Free Match Making</a></h5>
+		                <h5 class="card-title"><a href="https://rgyan.com/horoscope/" target="_blank">Free Match Making</a></h5>
 		               
-		                <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> GET NOW</a></div>
+		                <div class="read-more"><a href="https://rgyan.com/horoscope/" target="_blank"><i class="icofont-arrow-right"></i> GET NOW</a></div>
 		              </div>
             		</div></a>
 				</div>
@@ -24,9 +24,9 @@ const Hservice_bottom=()=>(
 				<div className="col-md-6">
 					<a href="https://rgyan.com/horoscope/" target="_blank"><div class="card card-bg" style={{ backgroundImage:`url(${bg3})`}}>
 		              <div class="card-body">
-		                <h5 class="card-title"><a href="#">Free Horoscope</a></h5>
+		                <h5 class="card-title"><a href="https://rgyan.com/horoscope/" target="_blank">Free Horoscope</a></h5>
 		                
-		                <div class="read-more"><a href="#"><i class="icofont-arrow-right"></i> GET NOW</a></div>
+		                <div class="read-more"><a href="https://rgyan.com/horoscope/" target="_blank"><i class="icofont-arrow-right"></i> GET NOW</a></div>
 		              </div>
             		</div></a>
 				</div>

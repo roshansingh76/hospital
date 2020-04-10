@@ -12,7 +12,7 @@ const Tobbar=()=>(
 				<div className="row">
 					<div className="col-lg-6 col-sm-12 mobile-center">
 						<div className="email"><a href="#"><span><i className="fa fa-envelope-o"></i> info@Jyotirvid.in</span></a></div>
-						<div className="email"><a href="astrloger.html"><span>Prediction Report</span></a></div>
+						<div className="email"><a href="https://rgyan.com/horoscope/" target="_blank"><span>Free Match Making</span></a></div>
 					</div>
 					<div className="col-lg-6 col-sm-12 mobile-center">
 						<div className="wrap-top">
